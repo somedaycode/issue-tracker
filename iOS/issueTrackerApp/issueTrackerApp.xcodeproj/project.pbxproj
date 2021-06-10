@@ -59,23 +59,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		883F5147266F3EAF0055EC9E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = ViewController/Login/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
+		883F5147266F3EAF0055EC9E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = issueTrackerApp/Presentation/UI/ViewController/Login/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
 		883F5153266F442C0055EC9E /* issueTrackerApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = issueTrackerApp.entitlements; sourceTree = "<group>"; };
 		883F5158266F502F0055EC9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = issueTrackerApp/Base.lproj/Issue.storyboard; sourceTree = "<group>"; };
 		883F5160266F505E0055EC9E /* Label.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Label.storyboard; sourceTree = "<group>"; };
 		883F5169266F508B0055EC9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = issueTrackerApp/Base.lproj/Milestones.storyboard; sourceTree = "<group>"; };
 		883F5171266F50A40055EC9E /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
-		883F5184266F5F090055EC9E /* IssueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IssueViewController.swift; path = ViewController/Issue/IssueViewController.swift; sourceTree = SOURCE_ROOT; };
-		883F519C2670940E0055EC9E /* IssueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IssueCell.swift; path = ViewController/Issue/IssueCell.swift; sourceTree = SOURCE_ROOT; };
-		883F519D2670940E0055EC9E /* IssueCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = IssueCell.xib; path = ViewController/Issue/IssueCell.xib; sourceTree = SOURCE_ROOT; };
-		883F51A32670AAAB0055EC9E /* TagStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TagStackView.swift; path = ViewController/Issue/TagStackView.swift; sourceTree = SOURCE_ROOT; };
-		883F51A82670ABDC0055EC9E /* TagLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TagLabel.swift; path = ViewController/Issue/TagLabel.swift; sourceTree = SOURCE_ROOT; };
+		883F5184266F5F090055EC9E /* IssueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IssueViewController.swift; path = issueTrackerApp/Presentation/UI/ViewController/Issue/IssueViewController.swift; sourceTree = SOURCE_ROOT; };
+		883F519C2670940E0055EC9E /* IssueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IssueCell.swift; path = issueTrackerApp/Presentation/UI/ViewController/Issue/IssueCell.swift; sourceTree = SOURCE_ROOT; };
+		883F519D2670940E0055EC9E /* IssueCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = IssueCell.xib; path = issueTrackerApp/Presentation/UI/ViewController/Issue/IssueCell.xib; sourceTree = SOURCE_ROOT; };
+		883F51A32670AAAB0055EC9E /* TagStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TagStackView.swift; path = issueTrackerApp/Presentation/UI/ViewController/Issue/TagStackView.swift; sourceTree = SOURCE_ROOT; };
+		883F51A82670ABDC0055EC9E /* TagLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TagLabel.swift; path = issueTrackerApp/Presentation/UI/ViewController/Issue/TagLabel.swift; sourceTree = SOURCE_ROOT; };
 		883F51AD2670B2F70055EC9E /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
-		883F51B52671E1710055EC9E /* CustomBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomBarButtonItem.swift; path = ViewController/Issue/CustomBarButtonItem.swift; sourceTree = SOURCE_ROOT; };
-		883F51C6267200EA0055EC9E /* Issue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Issue.swift; path = ViewController/Issue/Issue.swift; sourceTree = SOURCE_ROOT; };
-		883F51CB2672041A0055EC9E /* Milestones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Milestones.swift; path = ViewController/Issue/Milestones.swift; sourceTree = SOURCE_ROOT; };
-		883F51D3267204520055EC9E /* LabelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LabelModel.swift; path = ViewController/Issue/LabelModel.swift; sourceTree = SOURCE_ROOT; };
-		883F51DB267204DC0055EC9E /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Comment.swift; path = ViewController/Issue/Comment.swift; sourceTree = SOURCE_ROOT; };
+		883F51B52671E1710055EC9E /* CustomBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomBarButtonItem.swift; path = issueTrackerApp/Presentation/UI/ViewController/Issue/CustomBarButtonItem.swift; sourceTree = SOURCE_ROOT; };
+		883F51C6267200EA0055EC9E /* Issue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Issue.swift; path = issueTrackerApp/Domain/Entity/Issue.swift; sourceTree = SOURCE_ROOT; };
+		883F51CB2672041A0055EC9E /* Milestones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Milestones.swift; path = issueTrackerApp/Domain/Entity/Milestones.swift; sourceTree = SOURCE_ROOT; };
+		883F51D3267204520055EC9E /* LabelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LabelModel.swift; path = issueTrackerApp/Domain/Entity/LabelModel.swift; sourceTree = SOURCE_ROOT; };
+		883F51DB267204DC0055EC9E /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Comment.swift; path = issueTrackerApp/Domain/Entity/Comment.swift; sourceTree = SOURCE_ROOT; };
 		930FAE82266E112700422968 /* issueTrackerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = issueTrackerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		930FAE85266E112700422968 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		930FAE87266E112700422968 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
