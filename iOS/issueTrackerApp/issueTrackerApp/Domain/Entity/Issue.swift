@@ -11,7 +11,8 @@ struct Issue: Codable {
     let id: Int
     let title: String
     let description: String
-    let authorAvatarURL: String
+    let assignee: [AppUser]
+    let author: AppUser
     let labelList: [Label]
     let issueNumber: Int
     let createdAt: String
@@ -21,7 +22,8 @@ struct Issue: Codable {
         case id
         case title
         case description
-        case authorAvatarURL = "author_avatar_url"
+        case assignee
+        case author
         case labelList = "label_list"
         case issueNumber = "issue_number"
         case createdAt = "created_time"

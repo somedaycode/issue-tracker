@@ -8,8 +8,8 @@
 import Foundation
 
 struct IssueEndPoint {
-    static let scheme = "https"
-    static let host = "f88e009a-3e2b-4862-838e-1f2cde9b95ed.mock.pstmn.io"
+    static let scheme = "http"
+    static let host = "15.164.68.136"
     static let basicPath = "/api/issues"
 //    static let countPath = "/count"
     
