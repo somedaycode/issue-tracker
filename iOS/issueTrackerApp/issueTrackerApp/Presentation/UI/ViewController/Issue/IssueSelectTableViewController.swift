@@ -50,8 +50,18 @@ class IssueSelectTableViewController: UITableViewController, IssueViewModelType,
         guard let cell = self.tableView.dequeueReusableCell(withIdentifier: IssueCell.identifier) as? IssueCell else { return UITableViewCell() }
         guard let issue = issueViewModel?.issues[indexPath.row] else { return UITableViewCell() }
         cell.configureAll(with: issue)
-        
+        cell.configureCheckImageView()
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let issueCell = tableView.cellForRow(at: indexPath) as? IssueCell else { return }
+        issueCell.checkImageView.isHidden = false
+    }
+    
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        guard let issueCell = tableView.cellForRow(at: indexPath) as? IssueCell else { return }
+        issueCell.checkImageView.isHidden = true
     }
 
 }

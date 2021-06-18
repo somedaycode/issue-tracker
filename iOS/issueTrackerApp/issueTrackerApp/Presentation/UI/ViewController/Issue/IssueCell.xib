@@ -23,6 +23,12 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kor-26-7q0">
+                        <rect key="frame" x="295.5" y="0.0" width="39.5" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="kor-26-7q0" secondAttribute="height" multiplier="1:1" id="nqK-dY-Sd5"/>
+                        </constraints>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Issue Description Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PQV-EP-IPs">
                         <rect key="frame" x="0.0" y="40" width="335" height="47.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -54,11 +60,14 @@
                     <constraint firstItem="cfH-Jq-0Lh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Hgs-N5-vA8"/>
                     <constraint firstAttribute="bottom" secondItem="j9h-AK-Uf8" secondAttribute="bottom" id="JOD-0f-z2v"/>
                     <constraint firstItem="aKN-Dc-NU9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Ka6-dl-SY4"/>
+                    <constraint firstAttribute="trailing" secondItem="kor-26-7q0" secondAttribute="trailing" id="O2r-yL-tb2"/>
                     <constraint firstItem="j9h-AK-Uf8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Ph5-lT-sVg"/>
+                    <constraint firstItem="kor-26-7q0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="TYX-XN-qAO"/>
                     <constraint firstItem="PQV-EP-IPs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="UPM-2S-SuM"/>
                     <constraint firstItem="cfH-Jq-0Lh" firstAttribute="top" secondItem="PQV-EP-IPs" secondAttribute="bottom" id="Vf6-i0-WQm"/>
                     <constraint firstItem="aKN-Dc-NU9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="VgN-7Q-1os"/>
                     <constraint firstAttribute="trailing" secondItem="aKN-Dc-NU9" secondAttribute="trailing" id="Xgc-k6-yTE"/>
+                    <constraint firstItem="kor-26-7q0" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.25" id="cS3-Us-Zke"/>
                     <constraint firstItem="PQV-EP-IPs" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.3" id="dw0-r3-dJj"/>
                     <constraint firstItem="j9h-AK-Uf8" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.2" id="fcc-EG-TXP"/>
                     <constraint firstItem="PQV-EP-IPs" firstAttribute="top" secondItem="aKN-Dc-NU9" secondAttribute="bottom" id="gnD-Ok-2NE"/>
@@ -67,6 +76,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="checkImageView" destination="kor-26-7q0" id="SNd-ev-chU"/>
                 <outlet property="descriptionLabel" destination="PQV-EP-IPs" id="SPi-9K-Ylf"/>
                 <outlet property="milestonesLabel" destination="cfH-Jq-0Lh" id="tcb-Zk-a3e"/>
                 <outlet property="tagStackView" destination="j9h-AK-Uf8" id="wKt-vR-32A"/>

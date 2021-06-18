@@ -12,6 +12,7 @@ class IssueCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var milestonesLabel: UILabel!
     @IBOutlet weak var tagStackView: TagStackView!
+    @IBOutlet weak var checkImageView: UIImageView!
     
     static var identifier: String {
         return String(describing: self)
@@ -43,6 +44,11 @@ class IssueCell: UITableViewCell {
         self.descriptionLabel.text = ""
         self.milestonesLabel.attributedText = NSAttributedString(string: "")
         self.tagStackView.removeAllTags()
+    }
+    
+    public func configureCheckImageView() {
+        self.checkImageView.image = UIImage(systemName: "checkmark.circle.fill")
+        self.checkImageView.isHidden = true
     }
     
     private func configureTitleLabel(with issue: Issue) {
