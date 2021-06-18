@@ -14,6 +14,10 @@
 `10:00 ~ 10:30` Zoom 그룹 내에서 근황 공유 간단 스크럼😁  
 `17:30 ~ 18:00` [Daily] 팀 내에서 자신의 진행 상황, 어려운 점 공유 및 오늘의 진행 할 내용 공유! 🤗  
 
+## 문서 바로가기 
+- [Daily 회고](https://github.com/pbg0205/issue-tracker/wiki/%ED%9A%8C%EA%B3%A0)
+- [요구사항 분석](https://app.tryeraser.com/workspace/N04nRHutThYuRv7NnssJ)
+- [FE UI 단위 설계](https://docs.google.com/presentation/d/1zz5-dW0guP8SdWgt6poKG8CQNlrA4zeu9EzzjkNcYkI/edit?usp=sharing)
 
 # Web Demo Preview
 
