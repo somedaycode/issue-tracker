@@ -20,3 +20,4 @@
 https://user-images.githubusercontent.com/56783350/122521862-49db4500-d050-11eb-9703-bde0c0d4cb89.mp4
 
 # iOS Demo Preview
+![264B203E558D8A8C09](https://user-images.githubusercontent.com/68788135/122522711-37154000-d051-11eb-915b-31918a2d84b2.jpg)
