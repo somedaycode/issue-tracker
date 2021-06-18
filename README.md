@@ -18,9 +18,9 @@
 ### 소통 채널
 - 매일 오후 2시 게더으로 미팅
 ### 브랜치 전략
-- 기능별 브랜치 생성(ex. be-feat-oauth)
-- 기능 개발 완료에 따라 분야별 브랜치에 병합(ex. be-feat-oauth -> be-dev)
-- 코드리뷰 완료에 따라 대표 브랜치에 병합(ex. be-dev -> team-2)
+- 기능별 브랜치 생성(ex. feat-FE-oauth)
+- 기능 개발 완료에 따라 분야별 브랜치에 병합(ex. feat-FE-oauth -> FE-dev)
+- 코드리뷰 완료에 따라 대표 브랜치에 병합(ex. FE-dev -> team-5)
 ### 커밋 전략
 - [Udacity Commit Guide](https://udacity.github.io/git-styleguide/) 준수
 
