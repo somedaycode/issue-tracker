@@ -1,12 +1,11 @@
 # Issue Tracker(Team 5)
 ## 시연
-### Web Front
-
 ### iOS
 <img src="https://issue-tracker-storage.s3.ap-northeast-2.amazonaws.com/%E1%84%92%E1%85%AA%E1%84%86%E1%85%A7%E1%86%AB+%E1%84%80%E1%85%B5%E1%84%85%E1%85%A9%E1%86%A8+2021-06-18+%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE+4.07.55.gif" width="20%" height="20%" >
 <img src="https://issue-tracker-storage.s3.ap-northeast-2.amazonaws.com/%E1%84%92%E1%85%AA%E1%84%86%E1%85%A7%E1%86%AB+%E1%84%80%E1%85%B5%E1%84%85%E1%85%A9%E1%86%A8+2021-06-18+%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE+4.10.41.gif" width="20%" height="20%">
 
-### FE
+
+### Web Front
 <img src="https://issue-tracker-storage.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B2.gif" width="50%" height="50%">
 <img src="https://issue-tracker-storage.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%A6%E1%84%85%E1%85%A5%E1%84%8E%E1%85%A5%E1%84%85%E1%85%B5.gif" width="50%" height="50%">
 
