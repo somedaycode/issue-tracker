@@ -15,7 +15,7 @@
 `17:30 ~ 18:00` [Daily] 팀 내에서 자신의 진행 상황, 어려운 점 공유 및 오늘의 진행 할 내용 공유! 🤗  
 
 
-## Web DEMO Peview
+## Web DEMO Preview
 
 https://user-images.githubusercontent.com/56783350/122521862-49db4500-d050-11eb-9703-bde0c0d4cb89.mp4
 
