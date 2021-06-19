@@ -27,6 +27,7 @@
 		883F5234267318240055EC9E /* IssueRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883F5233267318240055EC9E /* IssueRequest.swift */; };
 		883F5239267654CB0055EC9E /* IssueNetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883F5238267654CB0055EC9E /* IssueNetworkController.swift */; };
 		884ED501267C41F30082D658 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884ED500267C41F30082D658 /* AppUser.swift */; };
+		884ED509267C93D50082D658 /* IssueSelectionTableViewHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884ED508267C93D50082D658 /* IssueSelectionTableViewHeaderFooterView.swift */; };
 		88C3A9F426773B660090FAD8 /* IssueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C3A9F326773B660090FAD8 /* IssueViewModel.swift */; };
 		88C3A9F9267742140090FAD8 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C3A9F8267742140090FAD8 /* NotificationNameExtension.swift */; };
 		88C3A9FE26785B160090FAD8 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C3A9FD26785B160090FAD8 /* Status.swift */; };
@@ -104,6 +105,7 @@
 		883F5233267318240055EC9E /* IssueRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueRequest.swift; sourceTree = "<group>"; };
 		883F5238267654CB0055EC9E /* IssueNetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IssueNetworkController.swift; path = issueTrackerApp/Data/Network/Issue/Request/IssueNetworkController.swift; sourceTree = SOURCE_ROOT; };
 		884ED500267C41F30082D658 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
+		884ED508267C93D50082D658 /* IssueSelectionTableViewHeaderFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueSelectionTableViewHeaderFooterView.swift; sourceTree = "<group>"; };
 		88C3A9F326773B660090FAD8 /* IssueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueViewModel.swift; sourceTree = "<group>"; };
 		88C3A9F8267742140090FAD8 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
 		88C3A9FD26785B160090FAD8 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
@@ -447,6 +449,7 @@
 				883F51A82670ABDC0055EC9E /* TagLabel.swift */,
 				931BAE5426749FCD00CD9244 /* MoreInfoCell.swift */,
 				931BAE5B2674B90100CD9244 /* MoreInfoTableViewDataSource.swift */,
+				884ED508267C93D50082D658 /* IssueSelectionTableViewHeaderFooterView.swift */,
 			);
 			path = Issue;
 			sourceTree = "<group>";
@@ -664,6 +667,7 @@
 				883F519E2670940E0055EC9E /* IssueCell.swift in Sources */,
 				884ED501267C41F30082D658 /* AppUser.swift in Sources */,
 				9343E2D8266F03E90086F977 /* LoginNetworkManager.swift in Sources */,
+				884ED509267C93D50082D658 /* IssueSelectionTableViewHeaderFooterView.swift in Sources */,
 				883F51CC2672041A0055EC9E /* Milestones.swift in Sources */,
 				883F51DC267204DC0055EC9E /* Comment.swift in Sources */,
 				9343E2F2266F5CC70086F977 /* Coordinator.swift in Sources */,

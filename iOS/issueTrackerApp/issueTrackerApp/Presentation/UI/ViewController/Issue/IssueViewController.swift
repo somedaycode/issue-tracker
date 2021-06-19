@@ -112,7 +112,7 @@ extension IssueViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.issueTableView.dequeueReusableCell(withIdentifier: IssueCell.identifier) as! IssueCell
-    
+        
         if isFiltering {
             guard let filteredIssues = issueViewModel?.filteredIssues else { return cell }
             cell.configureAll(with: filteredIssues[indexPath.row])
