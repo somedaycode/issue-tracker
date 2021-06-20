@@ -28,6 +28,9 @@
 		883F5239267654CB0055EC9E /* IssueNetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883F5238267654CB0055EC9E /* IssueNetworkController.swift */; };
 		884ED501267C41F30082D658 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884ED500267C41F30082D658 /* AppUser.swift */; };
 		884ED509267C93D50082D658 /* IssueSelectionTableViewHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884ED508267C93D50082D658 /* IssueSelectionTableViewHeaderFooterView.swift */; };
+		884ED50E267E171D0082D658 /* FilterIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884ED50D267E171D0082D658 /* FilterIssueViewController.swift */; };
+		884ED517267F54530082D658 /* FilterIssueViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884ED516267F54530082D658 /* FilterIssueViewHeaderView.swift */; };
+		884ED51F267F5DC20082D658 /* FilterIssueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884ED51E267F5DC20082D658 /* FilterIssueTableViewCell.swift */; };
 		88C3A9F426773B660090FAD8 /* IssueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C3A9F326773B660090FAD8 /* IssueViewModel.swift */; };
 		88C3A9F9267742140090FAD8 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C3A9F8267742140090FAD8 /* NotificationNameExtension.swift */; };
 		88C3A9FE26785B160090FAD8 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C3A9FD26785B160090FAD8 /* Status.swift */; };
@@ -106,6 +109,9 @@
 		883F5238267654CB0055EC9E /* IssueNetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IssueNetworkController.swift; path = issueTrackerApp/Data/Network/Issue/Request/IssueNetworkController.swift; sourceTree = SOURCE_ROOT; };
 		884ED500267C41F30082D658 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
 		884ED508267C93D50082D658 /* IssueSelectionTableViewHeaderFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueSelectionTableViewHeaderFooterView.swift; sourceTree = "<group>"; };
+		884ED50D267E171D0082D658 /* FilterIssueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterIssueViewController.swift; sourceTree = "<group>"; };
+		884ED516267F54530082D658 /* FilterIssueViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterIssueViewHeaderView.swift; sourceTree = "<group>"; };
+		884ED51E267F5DC20082D658 /* FilterIssueTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterIssueTableViewCell.swift; sourceTree = "<group>"; };
 		88C3A9F326773B660090FAD8 /* IssueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueViewModel.swift; sourceTree = "<group>"; };
 		88C3A9F8267742140090FAD8 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
 		88C3A9FD26785B160090FAD8 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
@@ -211,6 +217,16 @@
 				88C3AA0A267874470090FAD8 /* IssuePatchRequest.swift */,
 			);
 			path = Request;
+			sourceTree = "<group>";
+		};
+		884ED512267F0C040082D658 /* FilterIssueViewController */ = {
+			isa = PBXGroup;
+			children = (
+				884ED50D267E171D0082D658 /* FilterIssueViewController.swift */,
+				884ED516267F54530082D658 /* FilterIssueViewHeaderView.swift */,
+				884ED51E267F5DC20082D658 /* FilterIssueTableViewCell.swift */,
+			);
+			path = FilterIssueViewController;
 			sourceTree = "<group>";
 		};
 		930FAE79266E112700422968 = {
@@ -450,6 +466,7 @@
 				931BAE5426749FCD00CD9244 /* MoreInfoCell.swift */,
 				931BAE5B2674B90100CD9244 /* MoreInfoTableViewDataSource.swift */,
 				884ED508267C93D50082D658 /* IssueSelectionTableViewHeaderFooterView.swift */,
+				884ED512267F0C040082D658 /* FilterIssueViewController */,
 			);
 			path = Issue;
 			sourceTree = "<group>";
@@ -649,6 +666,7 @@
 				883F5234267318240055EC9E /* IssueRequest.swift in Sources */,
 				883F5148266F3EAF0055EC9E /* LoginViewController.swift in Sources */,
 				9343E2D3266EFBA70086F977 /* GitHubEndpoint.swift in Sources */,
+				884ED50E267E171D0082D658 /* FilterIssueViewController.swift in Sources */,
 				931BAE41267343B900CD9244 /* AddIssueViewController.swift in Sources */,
 				931BAE5C2674B90100CD9244 /* MoreInfoTableViewDataSource.swift in Sources */,
 				9343E2F7266F5E890086F977 /* MainTabBarController.swift in Sources */,
@@ -659,6 +677,7 @@
 				930FAE86266E112700422968 /* AppDelegate.swift in Sources */,
 				931BAEAD2678843200CD9244 /* CommentViewController.swift in Sources */,
 				931BAE4626734FA500CD9244 /* MoreInformationViewController.swift in Sources */,
+				884ED51F267F5DC20082D658 /* FilterIssueTableViewCell.swift in Sources */,
 				9343E305266F60B50086F977 /* NetworkRequest.swift in Sources */,
 				88C3AA0B267874470090FAD8 /* IssuePatchRequest.swift in Sources */,
 				931BAE1E26730C8600CD9244 /* SettingViewController.swift in Sources */,
@@ -679,6 +698,7 @@
 				931BAEB226788EA700CD9244 /* MarkdownViewController.swift in Sources */,
 				883F51AE2670B2F70055EC9E /* UIColorExtension.swift in Sources */,
 				931BAE762674FC4700CD9244 /* ArrayTableViewDataSource.swift in Sources */,
+				884ED517267F54530082D658 /* FilterIssueViewHeaderView.swift in Sources */,
 				9343E2CA266EF9CD0086F977 /* KeychainManager.swift in Sources */,
 				931BAE5526749FCD00CD9244 /* MoreInfoCell.swift in Sources */,
 				883F51A92670ABDC0055EC9E /* TagLabel.swift in Sources */,
