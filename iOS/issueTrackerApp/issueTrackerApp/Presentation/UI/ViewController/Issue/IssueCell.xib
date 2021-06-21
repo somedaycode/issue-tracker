@@ -52,6 +52,15 @@
                             </label>
                         </subviews>
                     </stackView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ara-bQ-t5h">
+                        <rect key="frame" x="295.5" y="0.0" width="39.5" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="ara-bQ-t5h" secondAttribute="height" multiplier="1:1" id="vr7-8O-lQV"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="aKN-Dc-NU9" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.25" id="1JH-G5-JFj"/>
@@ -61,6 +70,7 @@
                     <constraint firstAttribute="bottom" secondItem="j9h-AK-Uf8" secondAttribute="bottom" id="JOD-0f-z2v"/>
                     <constraint firstItem="aKN-Dc-NU9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Ka6-dl-SY4"/>
                     <constraint firstAttribute="trailing" secondItem="kor-26-7q0" secondAttribute="trailing" id="O2r-yL-tb2"/>
+                    <constraint firstAttribute="trailing" secondItem="ara-bQ-t5h" secondAttribute="trailing" id="P1o-Ku-Big"/>
                     <constraint firstItem="j9h-AK-Uf8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Ph5-lT-sVg"/>
                     <constraint firstItem="kor-26-7q0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="TYX-XN-qAO"/>
                     <constraint firstItem="PQV-EP-IPs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="UPM-2S-SuM"/>
@@ -71,6 +81,8 @@
                     <constraint firstItem="PQV-EP-IPs" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.3" id="dw0-r3-dJj"/>
                     <constraint firstItem="j9h-AK-Uf8" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.2" id="fcc-EG-TXP"/>
                     <constraint firstItem="PQV-EP-IPs" firstAttribute="top" secondItem="aKN-Dc-NU9" secondAttribute="bottom" id="gnD-Ok-2NE"/>
+                    <constraint firstItem="ara-bQ-t5h" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.25" id="ldL-xN-hu3"/>
+                    <constraint firstItem="ara-bQ-t5h" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="nkx-tq-AlO"/>
                     <constraint firstAttribute="trailing" secondItem="cfH-Jq-0Lh" secondAttribute="trailing" id="ysX-AT-V2T"/>
                 </constraints>
             </tableViewCellContentView>
@@ -78,7 +90,8 @@
             <connections>
                 <outlet property="checkImageView" destination="kor-26-7q0" id="SNd-ev-chU"/>
                 <outlet property="descriptionLabel" destination="PQV-EP-IPs" id="SPi-9K-Ylf"/>
-                <outlet property="milestonesLabel" destination="cfH-Jq-0Lh" id="tcb-Zk-a3e"/>
+                <outlet property="milestonesORDueDateLabel" destination="cfH-Jq-0Lh" id="tcb-Zk-a3e"/>
+                <outlet property="percentageLabel" destination="ara-bQ-t5h" id="VtO-ip-7xb"/>
                 <outlet property="tagStackView" destination="j9h-AK-Uf8" id="wKt-vR-32A"/>
                 <outlet property="titleLabel" destination="aKN-Dc-NU9" id="RMz-iP-CZp"/>
             </connections>
