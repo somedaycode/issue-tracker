@@ -7,11 +7,12 @@
 
 import UIKit
 
-class IssueViewController: UIViewController, IssueViewModelType, MainCoordinated {
-
+class IssueViewController: UIViewController, IssueViewModelType, MainCoordinated, IssueNetworked {
+   
     @IBOutlet weak var issueTableView: UITableView!
     
     private var issueViewModel: IssueViewModel!
+    private var issueNetworkManager: IssueNetworkManager!
     var mainCoordinator: MainFlowCoordinator?
     let searchController = UISearchController(searchResultsController: nil)
     var isSearchBarEmpty: Bool {
@@ -26,7 +27,7 @@ class IssueViewController: UIViewController, IssueViewModelType, MainCoordinated
         self.configureLeftBarButtonItem()
         self.configureRightBarButtonItem()
         self.configureTableView()
-        self.issueViewModel?.fetchAllIssue()
+        self.issueViewModel?.fetchIssueList()
         self.configureNotificationCenter()
     }
     
@@ -37,6 +38,14 @@ class IssueViewController: UIViewController, IssueViewModelType, MainCoordinated
     
     func setIssueViewModel(_ issueViewModel: IssueViewModel) {
         self.issueViewModel = issueViewModel
+    }
+    
+    func setIssueNetworkManager(_ issueNetworkManager: IssueNetworkManager) {
+        self.issueNetworkManager = issueNetworkManager
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        mainCoordinator?.configure(viewController: segue.destination)
     }
     
     private func configureNotificationCenter() {
@@ -105,7 +114,7 @@ extension IssueViewController: UITableViewDataSource {
             guard let filteredIssue = issueViewModel?.filteredIssues else { return 0 }
             return filteredIssue.count
         }
-        guard let issues = issueViewModel?.issues else { return 0 }
+        guard let issues = issueViewModel?.issueList else { return 0 }
         return issues.count
         
     }
@@ -117,7 +126,7 @@ extension IssueViewController: UITableViewDataSource {
             guard let filteredIssues = issueViewModel?.filteredIssues else { return cell }
             cell.configureAll(with: filteredIssues[indexPath.row])
         } else {
-            guard let issues = issueViewModel?.issues else { return cell }
+            guard let issues = issueViewModel?.issueList else { return cell }
             cell.configureAll(with: issues[indexPath.row])
         }
         
@@ -132,9 +141,9 @@ extension IssueViewController: UITableViewDelegate {
         // delete action
         let delete = UIContextualAction(style: .destructive,
                                         title: "삭제") { [weak self] (action, view, completionHandler) in
-            self?.issueViewModel?.deleteIssue(at: indexPath.row, completionHandler: {
-                    completionHandler(true)
-            })
+//            self?.issueViewModel?.deleteIssue(at: indexPath.row, completionHandler: {
+//                    completionHandler(true)
+//            })
         }
         delete.backgroundColor = .systemRed
         delete.image = UIImage(systemName: "trash")

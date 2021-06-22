@@ -59,13 +59,13 @@ class IssueCell: UITableViewCell {
         imageAttachment.image = UIImage(systemName: "exclamationmark.circle")
         let imageString = NSAttributedString(attachment: imageAttachment)
         fullString.append(imageString)
-        fullString.append(NSAttributedString(string: issue.milestoneTitle))
+        fullString.append(NSAttributedString(string: issue.milestoneTitle ?? ""))
         
         self.milestonesLabel.attributedText = fullString
     }
     
     private func configureTagLabelStack(with issue: Issue) {
-        issue.labelList.forEach { (label) in
+        issue.labelList?.forEach { (label) in
             let tempTagLabel = TagLabel()
             tempTagLabel.custom(title: "   \(label.title)   ", colorCode: "\(label.colorCode)")
             self.tagStackView.addTag(tagLabel: tempTagLabel)

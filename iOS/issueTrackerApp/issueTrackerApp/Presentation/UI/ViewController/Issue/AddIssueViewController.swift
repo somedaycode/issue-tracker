@@ -46,6 +46,10 @@ class AddIssueViewController: UIViewController, AddIssueViewModelType, MainCoord
     func setAddIssueViewModel(_ addIssueViewModel: AddIssueViewModel) {
         self.addIssueViewModel = addIssueViewModel
     }
+    
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: .none)
+    }
 }
 
 //MARK:- Segmented Control
