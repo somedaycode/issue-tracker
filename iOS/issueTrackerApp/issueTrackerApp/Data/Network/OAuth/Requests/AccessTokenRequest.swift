@@ -35,6 +35,7 @@ extension JWTRequest: JSONDataRequest {
         
         let request = try! URLRequest(url: urlComponents, method: .get, headers: headers)
 
+        print("request2", request)
         return request
     }
 }

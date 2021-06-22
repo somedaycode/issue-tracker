@@ -14,12 +14,12 @@ struct GitHubEndpoint {
         static let clientSecret = "client_secret"
         static let redirectURI = "redirect_uri"
         static let authorizationCode = "code"
-        static let client = "ios"
+        static let client = "client"
         static let page = "page"
         static let scope = "scope"
     }
     
-    static let loginURL = "https://f88e009a-3e2b-4862-838e-1f2cde9b95ed.mock.pstmn.io/api/login/auth"
+    static let loginURL = "15.164.68.136/api/login/auth"
     static let clientID = "34a66f51f68864c9adfd"
     static let clientSecret = "8473cd9ac4bb16ef2156ed80b89646d09d4db01f"
     static let scope = "user"
@@ -39,6 +39,7 @@ struct GitHubEndpoint {
             URLQueryItem(name: FieldNames.scope, value: GitHubEndpoint.scope)
         ]
         
+        print("request1", urlComponents.url!)
         return urlComponents.url!
     }
 }
