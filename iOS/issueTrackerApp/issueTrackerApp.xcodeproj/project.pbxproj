@@ -24,6 +24,17 @@
 		883F51D4267204520055EC9E /* LabelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883F51D3267204520055EC9E /* LabelModel.swift */; };
 		883F51DC267204DC0055EC9E /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883F51DB267204DC0055EC9E /* Comment.swift */; };
 		883F522A267312CE0055EC9E /* IssueEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883F5229267312CE0055EC9E /* IssueEndPoint.swift */; };
+		883F5239267654CB0055EC9E /* IssueNetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883F5238267654CB0055EC9E /* IssueNetworkController.swift */; };
+		884ED501267C41F30082D658 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884ED500267C41F30082D658 /* AppUser.swift */; };
+		884ED509267C93D50082D658 /* IssueSelectionTableViewHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884ED508267C93D50082D658 /* IssueSelectionTableViewHeaderFooterView.swift */; };
+		884ED50E267E171D0082D658 /* FilterIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884ED50D267E171D0082D658 /* FilterIssueViewController.swift */; };
+		884ED517267F54530082D658 /* FilterIssueViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884ED516267F54530082D658 /* FilterIssueViewHeaderView.swift */; };
+		884ED51F267F5DC20082D658 /* FilterIssueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884ED51E267F5DC20082D658 /* FilterIssueTableViewCell.swift */; };
+		884ED525267F6E3E0082D658 /* MilestonesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884ED524267F6E3E0082D658 /* MilestonesViewController.swift */; };
+		884ED52D267F6F5F0082D658 /* MilestonesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884ED52C267F6F5F0082D658 /* MilestonesViewModel.swift */; };
+		884ED533267F70B70082D658 /* MilestonesNetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884ED532267F70B70082D658 /* MilestonesNetworkController.swift */; };
+		884ED53B268072580082D658 /* MilestonesAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884ED53A268072580082D658 /* MilestonesAddViewController.swift */; };
+		884ED5402680FD030082D658 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884ED53F2680FD030082D658 /* InputView.swift */; };
 		88C3A9F426773B660090FAD8 /* IssueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C3A9F326773B660090FAD8 /* IssueViewModel.swift */; };
 		88C3A9F9267742140090FAD8 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C3A9F8267742140090FAD8 /* NotificationNameExtension.swift */; };
 		88C3A9FE26785B160090FAD8 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C3A9FD26785B160090FAD8 /* Status.swift */; };
@@ -102,6 +113,17 @@
 		883F51D3267204520055EC9E /* LabelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LabelModel.swift; path = issueTrackerApp/Domain/Entity/LabelModel.swift; sourceTree = SOURCE_ROOT; };
 		883F51DB267204DC0055EC9E /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Comment.swift; path = issueTrackerApp/Domain/Entity/Comment.swift; sourceTree = SOURCE_ROOT; };
 		883F5229267312CE0055EC9E /* IssueEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueEndPoint.swift; sourceTree = "<group>"; };
+		883F5238267654CB0055EC9E /* IssueNetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IssueNetworkController.swift; path = issueTrackerApp/Data/Network/Issue/Request/IssueNetworkController.swift; sourceTree = SOURCE_ROOT; };
+		884ED500267C41F30082D658 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
+		884ED508267C93D50082D658 /* IssueSelectionTableViewHeaderFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueSelectionTableViewHeaderFooterView.swift; sourceTree = "<group>"; };
+		884ED50D267E171D0082D658 /* FilterIssueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterIssueViewController.swift; sourceTree = "<group>"; };
+		884ED516267F54530082D658 /* FilterIssueViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterIssueViewHeaderView.swift; sourceTree = "<group>"; };
+		884ED51E267F5DC20082D658 /* FilterIssueTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterIssueTableViewCell.swift; sourceTree = "<group>"; };
+		884ED524267F6E3E0082D658 /* MilestonesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestonesViewController.swift; sourceTree = "<group>"; };
+		884ED52C267F6F5F0082D658 /* MilestonesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestonesViewModel.swift; sourceTree = "<group>"; };
+		884ED532267F70B70082D658 /* MilestonesNetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestonesNetworkController.swift; sourceTree = "<group>"; };
+		884ED53A268072580082D658 /* MilestonesAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestonesAddViewController.swift; sourceTree = "<group>"; };
+		884ED53F2680FD030082D658 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		88C3A9F326773B660090FAD8 /* IssueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueViewModel.swift; sourceTree = "<group>"; };
 		88C3A9F8267742140090FAD8 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
 		88C3A9FD26785B160090FAD8 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
@@ -214,6 +236,34 @@
 			path = Request;
 			sourceTree = "<group>";
 		};
+		884ED512267F0C040082D658 /* FilterIssueViewController */ = {
+			isa = PBXGroup;
+			children = (
+				884ED50D267E171D0082D658 /* FilterIssueViewController.swift */,
+				884ED516267F54530082D658 /* FilterIssueViewHeaderView.swift */,
+				884ED51E267F5DC20082D658 /* FilterIssueTableViewCell.swift */,
+			);
+			path = FilterIssueViewController;
+			sourceTree = "<group>";
+		};
+		884ED523267F6E170082D658 /* Milestones */ = {
+			isa = PBXGroup;
+			children = (
+				884ED524267F6E3E0082D658 /* MilestonesViewController.swift */,
+				884ED53A268072580082D658 /* MilestonesAddViewController.swift */,
+				884ED53F2680FD030082D658 /* InputView.swift */,
+			);
+			path = Milestones;
+			sourceTree = "<group>";
+		};
+		884ED531267F708A0082D658 /* Milestones */ = {
+			isa = PBXGroup;
+			children = (
+				884ED532267F70B70082D658 /* MilestonesNetworkController.swift */,
+			);
+			path = Milestones;
+			sourceTree = "<group>";
+		};
 		930FAE79266E112700422968 = {
 			isa = PBXGroup;
 			children = (
@@ -304,6 +354,7 @@
 		930FAEBB266E126100422968 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				884ED531267F708A0082D658 /* Milestones */,
 				931BAE0326720C0900CD9244 /* Issue */,
 				931BADFF26720C0200CD9244 /* OAuth */,
 			);
@@ -325,6 +376,7 @@
 			isa = PBXGroup;
 			children = (
 				883F51C6267200EA0055EC9E /* Issue.swift */,
+				884ED500267C41F30082D658 /* AppUser.swift */,
 				883F51CB2672041A0055EC9E /* Milestones.swift */,
 				883F51D3267204520055EC9E /* LabelModel.swift */,
 				883F51DB267204DC0055EC9E /* Comment.swift */,
@@ -366,6 +418,7 @@
 		930FAEC1266E12C200422968 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				884ED523267F6E170082D658 /* Milestones */,
 				883F514F266F3F060055EC9E /* Login */,
 				883F5182266F5EE80055EC9E /* Issue */,
 				931BAE1726725DC600CD9244 /* Setting */,
@@ -394,6 +447,7 @@
 			children = (
 				931BAEA42677973200CD9244 /* AddIssueViewModel.swift */,
 				88C3A9F326773B660090FAD8 /* IssueViewModel.swift */,
+				884ED52C267F6F5F0082D658 /* MilestonesViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -450,6 +504,8 @@
 				931BAE5426749FCD00CD9244 /* MoreInfoCell.swift */,
 				931BAE5B2674B90100CD9244 /* MoreInfoTableViewDataSource.swift */,
 				937F3AB3267B2F41002E6CC9 /* IssueDetailCell.swift */,
+				884ED508267C93D50082D658 /* IssueSelectionTableViewHeaderFooterView.swift */,
+				884ED512267F0C040082D658 /* FilterIssueViewController */,
 			);
 			path = Issue;
 			sourceTree = "<group>";
@@ -656,6 +712,7 @@
 				88C3A9F9267742140090FAD8 /* NotificationNameExtension.swift in Sources */,
 				883F5148266F3EAF0055EC9E /* LoginViewController.swift in Sources */,
 				9343E2D3266EFBA70086F977 /* GitHubEndpoint.swift in Sources */,
+				884ED50E267E171D0082D658 /* FilterIssueViewController.swift in Sources */,
 				931BAE41267343B900CD9244 /* AddIssueViewController.swift in Sources */,
 				931BAE5C2674B90100CD9244 /* MoreInfoTableViewDataSource.swift in Sources */,
 				9343E2F7266F5E890086F977 /* MainTabBarController.swift in Sources */,
@@ -665,14 +722,19 @@
 				930FAE86266E112700422968 /* AppDelegate.swift in Sources */,
 				931BAEAD2678843200CD9244 /* CommentViewController.swift in Sources */,
 				931BAE4626734FA500CD9244 /* MoreInformationViewController.swift in Sources */,
+				884ED51F267F5DC20082D658 /* FilterIssueTableViewCell.swift in Sources */,
 				9343E305266F60B50086F977 /* NetworkRequest.swift in Sources */,
 				931BAE1E26730C8600CD9244 /* SettingViewController.swift in Sources */,
 				937F3ABB267B4583002E6CC9 /* IssueDetailInfoViewController.swift in Sources */,
 				937F3AAF267B2E87002E6CC9 /* IssueDetailViewController.swift in Sources */,
+				884ED52D267F6F5F0082D658 /* MilestonesViewModel.swift in Sources */,
 				931BAEA52677973200CD9244 /* AddIssueViewModel.swift in Sources */,
 				883F51A42670AAAB0055EC9E /* TagStackView.swift in Sources */,
 				883F519E2670940E0055EC9E /* IssueCell.swift in Sources */,
+				884ED53B268072580082D658 /* MilestonesAddViewController.swift in Sources */,
+				884ED501267C41F30082D658 /* AppUser.swift in Sources */,
 				9343E2D8266F03E90086F977 /* LoginNetworkManager.swift in Sources */,
+				884ED509267C93D50082D658 /* IssueSelectionTableViewHeaderFooterView.swift in Sources */,
 				883F51CC2672041A0055EC9E /* Milestones.swift in Sources */,
 				883F51DC267204DC0055EC9E /* Comment.swift in Sources */,
 				9343E2F2266F5CC70086F977 /* Coordinator.swift in Sources */,
@@ -686,10 +748,14 @@
 				931BAEB226788EA700CD9244 /* MarkdownViewController.swift in Sources */,
 				883F51AE2670B2F70055EC9E /* UIColorExtension.swift in Sources */,
 				931BAE762674FC4700CD9244 /* ArrayTableViewDataSource.swift in Sources */,
+				884ED517267F54530082D658 /* FilterIssueViewHeaderView.swift in Sources */,
 				9343E2CA266EF9CD0086F977 /* KeychainManager.swift in Sources */,
 				937F3AE3267C86E3002E6CC9 /* IssueUseCase.swift in Sources */,
 				931BAE5526749FCD00CD9244 /* MoreInfoCell.swift in Sources */,
+				884ED525267F6E3E0082D658 /* MilestonesViewController.swift in Sources */,
+				884ED5402680FD030082D658 /* InputView.swift in Sources */,
 				883F51A92670ABDC0055EC9E /* TagLabel.swift in Sources */,
+				884ED533267F70B70082D658 /* MilestonesNetworkController.swift in Sources */,
 				88C3A9FE26785B160090FAD8 /* Status.swift in Sources */,
 				883F51B62671E1710055EC9E /* CustomBarButtonItem.swift in Sources */,
 				883F522A267312CE0055EC9E /* IssueEndPoint.swift in Sources */,

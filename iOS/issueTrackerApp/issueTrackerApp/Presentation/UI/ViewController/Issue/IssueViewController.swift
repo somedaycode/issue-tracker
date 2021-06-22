@@ -63,8 +63,13 @@ class IssueViewController: UIViewController, IssueViewModelType, MainCoordinated
     
     private func configureLeftBarButtonItem() {
         let customLeftBarButton = CustomBarButtonItem(title: "필터", image: UIImage(systemName: "line.horizontal.3.decrease") ?? UIImage(), located: .left)
-        customLeftBarButton.addAction(UIAction.init(handler: { (touch) in
-            // to do
+        customLeftBarButton.addAction(UIAction.init(handler: { [weak self] (touch) in
+            
+            guard let self = self else { return }
+            let targetVC = FilterIssueViewController()
+            self.mainCoordinator?.configure(viewController: targetVC)
+            self.present(targetVC, animated: true, completion: nil)
+            
         }), for: .touchUpInside)
         let leftBarButtonItem = UIBarButtonItem(customView: customLeftBarButton)
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
@@ -121,7 +126,7 @@ extension IssueViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.issueTableView.dequeueReusableCell(withIdentifier: IssueCell.identifier) as! IssueCell
-    
+        
         if isFiltering {
             guard let filteredIssues = issueViewModel?.filteredIssues else { return cell }
             cell.configureAll(with: filteredIssues[indexPath.row])

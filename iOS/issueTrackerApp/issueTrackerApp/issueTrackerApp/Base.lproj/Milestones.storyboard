@@ -11,14 +11,29 @@
         <!--마일스톤-->
         <scene sceneID="v68-t7-4HP">
             <objects>
-                <viewController id="lmG-rW-HjK" sceneMemberID="viewController">
+                <viewController id="lmG-rW-HjK" customClass="MilestonesViewController" customModule="issueTrackerApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hyK-YI-s7f">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nRA-8w-yij">
+                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="JRY-Bl-EjM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="JRY-Bl-EjM" firstAttribute="bottom" secondItem="nRA-8w-yij" secondAttribute="bottom" id="IHx-ij-9fn"/>
+                            <constraint firstItem="nRA-8w-yij" firstAttribute="top" secondItem="JRY-Bl-EjM" secondAttribute="top" id="dpk-wt-aAt"/>
+                            <constraint firstItem="JRY-Bl-EjM" firstAttribute="trailing" secondItem="nRA-8w-yij" secondAttribute="trailing" id="fNc-se-K9h"/>
+                            <constraint firstItem="nRA-8w-yij" firstAttribute="leading" secondItem="JRY-Bl-EjM" secondAttribute="leading" id="jUA-KN-MVm"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="마일스톤" id="tiN-cD-elr"/>
+                    <connections>
+                        <outlet property="milestonesTableView" destination="nRA-8w-yij" id="FfA-sf-ocu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EAk-mG-Von" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

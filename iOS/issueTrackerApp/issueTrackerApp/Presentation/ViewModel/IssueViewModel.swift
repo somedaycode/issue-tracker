@@ -43,10 +43,19 @@ class IssueViewModel: IssueViewModelProtocol {
     }
     
     func filterIssuesWithSearchText(_ string: String) {
-        
+        self.filteredIssues = issues.filter({ (issue: Issue) -> Bool in
+            return issue.title.lowercased().contains(string.lowercased())
+        })
     }
     
     func deleteIssue(at index: Int, completionHandler: @escaping () -> Void) {
-        
+        let issueId = issues[index].id
+        networkController?.deleteIssue(with: issueId, completion: { (res) in
+            if res.status == "success" {
+                self.issues.remove(at: index)
+                completionHandler()
+            }
+        })
     }
+    
 }
