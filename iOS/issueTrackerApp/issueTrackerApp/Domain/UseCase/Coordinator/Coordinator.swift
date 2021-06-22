@@ -29,7 +29,7 @@ protocol LoginNetworked: class {
 }
 
 protocol IssueNetworked: class {
-    func setIssueNetworkController(_ issueNetworkController: IssueNetworkController)
+    func setIssueNetworkManager(_ issueNetworkManager: IssueNetworkManager)
 }
 
 protocol AddIssueViewModelType: class {
@@ -63,9 +63,9 @@ extension MainFlowCoordinator: Coordinator {
     func configure(viewController: UIViewController) {
         (viewController as? MainCoordinated)?.mainCoordinator = self
         (viewController as? LoginNetworked)?.setLoginNetworkManager(LoginNetworkManager(keychainManager: keychainManager))
+        (viewController as? IssueNetworked)?.setIssueNetworkManager(IssueNetworkManager())
         (viewController as? LoginCoordinated)?.loginCoordinator = loginFlowCoordinator
         (viewController as? AddIssueViewModelType)?.setAddIssueViewModel(addIssueViewModel)
-        (viewController as? IssueNetworked)?.setIssueNetworkController(IssueNetworkController())
         (viewController as? IssueViewModelType)?.setIssueViewModel(issueViewModel)
         
         if let tabBarController = viewController as? UITabBarController {

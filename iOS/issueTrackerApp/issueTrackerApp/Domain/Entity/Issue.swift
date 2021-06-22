@@ -9,33 +9,49 @@ import Foundation
 
 struct Issue: Codable {
     let id: Int
-    let title: String
-    let description: String
-    let authorAvatarURL: String
-    let labelList: [Label]
+    let title, description: String
+    let closed: Bool
+    let assignee: Assignee?
+    let author: Assignee
+    let labelList: [LabelList]?
     let issueNumber: Int
-    let createdAt: String
-    let milestoneTitle: String
-
+    let createdTime: String
+    let milestoneTitle: String?
+    let authorAvatarURL: String?
+    
     enum CodingKeys: String, CodingKey {
-        case id
-        case title
-        case description
-        case authorAvatarURL = "author_avatar_url"
+        case id, title
+        case description = "description"
+        case assignee, author, closed
         case labelList = "label_list"
         case issueNumber = "issue_number"
-        case createdAt = "created_time"
+        case createdTime = "created_time"
         case milestoneTitle = "milestone_title"
+        case authorAvatarURL = "author_avatar_url"
+    }
+}
+// MARK: - Assignee
+struct Assignee: Codable {
+    let userID: Int
+    let name: String
+    let avatarURL: String
+    
+    enum CodingKeys: String, CodingKey {
+        case userID = "user_id"
+        case name
+        case avatarURL = "avatar_url"
     }
 }
 
-struct Label: Codable {
+// MARK: - LabelList
+struct LabelList: Codable {
     let id: Int
-    let title, colorCode: String
-
+    let title, colorCode, description: String
+    let fontLight: Bool
+    
     enum CodingKeys: String, CodingKey {
-        case id
-        case title
+        case id, title, description
         case colorCode = "color_code"
+        case fontLight = "font_light"
     }
 }
