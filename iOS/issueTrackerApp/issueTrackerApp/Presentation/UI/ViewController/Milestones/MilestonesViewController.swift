@@ -35,10 +35,10 @@ class MilestonesViewController: UIViewController, MilestonesModelType, MainCoord
         let customRightBarButton = CustomBarButtonItem(title: "추가", image: UIImage(systemName: "plus") ?? UIImage(), located: .right)
         customRightBarButton.addAction(UIAction(handler: { [weak self] (touch) in
             guard let self = self else { return }
-//            let targetVC = self.storyboard?.instantiateViewController(identifier: "IssueSelectTableViewController") as! IssueSelectTableViewController
-//            self.mainCoordinator?.configure(viewController: targetVC)
-//            self.navigationController?.pushViewController(targetVC, animated: true)
-            // 새로운 뷰 컨 추가
+            let targetVC = MilestonesAddViewController()
+            self.mainCoordinator?.configure(viewController: targetVC)
+            self.present(targetVC, animated: true, completion: nil)
+            
         }), for: .touchUpInside)
         let rightBarButtonItem = UIBarButtonItem(customView: customRightBarButton)
         self.navigationItem.rightBarButtonItem = rightBarButtonItem

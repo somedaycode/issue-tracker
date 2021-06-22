@@ -41,7 +41,7 @@ protocol IssueViewModelType: class {
 }
 
 protocol MilestonesModelType: class {
-    func setMilestonesViewModel(_ issueViewModel: MilestonesViewModel)
+    func setMilestonesViewModel(_ milestonesViewModel: MilestonesViewModel)
 }
 
 class MainFlowCoordinator: NSObject {
