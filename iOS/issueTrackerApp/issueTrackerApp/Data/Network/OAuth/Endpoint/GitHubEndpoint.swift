@@ -39,7 +39,6 @@ struct GitHubEndpoint {
             URLQueryItem(name: FieldNames.scope, value: GitHubEndpoint.scope)
         ]
         
-        print("request1", urlComponents.url!)
         return urlComponents.url!
     }
 }

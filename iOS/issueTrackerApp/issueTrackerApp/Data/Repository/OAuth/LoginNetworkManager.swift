@@ -32,7 +32,6 @@ class LoginNetworkManager {
             if let jWT = authorization?.jwt {
                 self.keychainManager.store(jWT: jWT)
             }
-            print(authorization?.jwt)
             self.requests[requestURL] = nil
             self.fetchUserAvatarImage()//test
             completion()

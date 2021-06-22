@@ -78,6 +78,7 @@ extension LoginViewController {
     func performAuthorization(with authorizationCode: String) {
         isAuthenticating = true
         loginNetworkManager?.authenticateWith(authorizationCode: authorizationCode, client: "ios") { [weak self] in
+            print("1")
             self?.loginCoordinator?.loginViewControllerDidFinishAuthorization()
         }
     }
