@@ -12,7 +12,7 @@ import { issueDetailComment } from '@store/atoms/issueDetail';
 import type { Param } from '@pages/IssueDetail';
 
 import { completeButton } from '@components/common/CompleteBtn';
-import { contentsInput } from '@components/newIssue/style';
+import { contentsInputStyle } from '@components/newIssue/style';
 import Comment from './Comment';
 import { useHistory } from 'react-router-dom';
 
@@ -53,7 +53,7 @@ function CommentBox() {
           <Textarea
             value={newComment}
             onChange={handleOnChangeText}
-            {...contentsInput}
+            {...contentsInputStyle}
           />
           <Span>띄어쓰기 포함 \d\d 자</Span>
           <ImageUploadWrap>
