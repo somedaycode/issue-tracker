@@ -28,7 +28,6 @@ function CommentBox() {
   };
 
   const handleClickCommentUpload = () => {
-    console.log(newComment);
     const uploadComment = async () => {
       const url = `${issueAPI}/${id}/comments`;
       await fetchWithAuth(url, '코멘트 업로드 오류', {

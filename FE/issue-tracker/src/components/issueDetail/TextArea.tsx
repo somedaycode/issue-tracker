@@ -72,8 +72,8 @@ const Description = styled.div`
   margin-bottom: 12px;
   position: relative;
   background: ${({ theme }) => theme.colors.gr_offWhite};
-  border-radius: 0 0 ${({ theme }) => theme.radii['2xl']}
-    ${({ theme }) => theme.radii['2xl']};
+  border-radius: 0 0 ${({ theme }) => theme.radii['2xl']};
+  ${({ theme }) => theme.radii['2xl']};
   border: 1px solid ${({ theme }) => theme.colors.gr_line};
   &:hover {
     border: 1px solid ${({ theme }) => theme.colors.bl_initial};

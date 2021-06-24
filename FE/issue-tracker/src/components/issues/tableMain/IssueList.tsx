@@ -9,7 +9,6 @@ import {
   queryString,
   wholeIssueLists,
 } from '@store/atoms/issueList';
-import { useReRender } from '@utils/query';
 
 import { IssueSkeleton } from '@components/common/Skeleton';
 import Issue from './Issue';
@@ -73,3 +72,6 @@ type Person = {
   name: string;
   avatar_url: string;
 };
+function setReRenderKeyUpdat(arg0: (num: any) => any) {
+  throw new Error('Function not implemented.');
+}
