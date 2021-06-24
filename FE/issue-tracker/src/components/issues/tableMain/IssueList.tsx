@@ -1,22 +1,39 @@
-import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
+import {
+  useRecoilValue,
+  useRecoilValueLoadable,
+  useSetRecoilState,
+} from 'recoil';
 
-import { queryString, wholeIssueLists } from '@store/atoms/issueList';
+import {
+  formerDataKey,
+  queryString,
+  wholeIssueLists,
+} from '@store/atoms/issueList';
 import { useReRender } from '@utils/query';
 
 import { IssueSkeleton } from '@components/common/Skeleton';
 import Issue from './Issue';
 import ErrorIssueList from './ErrorIssueList';
 import NoIssue from './NoIssue';
+import { useEffect } from 'react';
 
 function IssueList() {
   const query = useRecoilValue(queryString);
   const { state, contents } = useRecoilValueLoadable(wholeIssueLists);
+  const setReRenderKeyUpdate = useSetRecoilState(formerDataKey);
   const renderNoIssue = (contents: any): JSX.Element | undefined => {
     if (typeof contents === 'string' || contents.length === 0) {
       return <NoIssue isSearched={false} />;
     }
   };
-  useReRender(query);
+
+  useEffect(() => {
+    const currentQuery = window.location.search;
+    if (`?${query}` === currentQuery) return;
+
+    window.history.pushState({ query }, query, `?${query}`);
+    setReRenderKeyUpdate((num) => num + 1);
+  }, [query, setReRenderKeyUpdate]);
 
   return (
     <>
