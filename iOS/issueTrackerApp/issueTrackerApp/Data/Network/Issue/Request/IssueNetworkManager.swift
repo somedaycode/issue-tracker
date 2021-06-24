@@ -13,7 +13,7 @@ protocol IssueNetworkManagerPort {
     func getIssueDetail(path id: String, completionHandler: @escaping (Data?) -> Void)
     func getIssueCount(completionHandler: @escaping (Data?) -> Void)
     func postAddIssue(title: String, description: String, assignee: Int, labelIds: [Int], milestoneId: Int, completionHandler: @escaping (Data?) -> Void)
-    func patchIssue(body key: String, body value: String, completionHandler: @escaping (Data?) -> Void)
+    func patchIssue(path id: String, body key: String, body value: Any, completionHandler: @escaping (Data?) -> Void)
 }
 
 class IssueNetworkManager: IssueNetworkManagerPort {
@@ -79,8 +79,8 @@ class IssueNetworkManager: IssueNetworkManagerPort {
         }
     }
     
-    func patchIssue(body key: String, body value: String, completionHandler: @escaping (Data?) -> Void) {
-        let url = IssueEndPoint.postIssue().url
+    func patchIssue(path id: String, body key: String, body value: Any, completionHandler: @escaping (Data?) -> Void) {
+        let url = IssueEndPoint.patchIssue(path: id).url
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "PATCH"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")

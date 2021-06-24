@@ -11,7 +11,7 @@ struct Issue: Codable {
     let id: Int
     let title, description: String
     let closed: Bool
-    let assignee: Assignee?
+    let assignees: [Assignee?]
     let author: Assignee
     let labelList: [LabelList]?
     let issueNumber: Int
@@ -22,7 +22,7 @@ struct Issue: Codable {
     enum CodingKeys: String, CodingKey {
         case id, title
         case description = "description"
-        case assignee, author, closed
+        case assignees, author, closed
         case labelList = "label_list"
         case issueNumber = "issue_number"
         case createdTime = "created_time"

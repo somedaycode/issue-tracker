@@ -7,13 +7,18 @@
 
 import UIKit
 
-class FilterIssueViewController: UIViewController, IssueViewModelType, MainCoordinated {
+class FilterIssueViewController: UIViewController, IssueViewModelType, MainCoordinated, UserViewModelType {
     
     private var issueViewModel: IssueViewModel!
+    private var userViewModel: UserViewModel!
     var mainCoordinator: MainFlowCoordinator?
     
     func setIssueViewModel(_ issueViewModel: IssueViewModel) {
         self.issueViewModel = issueViewModel
+    }
+    
+    func setUserViewModel(_ userViewModel: UserViewModel) {
+        self.userViewModel = userViewModel
     }
     
     let sections = ["상태", "작성자", "레이블"]
@@ -26,11 +31,10 @@ class FilterIssueViewController: UIViewController, IssueViewModelType, MainCoord
         case closed = "닫힌 이슈"
     }
     
-    
     let conditionTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = .red
+        tableView.backgroundColor = .gray
         return tableView
     }()
     
@@ -70,7 +74,7 @@ class FilterIssueViewController: UIViewController, IssueViewModelType, MainCoord
     }
     
     deinit {
-        print("filter controlelr has been deinit")
+        print("filter controller has been deinit")
     }
 }
 
@@ -87,6 +91,10 @@ extension FilterIssueViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return issueStatusList.allCases.count
+        } else if section == 1 {
+            return self.userViewModel.authorList.count
+        } else if section == 2 {
+            return self.userViewModel.assigneeList.count
         } else {
             return 0
         }
@@ -96,15 +104,18 @@ extension FilterIssueViewController: UITableViewDataSource {
         guard let cell = self.conditionTableView.dequeueReusableCell(withIdentifier: FilterIssueTableViewCell.reuseIdentifier) as? FilterIssueTableViewCell else { return UITableViewCell() }
         cell.configureTitleLabel()
         
-        
         if indexPath.section == 0 {
             let title = issueStatusList.allCases[indexPath.row].rawValue
             cell.setTitleLabelText(with: title)
             
         } else if indexPath.section == 1 {
-            
+            let authorList = self.userViewModel.authorList
+            let title = authorList[indexPath.row].name
+            cell.setTitleLabelText(with: title)
         } else {
-            
+            let assigneeList = self.userViewModel.assigneeList
+            let title = assigneeList[indexPath.row].name
+            cell.setTitleLabelText(with: title)
         }
         
         return cell

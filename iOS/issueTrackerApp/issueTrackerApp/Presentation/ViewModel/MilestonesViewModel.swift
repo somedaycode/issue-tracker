@@ -7,31 +7,32 @@
 
 import Foundation
 
-protocol MilestonesViewModelProtocol {
-    var milestones: [Milestones] { get }
-    func fetchAllMilestones()
-    func addMilestone(completionHandler: @escaping () -> Void)
-}
-
-class MilestonesViewModel: MilestonesViewModelProtocol {
-    var networkController: MileStonesNetworkController?
+class MilestonesViewModel {
+    var milestonesUseCase: MilestonesUseCasePort?
     var milestones: [Milestones] = []
     
-    init(milestonesNetworkController: MileStonesNetworkController = MileStonesNetworkController()) {
-        self.networkController = milestonesNetworkController
+    init(milestonesUseCase: MilestonesUseCasePort = MilestonesUseCase()) {
+        self.milestonesUseCase = milestonesUseCase
+        self.fetchMilestonesList()
     }
     
-    func fetchAllMilestones() {
-        // to fetch using network layer
-        
-        let ms1 = Milestones(title: "마일스톤 1", description: "마일스톤에 대한 설명1", dueDate: "tomorrow", openedIssueCount: 999, closedIssueCount: 999)
-        let ms2 = Milestones(title: "마일스톤 2", description: "마일스톤에 대한 설명2", dueDate: "the day after tomorrow", openedIssueCount: 333, closedIssueCount: 333)
-        
-        self.milestones = [ms1, ms2]
+    func fetchMilestonesList() {
+        DispatchQueue.global().async {
+            self.milestonesUseCase?.getMilestoneList(completionHandler: { (milestonesList) in
+                self.milestones = milestonesList
+            })
+        }
     }
     
-    func addMilestone(completionHandler: @escaping () -> Void) {
-        // todo
+    func addMilestone(title: String, description: String, dueDate: String, completionHandler: @escaping () -> Void) {
+        DispatchQueue.global().async {
+            self.milestonesUseCase?.postAddMilestone(title: title, description: description, dueDate: dueDate, completionHandler: { (status) in
+                switch status.status {
+                case "success": completionHandler()
+                default: return
+                }
+            })
+        }
     }
     
 }

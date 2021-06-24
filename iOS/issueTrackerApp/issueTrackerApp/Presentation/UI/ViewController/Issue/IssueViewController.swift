@@ -142,21 +142,30 @@ extension IssueViewController: UITableViewDataSource {
 
 extension IssueViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView,
-                       trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+                   trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         // delete action
         let delete = UIContextualAction(style: .destructive,
                                         title: "삭제") { [weak self] (action, view, completionHandler) in
-//            self?.issueViewModel?.deleteIssue(at: indexPath.row, completionHandler: {
-//                    completionHandler(true)
-//            })
+            let alert = UIAlertController(title: "", message: "정말로 삭제하겠습니까?", preferredStyle: UIAlertController.Style.alert)
+            let deleteAction = UIAlertAction(title: "삭제", style: .default) { (action) in
+                self?.issueViewModel.deleteIssue(at: indexPath.row)
+            }
+            alert.addAction(deleteAction)
+            
+            self?.present(alert, animated: true, completion: nil)
         }
+            
         delete.backgroundColor = .systemRed
         delete.image = UIImage(systemName: "trash")
 
         // close action
         let close = UIContextualAction(style: .normal,
                                         title: "닫기") { [weak self] (action, view, completionHandler) in
-        // todo
+            self?.issueViewModel.closeIssue(at: indexPath.row, completionHandler: { (issueTitle) in
+                let alert = UIAlertController(title: "이슈 \(issueTitle)", message: "닫힘 상태로 변경되었습니다", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "확인", style: .cancel, handler: nil))
+                self?.present(alert, animated: true, completion: nil)
+            })
                                         completionHandler(true)
         }
         close.backgroundColor = UIColor.hexString2UIColor(hexString: "#CCD4FF")

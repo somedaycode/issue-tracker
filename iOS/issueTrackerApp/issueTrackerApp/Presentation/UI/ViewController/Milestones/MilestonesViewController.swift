@@ -17,7 +17,7 @@ class MilestonesViewController: UIViewController, MilestonesModelType, MainCoord
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureMilestonesTableView()
-        self.milestoneViewModel.fetchAllMilestones()
+        self.milestoneViewModel.fetchMilestonesList()
         self.configureRightBarButtonItem()
     }
     
@@ -28,7 +28,6 @@ class MilestonesViewController: UIViewController, MilestonesModelType, MainCoord
     private func configureMilestonesTableView() {
         self.milestonesTableView.register(IssueCell.nib, forCellReuseIdentifier: IssueCell.identifier)
         self.milestonesTableView.dataSource = self
-        self.milestonesTableView.delegate = self
     }
     
     private func configureRightBarButtonItem() {
@@ -59,6 +58,4 @@ extension MilestonesViewController: UITableViewDataSource {
     
 }
 
-extension MilestonesViewController: UITableViewDelegate {
-    
-}
+

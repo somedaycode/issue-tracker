@@ -34,6 +34,7 @@ class IssueCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        self.handleSelection()
     }
     
     private func clearCell() {
@@ -58,21 +59,39 @@ class IssueCell: UITableViewCell {
         self.checkImageView.isHidden = true
     }
     
+    public func handleSelection() {
+        if self.isSelected {
+            self.checkImageView.isHidden = false
+        } else {
+            self.checkImageView.isHidden = true
+        }
+    }
+    
     private func configureTitleLabel(with issue: Issue) {
         self.titleLabel.text = issue.title
     }
     
     private func configureDescriptionLabel(with issue: Issue) {
         self.descriptionLabel.text = issue.description
+        self.descriptionLabel.numberOfLines = 2
+        self.descriptionLabel.lineBreakMode = .byWordWrapping
+//        print("sdf")
     }
     
     private func configureMileStonesLabel(with issue: Issue) {
+        
+        let font = UIFont.systemFont(ofSize: 12)
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: font,
+            .foregroundColor: UIColor.gray,
+        ]
+        
         let fullString = NSMutableAttributedString(string: "")
         let imageAttachment = NSTextAttachment()
-        imageAttachment.image = UIImage(systemName: "exclamationmark.circle")
+        imageAttachment.image = UIImage(systemName: "flag")?.withTintColor(.gray)
         let imageString = NSAttributedString(attachment: imageAttachment)
         fullString.append(imageString)
-        fullString.append(NSAttributedString(string: issue.milestoneTitle ?? ""))
+        fullString.append(NSAttributedString(string: issue.milestoneTitle ?? "", attributes: attributes))
         
         self.milestonesORDueDateLabel.attributedText = fullString
     }
@@ -105,10 +124,19 @@ class IssueCell: UITableViewCell {
         percentageLabel.font = UIFont.boldSystemFont(ofSize: 25)
         percentageLabel.adjustsFontSizeToFitWidth = true
         
-        let progress = (milestones.closedIssueCount / (milestones.openedIssueCount + milestones.closedIssueCount))
-        
-        percentageLabel.text = "\(progress)%"
-        
+        let completionRatio = calculateRatio(openIssue: milestones.openedIssueCount, closedIssue: milestones.closedIssueCount)
+    
+        percentageLabel.text = "\(completionRatio)%"
+    }
+    
+    private func calculateRatio(openIssue: Int, closedIssue: Int) -> Int {
+        if closedIssue == 0 {
+            return 0
+        } else if openIssue == 0 && closedIssue > 0 {
+            return 100
+        } else {
+            return Int((Double(closedIssue) / Double(closedIssue + openIssue)) * 100)
+        }
     }
     
     private func configureTitleLabel(with milestones: Milestones) {

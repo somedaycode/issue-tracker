@@ -102,7 +102,20 @@ class MilestonesAddViewController: UIViewController, MilestonesModelType, MainCo
     }
     
     @objc func didTouchSaveButton() {
-        // add milestones request
+        let title = self.titleInputView.textField.text ?? ""
+        let description = self.descriptionInputView.textField.text ?? ""
+        let dueDate = self.dueDateInputView.textField.text ?? "2000-01-01"
+        
+        // runtime error when dueDate is not properly formatted: YYYY-MM-DD
+        self.milestonesViewModel?.addMilestone(title: title, description: description, dueDate: dueDate, completionHandler: {
+            
+            let alert = UIAlertController(title: "", message: "새로운 마일스톤을 추가했습니다", preferredStyle: UIAlertController.Style.alert)
+            let okAciton = UIAlertAction(title: "확인", style: .default) { (action) in
+                self.dismiss(animated: true, completion: nil)
+            }
+            alert.addAction(okAciton)
+            self.present(alert, animated: true, completion: nil)
+        })
     }
     
     private func configureTitleLabel() {

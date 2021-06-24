@@ -12,7 +12,8 @@ protocol IssueViewModelProtocol {
     var filteredIssues: [Issue] { get set }
     func fetchIssueList()
     func filterIssuesWithSearchText(_ string: String)
-    func deleteIssue(at index: Int, completionHandler: @escaping () -> Void)
+    func deleteIssue(at index: Int)
+    func closeIssue(at index: Int, completionHandler: @escaping (String) -> Void)
 }
 
 class IssueViewModel: IssueViewModelProtocol {
@@ -43,19 +44,29 @@ class IssueViewModel: IssueViewModelProtocol {
     }
     
     func filterIssuesWithSearchText(_ string: String) {
-//        self.filteredIssues = issues.filter({ (issue: Issue) -> Bool in
-//            return issue.title.lowercased().contains(string.lowercased())
-//        })
+        self.filteredIssues = issueList.filter({ (issue: Issue) -> Bool in
+            return issue.title.lowercased().contains(string.lowercased())
+        })
     }
     
-    func deleteIssue(at index: Int, completionHandler: @escaping () -> Void) {
-//        let issueId = issues[index].id
-//        networkController?.deleteIssue(with: issueId, completion: { (res) in
-//            if res.status == "success" {
-//                self.issues.remove(at: index)
-//                completionHandler()
-//            }
-//        })
+    func deleteIssue(at index: Int) {
+        let issueId = issueList[index].id
+        issueUseCase.patchIssue(path: String(issueId), body: "deleted", body: true) { (status) in
+            switch status.status {
+            case "success": self.issueList.remove(at: index)
+            default: return
+            }
+        }
     }
     
+    func closeIssue(at index: Int, completionHandler: @escaping (String) -> Void) {
+        let issueId = issueList[index].id
+        issueUseCase.patchIssue(path: String(issueId), body: "closed", body: true) { (status) in
+            switch status.status {
+            case "success":
+                completionHandler(self.issueList[index].title)
+            default: return
+            }
+        }
+    }
 }

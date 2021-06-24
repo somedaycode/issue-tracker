@@ -44,6 +44,10 @@ protocol MilestonesModelType: class {
     func setMilestonesViewModel(_ milestonesViewModel: MilestonesViewModel)
 }
 
+protocol UserViewModelType: class {
+    func setUserViewModel(_ userViewModel: UserViewModel)
+}
+
 class MainFlowCoordinator: NSObject {
     private let mainTabBarController: MainTabBarController
     private let keychainManager = KeychainManager()
@@ -51,6 +55,7 @@ class MainFlowCoordinator: NSObject {
     private let addIssueViewModel = AddIssueViewModel()
     private let issueViewModel = IssueViewModel()
     private let milestonesViewModel = MilestonesViewModel()
+    private let userViewModel = UserViewModel()
     
     init(mainViewController: MainTabBarController) {
         self.mainTabBarController = mainViewController
@@ -73,6 +78,8 @@ extension MainFlowCoordinator: Coordinator {
         (viewController as? AddIssueViewModelType)?.setAddIssueViewModel(addIssueViewModel)
         (viewController as? IssueViewModelType)?.setIssueViewModel(issueViewModel)
         (viewController as? MilestonesModelType)?.setMilestonesViewModel(milestonesViewModel)
+        (viewController as? UserViewModelType)?.setUserViewModel(userViewModel)
+        
         
         if let tabBarController = viewController as? UITabBarController {
             tabBarController.viewControllers?.forEach(configure(viewController:))
@@ -82,4 +89,5 @@ extension MainFlowCoordinator: Coordinator {
             configure(viewController: rootViewController)
         }
     }
+
 }

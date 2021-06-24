@@ -34,18 +34,24 @@ class IssueSelectTableViewController: UITableViewController, IssueViewModelType,
         
         guard let footerView = self.tableView.tableFooterView as? IssueSelectionTableViewHeaderFooterView else { return }
         footerView.frame = CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: self.view.frame.height / 20)
+        
         footerView.didTapSelectAllButton(action: UIAction(handler: { (_) in
             for row in 0..<self.tableView.numberOfRows(inSection: 0) {
+                print(row)
                 let indexPath = IndexPath(row: row, section: 0)
-                self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
-                guard let issueCell = self.tableView.cellForRow(at: indexPath) as? IssueCell else { return }
-                self.cellSelectAction(with: issueCell)
-                }
+                print(indexPath)
+                self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: .bottom)
+                self.cellSelectionHandler()
+            }
         }))
+        
         footerView.didTapCloseAllSelectedIssueButton(action: UIAction(handler: { (_) in
             let indexPaths = self.tableView.indexPathsForSelectedRows
-            indexPaths?.forEach({ (index) in
-//                issueViewModel.closeIssue
+            indexPaths?.forEach({ (indexPath) in
+                self.issueViewModel.closeIssue(at: indexPath.row) { (string) in
+                    print("\(string) 이슈가 닫힘 상태로 변경됐습니다")
+                }
+                self.tableView.deselectRow(at: indexPath, animated: true)
             })
         }))
     }
@@ -62,13 +68,7 @@ class IssueSelectTableViewController: UITableViewController, IssueViewModelType,
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
     }
     
-    private func cellSelectAction(with issueCell: IssueCell) {
-        if issueCell.isSelected {
-            issueCell.checkImageView.isHidden = false
-        } else {
-            issueCell.checkImageView.isHidden = true
-        }
-        
+    private func cellSelectionHandler() {
         guard let footerView = self.tableView.tableFooterView as? IssueSelectionTableViewHeaderFooterView else { return }
         footerView.changeCountLabel(with: self.tableView.indexPathsForSelectedRows?.count ?? 0)
         let allSelected = tableView.numberOfRows(inSection: 0) == tableView.indexPathsForSelectedRows?.count
@@ -85,17 +85,15 @@ class IssueSelectTableViewController: UITableViewController, IssueViewModelType,
         guard let issue = issueViewModel?.issueList[indexPath.row] else { return UITableViewCell() }
         cell.configureAll(with: issue)
         cell.configureCheckImageView()
+        cell.handleSelection()
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let issueCell = tableView.cellForRow(at: indexPath) as? IssueCell else { return }
-        cellSelectAction(with: issueCell)
+        cellSelectionHandler()
     }
     
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        guard let issueCell = tableView.cellForRow(at: indexPath) as? IssueCell else { return }
-        cellSelectAction(with: issueCell)
+        cellSelectionHandler()
     }
-    
 }
