@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -23,14 +23,14 @@ import type { Param } from '@pages/IssueDetail';
 import { issueAPI } from '@const/var';
 import { fetchWithAuth } from '@utils/fetchWithAuth';
 import IssueDetailTitle from './IssueDetailTitle';
+import { querySet } from '@store/atoms/issueList';
 
 function IssueHeader() {
   const { id }: Param = useParams();
-  const history = useHistory();
   const [isEditting, setIsEditting] = useState(false);
   const [titleContents, setTitleContents] = useState<string | null>(null);
   const issueData = useRecoilValue(issueDetailList(id));
-
+  const setQuery = useSetRecoilState(querySet);
   const {
     assignees,
     author_user_id,
@@ -43,6 +43,7 @@ function IssueHeader() {
     title,
     num_of_comments,
   } = issueData;
+  const [currentIssueStatus, setCurrentIssueStatus] = useState(closed);
 
   const currentTime = new Date().getTime();
   const timePassed = pipe(
@@ -54,16 +55,24 @@ function IssueHeader() {
     getRenderingText
   )(created_time);
 
-  const handleClickIssueClose = () => {
+  const handleClickIssueStatusChange = () => {
+    const issueChangeStatus = currentIssueStatus ? false : true;
     const closeIssue = async () => {
       const url = `${issueAPI}/${id}`;
       await fetchWithAuth(url, '이슈 상태 변경 오류', {
         method: 'PATCH',
-        body: JSON.stringify({ closed: true }),
+        body: JSON.stringify({ closed: issueChangeStatus }),
       });
     };
     closeIssue();
-    history.push('/issues');
+    setCurrentIssueStatus((state: boolean) => !state);
+    setQuery({
+      closed: String(issueChangeStatus),
+      author: null,
+      assignee: null,
+      label: null,
+      milestone: null,
+    });
   };
 
   const handleClickEditTitle = () => {
@@ -97,7 +106,7 @@ function IssueHeader() {
           isEditting={isEditting}
         />
         <IssueInfo>
-          {closed ? (
+          {currentIssueStatus ? (
             <CloseIssueTag>
               <CloseIcon className="icon close_icon" /> 닫힌 이슈
             </CloseIssueTag>
@@ -118,9 +127,9 @@ function IssueHeader() {
           <EditIcon className="icon edit_icon" />
           제목 편집
         </Button>
-        <Button onClick={handleClickIssueClose} {...whiteButton}>
+        <Button onClick={handleClickIssueStatusChange} {...whiteButton}>
           <CloseIcon className="icon close_icon" />
-          이슈 닫기
+          {currentIssueStatus ? '이슈 열기' : '이슈 닫기'}
         </Button>
       </HeaderRight>
     </Header>

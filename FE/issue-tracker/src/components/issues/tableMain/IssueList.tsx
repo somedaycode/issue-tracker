@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import {
   useRecoilValue,
   useRecoilValueLoadable,
@@ -15,6 +14,7 @@ import { IssueSkeleton } from '@components/common/Skeleton';
 import Issue from './Issue';
 import ErrorIssueList from './ErrorIssueList';
 import NoIssue from './NoIssue';
+import { useEffect } from 'react';
 
 function IssueList() {
   const query = useRecoilValue(queryString);
