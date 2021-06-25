@@ -8,24 +8,27 @@
 import Foundation
 
 struct Comment: Codable {
-    let description, createdTime: String
-    let user: User
+    let id: Int
+    let description: String
+    let createdTime: String
+    let author: Author
 
     enum CodingKeys: String, CodingKey {
+        case id
         case description = "description"
         case createdTime = "created_time"
-        case user
+        case author
     }
 }
 
-struct User: Codable {
+struct Author: Codable {
     let name: String
     let avatarURL: String
-    let editable: Bool
+    let userId: Int
 
     enum CodingKeys: String, CodingKey {
         case name
         case avatarURL = "avatar_url"
-        case editable
+        case userId = "user_id"
     }
 }

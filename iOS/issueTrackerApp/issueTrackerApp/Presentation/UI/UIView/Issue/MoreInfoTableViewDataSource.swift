@@ -8,10 +8,10 @@
 import UIKit
 
 class MoreInfoTableViewDataSource: NSObject {
-    internal var dataOrganizer: ArrayDataSourceOrganizer<MoreInfo>
+    internal var dataOrganizer: ArrayDataSourceOrganizer<MoreInfoType>
     internal var viewModelCache: [IndexPath : MoreInfoCell.ViewModel] = [:]
     
-    init(moreInfos: [MoreInfo]) {
+    init(moreInfos: [MoreInfoType]) {
         dataOrganizer = ArrayDataSourceOrganizer(items: moreInfos)
         super.init()
     }
@@ -19,13 +19,13 @@ class MoreInfoTableViewDataSource: NSObject {
 
 private extension MoreInfoTableViewDataSource {
     struct DataOrganizer {
-        let moreInfos: [MoreInfo]
+        let moreInfos: [MoreInfoType]
         
         var rowsCount: Int {
             return moreInfos.count
         }
         
-        subscript(indexPath: IndexPath) -> MoreInfo {
+        subscript(indexPath: IndexPath) -> MoreInfoType {
             return moreInfos[indexPath.row]
         }
     }
@@ -33,7 +33,7 @@ private extension MoreInfoTableViewDataSource {
 
 extension MoreInfoTableViewDataSource: ArrayTableViewDataSource {
     func viewModel(for value: ModelType) -> MoreInfoCell.ViewModel {
-        return MoreInfoCell.ViewModel(moreInfo: value)
+        return MoreInfoCell.ViewModel(moreInfo: value as! MoreInfo)
     }
     
     func configure(cell: MoreInfoCell, with viewModel: MoreInfoCell.ViewModel) {

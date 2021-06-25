@@ -45,12 +45,11 @@ struct Assignee: Codable {
 
 // MARK: - LabelList
 struct LabelList: Codable {
-    let id: Int
-    let title, colorCode, description: String
+    let title, colorCode: String
     let fontLight: Bool
     
     enum CodingKeys: String, CodingKey {
-        case id, title, description
+        case title
         case colorCode = "color_code"
         case fontLight = "font_light"
     }

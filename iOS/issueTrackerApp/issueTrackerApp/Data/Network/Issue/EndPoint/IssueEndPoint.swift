@@ -30,6 +30,10 @@ struct IssueEndPoint {
         return IssueEndPoint(path: "/count")
     }
     
+    static func getIssueComments(path id: String) -> Self {
+        return IssueEndPoint(path: "/\(id)/comments")
+    }
+    
     static func postIssue() -> Self {
         return IssueEndPoint()
     }
@@ -100,26 +104,38 @@ struct LabelEndpoint {
 }
 
 struct CommentEndpoint {
+    private var issueId: String?
+    private var commentId: String?
+    
+    var url: URL {
+        var components = URLComponents()
+        components.scheme = "http"
+        components.host = "15.164.68.136"
+        components.path = "/api/issues/\(issueId ?? "")/comments\(commentId ?? "")"
+        return components.url!
+    }
+    
+    static func postAddComment(path issueId: String) -> Self {
+        return CommentEndpoint(issueId: issueId, commentId: .none)
+    }
+    
+    static func patchEditComment(path commentId: String) -> Self {
+        return CommentEndpoint(issueId: .none, commentId: commentId)
+    }
+}
+
+struct AssigneeEndpoint {
     private var path: String?
     
     var url: URL {
         var components = URLComponents()
         components.scheme = "http"
         components.host = "15.164.68.136"
-        components.path = "/api/comments/\(path ?? "")"
+        components.path = "/api/assignees/\(path ?? "")"
         return components.url!
     }
     
-    //수정필요
-    static func getInquireComments(path issueId: String) -> Self {
-        return CommentEndpoint(path: issueId)
-    }
-    
-    static func postAddComment() -> Self {
-        return CommentEndpoint()
-    }
-    
-    static func patchEditComment(path issueId: String) -> Self {
-        return CommentEndpoint(path: issueId)
+    static func getAssigneeList() -> Self {
+        return AssigneeEndpoint()
     }
 }

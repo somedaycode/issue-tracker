@@ -36,6 +36,9 @@ class AddIssueViewController: UIViewController, AddIssueViewModelType, MainCoord
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(moreInformationView)
+        configureNotificationCenter()
+        titleTextField.text = addIssueViewModel.issueTitle
+        titleTextField.delegate = self
         setupView()
     }
     
@@ -47,8 +50,29 @@ class AddIssueViewController: UIViewController, AddIssueViewModelType, MainCoord
         self.addIssueViewModel = addIssueViewModel
     }
     
-    @IBAction func cancelButtonTapped(_ sender: Any) {
-        dismiss(animated: true, completion: .none)
+    private func configureNotificationCenter() {
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidSuccessAddIssue), name: .didSuccessAddIssue, object: nil)
+    }
+    
+    @objc func onDidSuccessAddIssue() {
+        
+    }
+    
+    @IBAction func saveButtonTapped(_ sender: Any) {
+        self.addIssueViewModel.addIssue()
+    }
+}
+
+//MARK:- Text Field
+extension AddIssueViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.addIssueViewModel.updateIssueTitle(textField.text ?? "")
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        self.addIssueViewModel.updateIssueTitle(textField.text ?? "")
+        return true
     }
 }
 

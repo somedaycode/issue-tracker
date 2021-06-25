@@ -22,8 +22,8 @@ class IssueViewController: UIViewController, IssueViewModelType, MainCoordinated
         return searchController.isActive && !isSearchBarEmpty
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.configureLeftBarButtonItem()
         self.configureRightBarButtonItem()
         self.configureTableView()
@@ -132,7 +132,6 @@ extension IssueViewController: UITableViewDataSource {
         
         return cell
     }
-    
 }
 
 extension IssueViewController: UITableViewDelegate {
@@ -159,5 +158,18 @@ extension IssueViewController: UITableViewDelegate {
         
         let configuration = UISwipeActionsConfiguration(actions: [close, delete])
         return configuration
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let issue = issueViewModel?.issueList[indexPath.row]
+        let storyboard = UIStoryboard(name: "Issue", bundle: .main)
+        
+        if let issueDetailViewController = storyboard.instantiateViewController(identifier: "IssueDetailViewController") as? IssueDetailViewController {
+            issueDetailViewController.setIssueId("\(issue?.id ?? 0)")
+            issueDetailViewController.setIssueViewModel(self.issueViewModel)
+            issueDetailViewController.modalPresentationStyle = .fullScreen
+            
+            self.navigationController?.pushViewController(issueDetailViewController, animated: true)
+        }
     }
 }

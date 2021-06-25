@@ -17,7 +17,6 @@ class TagLabel: UILabel {
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        assertionFailure("Init with coder should not be called")
     }
     
     public func custom(title: String, colorCode: String) {

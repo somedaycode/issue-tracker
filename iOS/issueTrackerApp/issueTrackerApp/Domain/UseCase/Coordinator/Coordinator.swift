@@ -40,12 +40,17 @@ protocol IssueViewModelType: class {
     func setIssueViewModel(_ issueViewModel: IssueViewModel)
 }
 
+protocol IssueInfoViewModelType: class {
+    func setIssueInfoViewModel(_ issueInfoViewModel: IssueInfoViewModel)
+}
+
 class MainFlowCoordinator: NSObject {
     private let mainTabBarController: MainTabBarController
     private let keychainManager = KeychainManager()
     private let loginFlowCoordinator = LoginFlowCoordinator()
     private let addIssueViewModel = AddIssueViewModel()
     private let issueViewModel = IssueViewModel()
+    private let issueInfoViewModel = IssueInfoViewModel()
     
     init(mainViewController: MainTabBarController) {
         self.mainTabBarController = mainViewController
@@ -67,6 +72,7 @@ extension MainFlowCoordinator: Coordinator {
         (viewController as? LoginCoordinated)?.loginCoordinator = loginFlowCoordinator
         (viewController as? AddIssueViewModelType)?.setAddIssueViewModel(addIssueViewModel)
         (viewController as? IssueViewModelType)?.setIssueViewModel(issueViewModel)
+        (viewController as? IssueInfoViewModelType)?.setIssueInfoViewModel(issueInfoViewModel)
         
         if let tabBarController = viewController as? UITabBarController {
             tabBarController.viewControllers?.forEach(configure(viewController:))

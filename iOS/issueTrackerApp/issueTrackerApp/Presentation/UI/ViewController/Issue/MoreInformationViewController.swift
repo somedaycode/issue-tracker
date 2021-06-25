@@ -14,8 +14,8 @@ class MoreInformationViewController: UIViewController, AddIssueViewModelType, Ma
     private var addIssueViewModel: AddIssueViewModel!
     weak var mainCoordinator: MainFlowCoordinator?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         guard let moreInfos = addIssueViewModel?.moreInfos else { return }
         let dataSource = MoreInfoTableViewDataSource(moreInfos: moreInfos)
         self.dataSource = dataSource
@@ -25,6 +25,13 @@ class MoreInformationViewController: UIViewController, AddIssueViewModelType, Ma
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         mainCoordinator?.configure(viewController: segue.destination)
+        
+        if let indexPath = tableView.indexPathForSelectedRow {
+            let selectedRow = indexPath.row
+            if let moreInfoSelectViewController  = segue.destination as? MoreInfoSelectViewController {
+                moreInfoSelectViewController.setKind(selectedRow)
+            }
+        }
     }
     
     func setAddIssueViewModel(_ addIssueViewModel: AddIssueViewModel) {

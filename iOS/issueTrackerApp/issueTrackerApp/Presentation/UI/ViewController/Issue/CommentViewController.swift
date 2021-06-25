@@ -16,6 +16,7 @@ class CommentViewController: UIViewController, AddIssueViewModelType, MainCoordi
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        commentTextView.text = addIssueViewModel.comment
         commentTextView.delegate = self
     }
     
@@ -26,6 +27,11 @@ class CommentViewController: UIViewController, AddIssueViewModelType, MainCoordi
 
 extension CommentViewController: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
+        commentTextView.resignFirstResponder()
+        addIssueViewModel?.updateComment(textView.text ?? "")
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
         addIssueViewModel?.updateComment(textView.text ?? "")
     }
     

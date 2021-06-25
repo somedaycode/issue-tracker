@@ -17,6 +17,7 @@ protocol IssueViewModelProtocol {
 
 class IssueViewModel: IssueViewModelProtocol {
     private var issueUseCase: IssueUseCasePort!
+    private var commentUseCase: CommentUseCasePort!
     
     var issueList: [Issue] = [] {
         didSet {
@@ -30,14 +31,49 @@ class IssueViewModel: IssueViewModelProtocol {
         }
     }
     
-    init(issueUseCase: IssueUseCasePort = IssueUseCase()) {
+    var issueDetail: IssueDetail = IssueDetail.EMPTY {
+        didSet {
+            NotificationCenter.default.post(name: .didReceiveIssueDetail, object: nil)
+        }
+    }
+    
+    var commentList: [Comment] = []
+    
+    init(issueUseCase: IssueUseCasePort = IssueUseCase(), commentUseCase: CommentUseCasePort = CommentUseCase()) {
         self.issueUseCase = issueUseCase
+        self.commentUseCase = commentUseCase
     }
     
     func fetchIssueList() {
         DispatchQueue.global().async {
             self.issueUseCase.getIssueList { issueList in
                 self.issueList = issueList
+            }
+        }
+    }
+    
+    func fetchIssueDetail(issueId: String) {
+        DispatchQueue.global().async {
+            self.issueUseCase.getIssueDetail(path: issueId) { issueDetail in
+                self.issueDetail = issueDetail
+            }
+        }
+    }
+    
+    func fetchIssueCommentList(issueId: String) {
+        DispatchQueue.global().async {
+            self.issueUseCase.getIssueCommentList(path: issueId) { commentList in
+                self.commentList = commentList
+                NotificationCenter.default.post(name: .didReceiveCommentList, object: nil)
+            }
+        }
+    }
+    
+    func addComment(issueId: String, commnt: String) {
+        DispatchQueue.global().async {
+            self.commentUseCase.postAddComment(issueId: issueId, comment: commnt) { status in
+                print("status", status.status)
+                NotificationCenter.default.post(name: .didReceiveCommentList, object: nil)
             }
         }
     }

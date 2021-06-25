@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Alamofire
 
 class LoginNetworkManager {
     private let keychainManager: KeychainManager
@@ -25,16 +26,18 @@ class LoginNetworkManager {
     
     func authenticateWith(authorizationCode: String, client: String, completion: @escaping () -> Void) {
         let jWTRequest = JWTRequest(authorizationCode: authorizationCode, client: client)
-        let requestURL = jWTRequest.fetchReq.url!
-        requests[requestURL] = jWTRequest
-        
-        jWTRequest.execute { (authorization) in
-            if let jWT = authorization?.jwt {
-                self.keychainManager.store(jWT: jWT)
+        guard let requestURL = jWTRequest.fetchReq.url else { return }
+        let urlRequest = URLRequest(url: requestURL)
+
+        let dataRequest = AF.request(urlRequest)
+        DispatchQueue.global().async {
+            dataRequest.responseData { response in
+                let authorization = try! JSONDecoder().decode(Authorization.self, from: response.data!)
+                self.keychainManager.store(jWT: authorization.jwt)
+                self.requests[requestURL] = nil
+                self.fetchUserAvatarImage()//test
+                completion()
             }
-            self.requests[requestURL] = nil
-            self.fetchUserAvatarImage()//test
-            completion()
         }
     }
     

@@ -42,7 +42,7 @@ extension ArrayTableViewDataSource {
 }
 
 struct ArrayDataSourceOrganizer<ModelType> {
-    let items: [ModelType]
+    var items: [ModelType]
     
     var rowsCount: Int {
         return items.count

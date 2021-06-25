@@ -60,10 +60,32 @@
 		9343E305266F60B50086F977 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9343E304266F60B50086F977 /* NetworkRequest.swift */; };
 		9343E30D266F90EF0086F977 /* LoginFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9343E30C266F90EF0086F977 /* LoginFlowCoordinator.swift */; };
 		937F3AAF267B2E87002E6CC9 /* IssueDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937F3AAE267B2E87002E6CC9 /* IssueDetailViewController.swift */; };
-		937F3AB4267B2F41002E6CC9 /* IssueDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937F3AB3267B2F41002E6CC9 /* IssueDetailCell.swift */; };
+		937F3AB4267B2F41002E6CC9 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937F3AB3267B2F41002E6CC9 /* CommentCell.swift */; };
 		937F3ABB267B4583002E6CC9 /* IssueDetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937F3ABA267B4583002E6CC9 /* IssueDetailInfoViewController.swift */; };
 		937F3AD7267C6376002E6CC9 /* IssueNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937F3AD6267C6376002E6CC9 /* IssueNetworkManager.swift */; };
 		937F3AE3267C86E3002E6CC9 /* IssueUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937F3AE2267C86E3002E6CC9 /* IssueUseCase.swift */; };
+		937F3B022681C413002E6CC9 /* IssueDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937F3B012681C413002E6CC9 /* IssueDetail.swift */; };
+		937F3B0A2681C9B8002E6CC9 /* CommentTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937F3B092681C9B8002E6CC9 /* CommentTableViewDataSource.swift */; };
+		937F3B162682B692002E6CC9 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 937F3B152682B692002E6CC9 /* Kingfisher */; };
+		937F3B1C2682B841002E6CC9 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937F3B1B2682B841002E6CC9 /* CircleView.swift */; };
+		937F3B212682DA04002E6CC9 /* MoreInfoSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937F3B202682DA04002E6CC9 /* MoreInfoSelectViewController.swift */; };
+		937F3B29268308B3002E6CC9 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937F3B28268308B3002E6CC9 /* Info.swift */; };
+		937F3B2E26830B4F002E6CC9 /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937F3B2D26830B4F002E6CC9 /* InfoCell.swift */; };
+		937F3B3326831417002E6CC9 /* InfoTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937F3B3226831417002E6CC9 /* InfoTableViewDataSource.swift */; };
+		937F3B3826831B1B002E6CC9 /* IssueInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937F3B3726831B1B002E6CC9 /* IssueInfoViewModel.swift */; };
+		937F3B3F26831F1B002E6CC9 /* MilestoneUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937F3B3E26831F1B002E6CC9 /* MilestoneUseCase.swift */; };
+		937F3B4426831F26002E6CC9 /* LabelUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937F3B4326831F26002E6CC9 /* LabelUseCase.swift */; };
+		937F3B49268328F4002E6CC9 /* LabelNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937F3B48268328F4002E6CC9 /* LabelNetworkManager.swift */; };
+		937F3B4E26832908002E6CC9 /* MilestoneNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937F3B4D26832908002E6CC9 /* MilestoneNetworkManager.swift */; };
+		937F3B532683291A002E6CC9 /* AssigneeNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937F3B522683291A002E6CC9 /* AssigneeNetworkManager.swift */; };
+		937F3B5926832CE1002E6CC9 /* AssigneeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937F3B5826832CE1002E6CC9 /* AssigneeUseCase.swift */; };
+		937F3B6126836CE9002E6CC9 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937F3B6026836CE9002E6CC9 /* UIColor+Ext.swift */; };
+		937F3B6826845162002E6CC9 /* CommentNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937F3B6726845162002E6CC9 /* CommentNetworkManager.swift */; };
+		937F3B6E268451ED002E6CC9 /* CommentUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937F3B6D268451ED002E6CC9 /* CommentUseCase.swift */; };
+		937F3B77268479AE002E6CC9 /* URLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937F3B76268479AD002E6CC9 /* URLTests.swift */; };
+		937F3B872684D0C3002E6CC9 /* CachingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937F3B862684D0C3002E6CC9 /* CachingManager.swift */; };
+		937F3B8C2684D127002E6CC9 /* FileSystemCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937F3B8B2684D127002E6CC9 /* FileSystemCacheManager.swift */; };
+		937F3B912684D283002E6CC9 /* MainNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937F3B902684D283002E6CC9 /* MainNetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,10 +163,31 @@
 		9343E304266F60B50086F977 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		9343E30C266F90EF0086F977 /* LoginFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFlowCoordinator.swift; sourceTree = "<group>"; };
 		937F3AAE267B2E87002E6CC9 /* IssueDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailViewController.swift; sourceTree = "<group>"; };
-		937F3AB3267B2F41002E6CC9 /* IssueDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailCell.swift; sourceTree = "<group>"; };
+		937F3AB3267B2F41002E6CC9 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		937F3ABA267B4583002E6CC9 /* IssueDetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailInfoViewController.swift; sourceTree = "<group>"; };
 		937F3AD6267C6376002E6CC9 /* IssueNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueNetworkManager.swift; sourceTree = "<group>"; };
 		937F3AE2267C86E3002E6CC9 /* IssueUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueUseCase.swift; sourceTree = "<group>"; };
+		937F3B012681C413002E6CC9 /* IssueDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetail.swift; sourceTree = "<group>"; };
+		937F3B092681C9B8002E6CC9 /* CommentTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewDataSource.swift; sourceTree = "<group>"; };
+		937F3B1B2682B841002E6CC9 /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
+		937F3B202682DA04002E6CC9 /* MoreInfoSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInfoSelectViewController.swift; sourceTree = "<group>"; };
+		937F3B28268308B3002E6CC9 /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
+		937F3B2D26830B4F002E6CC9 /* InfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
+		937F3B3226831417002E6CC9 /* InfoTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewDataSource.swift; sourceTree = "<group>"; };
+		937F3B3726831B1B002E6CC9 /* IssueInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueInfoViewModel.swift; sourceTree = "<group>"; };
+		937F3B3E26831F1B002E6CC9 /* MilestoneUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneUseCase.swift; sourceTree = "<group>"; };
+		937F3B4326831F26002E6CC9 /* LabelUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelUseCase.swift; sourceTree = "<group>"; };
+		937F3B48268328F4002E6CC9 /* LabelNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelNetworkManager.swift; sourceTree = "<group>"; };
+		937F3B4D26832908002E6CC9 /* MilestoneNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneNetworkManager.swift; sourceTree = "<group>"; };
+		937F3B522683291A002E6CC9 /* AssigneeNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssigneeNetworkManager.swift; sourceTree = "<group>"; };
+		937F3B5826832CE1002E6CC9 /* AssigneeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssigneeUseCase.swift; sourceTree = "<group>"; };
+		937F3B6026836CE9002E6CC9 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
+		937F3B6726845162002E6CC9 /* CommentNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentNetworkManager.swift; sourceTree = "<group>"; };
+		937F3B6D268451ED002E6CC9 /* CommentUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentUseCase.swift; sourceTree = "<group>"; };
+		937F3B76268479AD002E6CC9 /* URLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLTests.swift; sourceTree = "<group>"; };
+		937F3B862684D0C3002E6CC9 /* CachingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachingManager.swift; sourceTree = "<group>"; };
+		937F3B8B2684D127002E6CC9 /* FileSystemCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemCacheManager.swift; sourceTree = "<group>"; };
+		937F3B902684D283002E6CC9 /* MainNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +195,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				937F3B162682B692002E6CC9 /* Kingfisher in Frameworks */,
 				931BAE2F267310EB00CD9244 /* JWTDecode in Frameworks */,
 				931BAE4C26737F5100CD9244 /* MarkdownKit in Frameworks */,
 				930FAEC7266E13F500422968 /* Alamofire in Frameworks */,
@@ -190,6 +234,7 @@
 				88C3AA122678F7330090FAD8 /* IssueSelectTableViewController.swift */,
 				931BAE40267343B900CD9244 /* AddIssueViewController.swift */,
 				931BAE4526734FA500CD9244 /* MoreInformationViewController.swift */,
+				937F3B202682DA04002E6CC9 /* MoreInfoSelectViewController.swift */,
 				931BAEAC2678843200CD9244 /* CommentViewController.swift */,
 				931BAEB126788EA700CD9244 /* MarkdownViewController.swift */,
 				937F3AAE267B2E87002E6CC9 /* IssueDetailViewController.swift */,
@@ -210,6 +255,11 @@
 			isa = PBXGroup;
 			children = (
 				937F3AD6267C6376002E6CC9 /* IssueNetworkManager.swift */,
+				937F3B48268328F4002E6CC9 /* LabelNetworkManager.swift */,
+				937F3B4D26832908002E6CC9 /* MilestoneNetworkManager.swift */,
+				937F3B522683291A002E6CC9 /* AssigneeNetworkManager.swift */,
+				937F3B6726845162002E6CC9 /* CommentNetworkManager.swift */,
+				937F3B902684D283002E6CC9 /* MainNetworkManager.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -260,6 +310,7 @@
 		930FAE9B266E112900422968 /* issueTrackerAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				937F3B7526847999002E6CC9 /* Model types */,
 				930FAE9C266E112900422968 /* issueTrackerAppTests.swift */,
 				930FAE9E266E112900422968 /* Info.plist */,
 			);
@@ -297,6 +348,8 @@
 		930FAEBA266E11BA00422968 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
+				937F3B862684D0C3002E6CC9 /* CachingManager.swift */,
+				937F3B8B2684D127002E6CC9 /* FileSystemCacheManager.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -325,10 +378,12 @@
 			isa = PBXGroup;
 			children = (
 				883F51C6267200EA0055EC9E /* Issue.swift */,
+				937F3B012681C413002E6CC9 /* IssueDetail.swift */,
 				883F51CB2672041A0055EC9E /* Milestones.swift */,
 				883F51D3267204520055EC9E /* LabelModel.swift */,
 				883F51DB267204DC0055EC9E /* Comment.swift */,
 				931BAE612674DAF100CD9244 /* MoreInfo.swift */,
+				937F3B28268308B3002E6CC9 /* Info.swift */,
 				88C3A9FD26785B160090FAD8 /* Status.swift */,
 			);
 			path = Entity;
@@ -337,6 +392,10 @@
 		930FAEBE266E128700422968 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				937F3B6C268451DD002E6CC9 /* Comment */,
+				937F3B5726832CD3002E6CC9 /* Assignee */,
+				937F3B3D26831F0E002E6CC9 /* Milestone */,
+				937F3B3C26831EF9002E6CC9 /* Label */,
 				937F3AE1267C86D9002E6CC9 /* Issue */,
 				9343E2F0266F5CBC0086F977 /* Coordinator */,
 			);
@@ -376,6 +435,7 @@
 		930FAEC2266E12C800422968 /* UIView */ = {
 			isa = PBXGroup;
 			children = (
+				937F3B1A2682B833002E6CC9 /* CustomView */,
 				931BAE0426720C1500CD9244 /* Issue */,
 			);
 			path = UIView;
@@ -394,6 +454,7 @@
 			children = (
 				931BAEA42677973200CD9244 /* AddIssueViewModel.swift */,
 				88C3A9F326773B660090FAD8 /* IssueViewModel.swift */,
+				937F3B3726831B1B002E6CC9 /* IssueInfoViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -449,7 +510,10 @@
 				883F51A82670ABDC0055EC9E /* TagLabel.swift */,
 				931BAE5426749FCD00CD9244 /* MoreInfoCell.swift */,
 				931BAE5B2674B90100CD9244 /* MoreInfoTableViewDataSource.swift */,
-				937F3AB3267B2F41002E6CC9 /* IssueDetailCell.swift */,
+				937F3AB3267B2F41002E6CC9 /* CommentCell.swift */,
+				937F3B092681C9B8002E6CC9 /* CommentTableViewDataSource.swift */,
+				937F3B2D26830B4F002E6CC9 /* InfoCell.swift */,
+				937F3B3226831417002E6CC9 /* InfoTableViewDataSource.swift */,
 			);
 			path = Issue;
 			sourceTree = "<group>";
@@ -477,6 +541,7 @@
 			children = (
 				931BAE752674FC4700CD9244 /* ArrayTableViewDataSource.swift */,
 				931BAE7D2675A27000CD9244 /* UITableView.swift */,
+				937F3B6026836CE9002E6CC9 /* UIColor+Ext.swift */,
 			);
 			path = "Protocols and extentions";
 			sourceTree = "<group>";
@@ -507,6 +572,54 @@
 			path = Issue;
 			sourceTree = "<group>";
 		};
+		937F3B1A2682B833002E6CC9 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				937F3B1B2682B841002E6CC9 /* CircleView.swift */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
+		937F3B3C26831EF9002E6CC9 /* Label */ = {
+			isa = PBXGroup;
+			children = (
+				937F3B4326831F26002E6CC9 /* LabelUseCase.swift */,
+			);
+			path = Label;
+			sourceTree = "<group>";
+		};
+		937F3B3D26831F0E002E6CC9 /* Milestone */ = {
+			isa = PBXGroup;
+			children = (
+				937F3B3E26831F1B002E6CC9 /* MilestoneUseCase.swift */,
+			);
+			path = Milestone;
+			sourceTree = "<group>";
+		};
+		937F3B5726832CD3002E6CC9 /* Assignee */ = {
+			isa = PBXGroup;
+			children = (
+				937F3B5826832CE1002E6CC9 /* AssigneeUseCase.swift */,
+			);
+			path = Assignee;
+			sourceTree = "<group>";
+		};
+		937F3B6C268451DD002E6CC9 /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				937F3B6D268451ED002E6CC9 /* CommentUseCase.swift */,
+			);
+			path = Comment;
+			sourceTree = "<group>";
+		};
+		937F3B7526847999002E6CC9 /* Model types */ = {
+			isa = PBXGroup;
+			children = (
+				937F3B76268479AD002E6CC9 /* URLTests.swift */,
+			);
+			path = "Model types";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -527,6 +640,7 @@
 				930FAEC6266E13F500422968 /* Alamofire */,
 				931BAE2E267310EB00CD9244 /* JWTDecode */,
 				931BAE4B26737F5100CD9244 /* MarkdownKit */,
+				937F3B152682B692002E6CC9 /* Kingfisher */,
 			);
 			productName = issueTrackerApp;
 			productReference = 930FAE82266E112700422968 /* issueTrackerApp.app */;
@@ -603,6 +717,7 @@
 				930FAEC5266E13F500422968 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				931BAE2D267310EB00CD9244 /* XCRemoteSwiftPackageReference "JWTDecode.swift" */,
 				931BAE4A26737F5100CD9244 /* XCRemoteSwiftPackageReference "MarkdownKit" */,
+				937F3B142682B692002E6CC9 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 930FAE83266E112700422968 /* Products */;
 			projectDirPath = "";
@@ -653,6 +768,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				937F3B3326831417002E6CC9 /* InfoTableViewDataSource.swift in Sources */,
 				88C3A9F9267742140090FAD8 /* NotificationNameExtension.swift in Sources */,
 				883F5148266F3EAF0055EC9E /* LoginViewController.swift in Sources */,
 				9343E2D3266EFBA70086F977 /* GitHubEndpoint.swift in Sources */,
@@ -665,37 +781,56 @@
 				930FAE86266E112700422968 /* AppDelegate.swift in Sources */,
 				931BAEAD2678843200CD9244 /* CommentViewController.swift in Sources */,
 				931BAE4626734FA500CD9244 /* MoreInformationViewController.swift in Sources */,
+				937F3B4E26832908002E6CC9 /* MilestoneNetworkManager.swift in Sources */,
 				9343E305266F60B50086F977 /* NetworkRequest.swift in Sources */,
 				931BAE1E26730C8600CD9244 /* SettingViewController.swift in Sources */,
 				937F3ABB267B4583002E6CC9 /* IssueDetailInfoViewController.swift in Sources */,
 				937F3AAF267B2E87002E6CC9 /* IssueDetailViewController.swift in Sources */,
 				931BAEA52677973200CD9244 /* AddIssueViewModel.swift in Sources */,
 				883F51A42670AAAB0055EC9E /* TagStackView.swift in Sources */,
+				937F3B912684D283002E6CC9 /* MainNetworkManager.swift in Sources */,
 				883F519E2670940E0055EC9E /* IssueCell.swift in Sources */,
 				9343E2D8266F03E90086F977 /* LoginNetworkManager.swift in Sources */,
+				937F3B872684D0C3002E6CC9 /* CachingManager.swift in Sources */,
 				883F51CC2672041A0055EC9E /* Milestones.swift in Sources */,
 				883F51DC267204DC0055EC9E /* Comment.swift in Sources */,
 				9343E2F2266F5CC70086F977 /* Coordinator.swift in Sources */,
 				931BAE7E2675A27000CD9244 /* UITableView.swift in Sources */,
 				937F3AD7267C6376002E6CC9 /* IssueNetworkManager.swift in Sources */,
+				937F3B6126836CE9002E6CC9 /* UIColor+Ext.swift in Sources */,
 				9343E300266F603C0086F977 /* AccessTokenRequest.swift in Sources */,
+				937F3B49268328F4002E6CC9 /* LabelNetworkManager.swift in Sources */,
 				931BAE622674DAF100CD9244 /* MoreInfo.swift in Sources */,
-				937F3AB4267B2F41002E6CC9 /* IssueDetailCell.swift in Sources */,
+				937F3AB4267B2F41002E6CC9 /* CommentCell.swift in Sources */,
 				883F5185266F5F090055EC9E /* IssueViewController.swift in Sources */,
 				930FAE88266E112700422968 /* SceneDelegate.swift in Sources */,
+				937F3B8C2684D127002E6CC9 /* FileSystemCacheManager.swift in Sources */,
+				937F3B1C2682B841002E6CC9 /* CircleView.swift in Sources */,
 				931BAEB226788EA700CD9244 /* MarkdownViewController.swift in Sources */,
+				937F3B532683291A002E6CC9 /* AssigneeNetworkManager.swift in Sources */,
 				883F51AE2670B2F70055EC9E /* UIColorExtension.swift in Sources */,
+				937F3B4426831F26002E6CC9 /* LabelUseCase.swift in Sources */,
+				937F3B29268308B3002E6CC9 /* Info.swift in Sources */,
 				931BAE762674FC4700CD9244 /* ArrayTableViewDataSource.swift in Sources */,
+				937F3B022681C413002E6CC9 /* IssueDetail.swift in Sources */,
 				9343E2CA266EF9CD0086F977 /* KeychainManager.swift in Sources */,
 				937F3AE3267C86E3002E6CC9 /* IssueUseCase.swift in Sources */,
+				937F3B3826831B1B002E6CC9 /* IssueInfoViewModel.swift in Sources */,
+				937F3B5926832CE1002E6CC9 /* AssigneeUseCase.swift in Sources */,
 				931BAE5526749FCD00CD9244 /* MoreInfoCell.swift in Sources */,
+				937F3B6E268451ED002E6CC9 /* CommentUseCase.swift in Sources */,
+				937F3B212682DA04002E6CC9 /* MoreInfoSelectViewController.swift in Sources */,
 				883F51A92670ABDC0055EC9E /* TagLabel.swift in Sources */,
 				88C3A9FE26785B160090FAD8 /* Status.swift in Sources */,
 				883F51B62671E1710055EC9E /* CustomBarButtonItem.swift in Sources */,
+				937F3B6826845162002E6CC9 /* CommentNetworkManager.swift in Sources */,
 				883F522A267312CE0055EC9E /* IssueEndPoint.swift in Sources */,
+				937F3B3F26831F1B002E6CC9 /* MilestoneUseCase.swift in Sources */,
+				937F3B0A2681C9B8002E6CC9 /* CommentTableViewDataSource.swift in Sources */,
 				88C3AA132678F7330090FAD8 /* IssueSelectTableViewController.swift in Sources */,
 				883F51D4267204520055EC9E /* LabelModel.swift in Sources */,
 				883F51C7267200EA0055EC9E /* Issue.swift in Sources */,
+				937F3B2E26830B4F002E6CC9 /* InfoCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -704,6 +839,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				930FAE9D266E112900422968 /* issueTrackerAppTests.swift in Sources */,
+				937F3B77268479AE002E6CC9 /* URLTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1072,6 +1208,14 @@
 				minimumVersion = 1.7.1;
 			};
 		};
+		937F3B142682B692002E6CC9 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.3.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1089,6 +1233,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 931BAE4A26737F5100CD9244 /* XCRemoteSwiftPackageReference "MarkdownKit" */;
 			productName = MarkdownKit;
+		};
+		937F3B152682B692002E6CC9 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 937F3B142682B692002E6CC9 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
