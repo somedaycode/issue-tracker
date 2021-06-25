@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { useParams } from 'react-router';
 import styled from 'styled-components';
@@ -16,11 +16,19 @@ import { contentsInputStyle } from '@components/newIssue/style';
 import Comment from './Comment';
 import { useHistory } from 'react-router-dom';
 
+type Profile = {
+  avatar_url: string | null;
+};
+
 function CommentBox() {
   const { id }: Param = useParams();
   const history = useHistory();
   const [newComment, setNewComment] = useState('');
   const issueComments = useRecoilValue(issueDetailComment(id));
+  const loginProfile: any = localStorage.getItem('login_info');
+  const [profile, setProfile] = useState({
+    avatar_url: '',
+  });
 
   const handleOnChangeText = (e: ChangeEvent) => {
     const target = e.target as HTMLTextAreaElement;
@@ -39,6 +47,11 @@ function CommentBox() {
     window.location.href = `${history.location.pathname}`;
   };
 
+  useEffect(() => {
+    const profile = JSON.parse(loginProfile);
+    setProfile(profile);
+  }, []);
+
   return (
     <div>
       {issueComments.map((commentData: Comments) => {
@@ -46,7 +59,7 @@ function CommentBox() {
       })}
       <CommentWrap>
         <AvatarBox>
-          <Avatar src={''} />
+          <Avatar src={profile.avatar_url} />
         </AvatarBox>
         <Description>
           <Textarea
