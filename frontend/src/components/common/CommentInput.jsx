@@ -39,6 +39,10 @@ const CommentInput = ({ isNewIssueMode }) => {
 
 	const submitComment = async () => {
 		await fetchData(API.comment(), "POST", input);
+		setInput({
+			issueId,
+			content: "",
+		});
 		forceUpdate(!update);
 	};
 
