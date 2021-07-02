@@ -35,10 +35,8 @@ const IssuesHeader = ({
 		isFilterClicked === false
 			? setIsFilterClicked(true)
 			: setIsFilterClicked(false);
-		console.dir(e.target.textContent);
-		console.dir(e.target);
-		setClickedFilterState(e.target.textContent);
-		// setFilterBarInputState(e.target.textContent); //여기
+
+		setClickedFilterState(e.currentTarget.value);
 	});
 
 	useEffect(() => {

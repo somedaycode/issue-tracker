@@ -10,6 +10,7 @@ const DropDownButton = ({ text, clickEvent, width, border, radius }) => {
 				_width={width}
 				_border={border}
 				_radius={radius}
+				value={text}
 			>
 				<ButtonText>{text}</ButtonText>
 				<ArrowIcon stroke={theme.grayScale.label} />

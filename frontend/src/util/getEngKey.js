@@ -11,7 +11,7 @@ const getEngKey = str => {
 		case "필터":
 			return "issue";
 		default:
-			console.error("unhandled English name");
+			return undefined;
 	}
 };
 

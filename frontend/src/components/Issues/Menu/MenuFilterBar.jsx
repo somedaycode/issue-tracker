@@ -25,7 +25,7 @@ const MenuFilterBar = () => {
 		isFilterClicked === false
 			? setIsFilterClicked(true)
 			: setIsFilterClicked(false);
-		setClickedFilterState(e.target.textContent);
+		setClickedFilterState(e.currentTarget.value);
 	};
 
 	useEffect(() => {
