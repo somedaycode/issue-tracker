@@ -20,6 +20,7 @@ const FilterModal = () => {
 	);
 
 	const key = getEngKey(filterType);
+
 	const handleChange = event => {
 		setClickedFilterState(event.target.value);
 		setFilterStateByType(event.target.value);
@@ -95,7 +96,7 @@ const FilterModal = () => {
 								label={text}
 								labelPlacement="start"
 								key={`filter-control-label-${idx}`}
-								checked={filterBarInput[key] === text}
+								checked={filterBarInput[`${getEngKey(filterType)}`] === text}
 							/>
 						))}
 				</FilterRadioContainer>

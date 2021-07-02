@@ -6,7 +6,6 @@ import MarkdownRenderer from "components/common/MarkdownRenderer";
 import getTimeStamp from "util/getTimeStamp";
 
 const IssueDetailCommentCard = ({ issueData, commentData }) => {
-	console.log(commentData);
 	return (
 		<Wrapper>
 			<ImgWrapper size="44px">

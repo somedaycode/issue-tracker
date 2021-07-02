@@ -138,7 +138,6 @@ const IssueCategoryModal = ({ category, data }) => {
 				));
 				return labelComponent;
 			case CATEGORY.MILESTONE:
-				console.log(data);
 				const milestoneComponent = data.map((milestone, idx) => (
 					<Row key={`${CATEGORY.MILESTONE}-${idx}`}>
 						<Contents>{milestone.title}</Contents>
