@@ -9,7 +9,7 @@ import API from "util/API";
 import fetchImage from "util/fetchImage";
 import { useParams } from "react-router-dom";
 import fetchData from "util/fetchData";
-import { commentInputState } from "RecoilStore/Atoms";
+import { commentInputState, issueDetailUpdateState } from "RecoilStore/Atoms";
 import { useRecoilState } from "recoil";
 import useDebounce from "hooks/useDebounce";
 
@@ -17,7 +17,7 @@ const CommentInput = ({ isNewIssueMode }) => {
 	const userInfo = getUserInfo();
 	const issueId = useParams().id;
 	const [input, setInput] = useRecoilState(commentInputState);
-
+	const [update, forceUpdate] = useRecoilState(issueDetailUpdateState);
 	const inputTextCount = useDebounce(
 		input.content ? input.content.length : 0,
 		1000
@@ -39,6 +39,7 @@ const CommentInput = ({ isNewIssueMode }) => {
 
 	const submitComment = async () => {
 		await fetchData(API.comment(), "POST", input);
+		forceUpdate(!update);
 	};
 
 	const handleOnUpload = async e => {

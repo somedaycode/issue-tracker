@@ -42,6 +42,11 @@ export const milestoneUpdateState = atom({
 	default: false,
 });
 
+export const issueDetailUpdateState = atom({
+	key: "issueDetailUpdateState",
+	default: false,
+});
+
 export const labelUpdateState = atom({
 	key: "labelUpdateState",
 	default: false,
