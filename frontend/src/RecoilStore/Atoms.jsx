@@ -42,6 +42,11 @@ export const milestoneUpdateState = atom({
 	default: false,
 });
 
+export const issueDetailUpdateState = atom({
+	key: "issueDetailUpdateState",
+	default: false,
+});
+
 export const labelUpdateState = atom({
 	key: "labelUpdateState",
 	default: false,
@@ -94,7 +99,7 @@ export const milestoneCategoryState = atom({
 export const commentInputState = atom({
 	key: "commentInputState",
 	default: {
-		issueId: null,
+		issueId: "",
 		content: "",
 	},
 });
