@@ -1,5 +1,5 @@
 import { atom, selector } from "recoil";
-import { CATEGORY } from "data";
+import { CATEGORY_ENG } from "data";
 export const selectedIssueCntState = atom({
 	key: "selectedIssueCntState",
 	default: 0,
@@ -119,6 +119,11 @@ export const categoryIdSelectorState = selector({
 	},
 });
 
+export const filterClickFlagState = atom({
+	key: "filterClickFlagState",
+	default: false,
+});
+
 //아래는 데이지 삽질 망한 결과입니다.---나중에 꼭 뜯어보리라..
 export const categorySelector = selector({
 	key: "categorySelector",
@@ -130,7 +135,7 @@ export const categorySelector = selector({
 	},
 	set: ({ set }, { category, payload }) => {
 		switch (category) {
-			case CATEGORY.ASSIGNEE:
+			case CATEGORY_ENG.ASSIGNEE:
 				set(assigneeCategoryState, prevState => [
 					...prevState,
 					{
@@ -139,7 +144,7 @@ export const categorySelector = selector({
 						imageUrl: payload.imageUrl,
 					},
 				]);
-			case CATEGORY.LABEL:
+			case CATEGORY_ENG.LABEL:
 				set(labelCategoryState, prevState => [
 					...prevState,
 					{
@@ -149,7 +154,7 @@ export const categorySelector = selector({
 						backgroundColor: payload.colors.backgroundColor,
 					},
 				]);
-			case CATEGORY.MILESTONE:
+			case CATEGORY_ENG.MILESTONE:
 				set(milestoneCategoryState, prevState => [
 					{
 						id: payload.id,

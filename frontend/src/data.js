@@ -51,8 +51,18 @@ export const labelData = {
 	},
 };
 
-export const CATEGORY = {
+export const CATEGORY_ENG = {
 	ASSIGNEE: "assignee",
 	LABEL: "label",
 	MILESTONE: "milestone",
+	AUTHOR: "author",
+	FILTER: "issue",
+};
+
+export const CATEGORY_KOR = {
+	ASSIGNEE: "담당자",
+	LABEL: "레이블",
+	MILESTONE: "마일스톤",
+	AUTHOR: "작성자",
+	FILTER: "필터",
 };
