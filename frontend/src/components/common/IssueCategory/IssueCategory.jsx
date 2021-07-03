@@ -9,7 +9,7 @@ import theme from "styles/theme";
 import API from "util/API";
 import fetchData from "util/fetchData";
 import getCategoryText from "util/getCategoryText.js";
-import { CATEGORY } from "data";
+import { CATEGORY_ENG } from "data";
 
 const IssueCategory = ({ category }) => {
 	const initialFlagState = {
@@ -20,11 +20,11 @@ const IssueCategory = ({ category }) => {
 
 	const flagReducer = (state, { type }) => {
 		switch (type) {
-			case CATEGORY.ASSIGNEE:
+			case CATEGORY_ENG.ASSIGNEE:
 				return { ...initialFlagState, assignee: !state.assignee };
-			case CATEGORY.LABEL:
+			case CATEGORY_ENG.LABEL:
 				return { ...initialFlagState, label: !state.label };
-			case CATEGORY.MILESTONE:
+			case CATEGORY_ENG.MILESTONE:
 				return { ...initialFlagState, milestone: !state.milestone };
 		}
 	};
@@ -34,13 +34,13 @@ const IssueCategory = ({ category }) => {
 	const handleAddFilter = async () => {
 		await flagDispatch({ type: category });
 
-		if (category === CATEGORY.ASSIGNEE) {
+		if (category === CATEGORY_ENG.ASSIGNEE) {
 			const { users } = await fetchData(API.users());
 			setCurrentModalData(users);
-		} else if (category === CATEGORY.LABEL) {
+		} else if (category === CATEGORY_ENG.LABEL) {
 			const { labels } = await fetchData(API.labels());
 			setCurrentModalData(labels);
-		} else if (category === CATEGORY.MILESTONE) {
+		} else if (category === CATEGORY_ENG.MILESTONE) {
 			const { milestones } = await fetchData(API.milestones());
 			setCurrentModalData(milestones);
 		}
@@ -52,7 +52,7 @@ const IssueCategory = ({ category }) => {
 				<TitleText>{getCategoryText(category)}</TitleText>
 				<Icon stroke={theme.grayScale.label} onClick={handleAddFilter} />
 			</HeaderContainer>
-			{category === CATEGORY.ASSIGNEE && (
+			{category === CATEGORY_ENG.ASSIGNEE && (
 				<>
 					<Assignee />
 					{flagState.assignee && (
@@ -60,7 +60,7 @@ const IssueCategory = ({ category }) => {
 					)}
 				</>
 			)}
-			{category === CATEGORY.LABEL && (
+			{category === CATEGORY_ENG.LABEL && (
 				<>
 					<Label />
 					{flagState.label && (
@@ -68,7 +68,7 @@ const IssueCategory = ({ category }) => {
 					)}
 				</>
 			)}
-			{category === CATEGORY.MILESTONE && (
+			{category === CATEGORY_ENG.MILESTONE && (
 				<>
 					<Milestone />
 					{flagState.milestone && (

@@ -1,18 +1,15 @@
-import { useState, useEffect, useCallback } from "react";
+import { useEffect, useCallback } from "react";
 import styled from "styled-components";
 import { ReactComponent as Archive } from "images/archive.svg";
 import { ReactComponent as Alert } from "images/alert-circle.svg";
-import { ReactComponent as DownArrow } from "images/chevron_down.svg";
 import theme from "styles/theme";
 import DropDownButton from "components/common/Button/DropDownButton";
-import FilterModal from "components/common/FilterModal";
-import { filter } from "data";
 import { StyledGridTitleCard } from "styles/StyledCards";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import {
 	selectedIssueCntState,
 	clickedFilterState,
-	filterBarInputState,
+	filterClickFlagState,
 } from "RecoilStore/Atoms";
 
 const IssuesHeader = ({
@@ -21,7 +18,6 @@ const IssuesHeader = ({
 	isAllIssueSelected,
 	setIsAllIssueSelected,
 	issuesCnt,
-	selectedCards,
 }) => {
 	const [selectedIssues, setSelectedIssues] = useRecoilState(
 		selectedIssueCntState
@@ -30,15 +26,15 @@ const IssuesHeader = ({
 	const setClickedFilterState = useSetRecoilState(clickedFilterState);
 
 	//----------중복 코드from MeuFilter --------
-	const [isFilterClicked, setIsFilterClicked] = useState(false);
+	const [isFilterClicked, setIsFilterClicked] = useRecoilState(
+		filterClickFlagState
+	);
 	const handleClick = useCallback(e => {
 		isFilterClicked === false
 			? setIsFilterClicked(true)
 			: setIsFilterClicked(false);
-		console.dir(e.target.textContent);
-		console.dir(e.target);
-		setClickedFilterState(e.target.textContent);
-		// setFilterBarInputState(e.target.textContent); //여기
+
+		setClickedFilterState(e.currentTarget.value);
 	});
 
 	useEffect(() => {
@@ -88,22 +84,19 @@ const IssuesHeader = ({
 			)}
 			<FilterMain>
 				{isAnyIssueSelected ? (
-					<OpenCloseEdit>
-						<TextIconDivider>
-							<DropDownButton
-								text="상태 수정"
-								clickEvent={handleClick}
-								className={"issue-header-button"}
-								width={({ theme }) => theme.buttonWidths.lg}
-								border={"none"}
-							></DropDownButton>
-							{isFilterClicked && <FilterModal />}
-						</TextIconDivider>
-					</OpenCloseEdit>
+					<ButtonContainer>
+						<DropDownButton
+							text="상태 수정"
+							clickEvent={handleClick}
+							className={"issue-header-button"}
+							width={({ theme }) => theme.buttonWidths.lg}
+							border={"none"}
+						></DropDownButton>
+					</ButtonContainer>
 				) : (
 					<FiltersWrapper>
 						{buttonNames.map((filter, idx) => (
-							<TextIconDivider>
+							<ButtonContainer>
 								<DropDownButton
 									text={filter}
 									clickEvent={handleClick}
@@ -112,9 +105,8 @@ const IssuesHeader = ({
 									width={({ theme }) => theme.buttonWidths.small}
 									border={"none"}
 								></DropDownButton>
-							</TextIconDivider>
+							</ButtonContainer>
 						))}
-						{isFilterClicked && <FilterModal />}
 					</FiltersWrapper>
 				)}
 			</FilterMain>
@@ -122,8 +114,9 @@ const IssuesHeader = ({
 	);
 };
 
-export default IssuesHeader;
-
+const ButtonContainer = styled.div`
+	position: relative;
+`;
 const FilterOpenClose = styled.div`
 	display: flex;
 	justify-content: space-between;
@@ -134,19 +127,12 @@ const FilterMain = styled.div`
 	justify-content: flex-end;
 `;
 
-const OpenCloseEdit = styled.div`
-	display: flex;
-	width: 200px;
-	justify-content: center;
-`;
-
 const FiltersWrapper = styled.div`
 	display: flex;
 	justify-content: space-around;
-	position: relative;
 `;
 
-export const CheckBox = styled.div`
+const CheckBox = styled.div`
 	display: flex;
 	justify-content: center;
 `;
@@ -154,3 +140,5 @@ export const CheckBox = styled.div`
 const TextIconDivider = styled.div`
 	width: 100%;
 `;
+
+export default IssuesHeader;

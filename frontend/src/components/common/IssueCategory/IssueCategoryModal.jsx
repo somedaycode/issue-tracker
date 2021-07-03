@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { ImgWrapper } from "styles/StyledLayout";
 import getCategoryText from "util/getCategoryText.js";
 import LabelBadge from "../LabelBadge.jsx";
-import { CATEGORY } from "data";
+import { CATEGORY_ENG } from "data";
 import {
 	assigneeCategoryState,
 	labelCategoryState,
@@ -102,9 +102,9 @@ const IssueCategoryModal = ({ category, data }) => {
 
 	const getModalContents = () => {
 		switch (category) {
-			case CATEGORY.ASSIGNEE:
+			case CATEGORY_ENG.ASSIGNEE:
 				const assigneeComponent = data.map((user, idx) => (
-					<Row key={`${CATEGORY.ASSIGNEE}-${idx}`}>
+					<Row key={`${CATEGORY_ENG.ASSIGNEE}-${idx}`}>
 						<Contents>
 							<ImgWrapper size="22px">
 								<img src={user.imageUrl} alt={user.githubId} />
@@ -119,9 +119,9 @@ const IssueCategoryModal = ({ category, data }) => {
 					</Row>
 				));
 				return assigneeComponent;
-			case CATEGORY.LABEL:
+			case CATEGORY_ENG.LABEL:
 				const labelComponent = data.map((label, idx) => (
-					<Row key={`${CATEGORY.LABEL}-${idx}`}>
+					<Row key={`${CATEGORY_ENG.LABEL}-${idx}`}>
 						<Contents>
 							<LabelBadge
 								text={label.name}
@@ -137,10 +137,9 @@ const IssueCategoryModal = ({ category, data }) => {
 					</Row>
 				));
 				return labelComponent;
-			case CATEGORY.MILESTONE:
-				console.log(data);
+			case CATEGORY_ENG.MILESTONE:
 				const milestoneComponent = data.map((milestone, idx) => (
-					<Row key={`${CATEGORY.MILESTONE}-${idx}`}>
+					<Row key={`${CATEGORY_ENG.MILESTONE}-${idx}`}>
 						<Contents>{milestone.title}</Contents>
 						<input
 							type="checkbox"

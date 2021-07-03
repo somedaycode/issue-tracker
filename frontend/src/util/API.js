@@ -5,6 +5,7 @@ const API = {
 	login(code) {
 		return `${this.default()}/login/github/web?code=${code}`;
 	},
+
 	gitHubOAuth() {
 		return "https://github.com/login/oauth/authorize?client_id=0aa5fde2597879720f8c&redirect_uri=http://localhost:3000/login";
 	},
