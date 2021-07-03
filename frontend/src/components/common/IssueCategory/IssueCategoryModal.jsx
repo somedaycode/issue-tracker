@@ -13,7 +13,6 @@ import { useRecoilState, useResetRecoilState } from "recoil";
 import fetchData from "util/fetchData";
 import API from "util/API";
 const IssueCategoryModal = ({ category, data }) => {
-	//이 아래 3 상태 다른 페이지 넘어갈때 리셋되게 해야함(메인,편집,새 이슈)
 	const [assigneeCategory, setAssigneeCategory] = useRecoilState(
 		assigneeCategoryState
 	);
@@ -21,8 +20,6 @@ const IssueCategoryModal = ({ category, data }) => {
 	const [milestoneCategory, setMilestoneCategory] = useRecoilState(
 		milestoneCategoryState
 	);
-
-	// 초기 화면 렌더링 시 카테고리 모달 상태 초기화
 
 	//아래 코드는 리팩토링 예정!!!-----중복코드---------------------------
 	const handleCheckAssignee = e => {
@@ -36,14 +33,7 @@ const IssueCategoryModal = ({ category, data }) => {
 			setAssigneeCategory(newAssigneeCategory);
 		}
 		if (assigneeCategory.every(x => x.id !== targetId)) {
-			setAssigneeCategory([
-				...assigneeCategory,
-				{
-					id: targetData.id,
-					githubId: targetData.githubId,
-					imageUrl: targetData.imageUrl,
-				},
-			]);
+			setAssigneeCategory([...assigneeCategory, targetData]);
 		}
 	};
 
@@ -56,15 +46,7 @@ const IssueCategoryModal = ({ category, data }) => {
 			setLabelCategory(newLabelCategory);
 		}
 		if (labelCategory.every(x => x.id !== targetId)) {
-			setLabelCategory([
-				...labelCategory,
-				{
-					id: targetData.id,
-					name: targetData.name,
-					textColor: targetData.colors.textColor,
-					backgroundColor: targetData.colors.backgroundColor,
-				},
-			]);
+			setLabelCategory([...labelCategory, targetData]);
 		}
 	};
 
@@ -79,11 +61,7 @@ const IssueCategoryModal = ({ category, data }) => {
 			setMilestoneCategory(newMilestoneCategory);
 		}
 		if (milestoneCategory.id !== targetId) {
-			setMilestoneCategory({
-				id: targetData.id,
-				title: targetData.title,
-				dueDate: targetData.dueDate,
-			});
+			setMilestoneCategory(targetData);
 		}
 	};
 	//------------------------여기까지 중복 코드--------------
