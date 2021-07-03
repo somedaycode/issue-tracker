@@ -8,43 +8,25 @@ import getUserInfo from "util/getUserInfo";
 import {
 	commentInputState,
 	categoryIdSelectorState,
-	assigneeCategoryState,
-	labelCategoryState,
-	milestoneCategoryState,
+	categorySelectorState,
 } from "RecoilStore/Atoms";
-import { useRecoilValue, useResetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useState } from "react";
 import fetchData from "util/fetchData";
 import API from "util/API";
 
 const NewIssueForm = () => {
 	const userInfo = getUserInfo();
-
-	const resetAssigneeCategoryState = useResetRecoilState(assigneeCategoryState);
-	const resetLabelCategoryState = useResetRecoilState(labelCategoryState);
-	const resetMilestoneCategoryState = useResetRecoilState(
-		milestoneCategoryState
-	);
-
+	const resetCategory = useSetRecoilState(categorySelectorState);
 	const [issueTitle, setIssueTitle] = useState("");
 	const commentValue = useRecoilValue(commentInputState);
 	const categoryId = useRecoilValue(categoryIdSelectorState);
-	const handleTitleInput = (e) => {
+	const handleTitleInput = e => {
 		setIssueTitle(e.target.value);
 	};
 
 	const handleSubmit = async () => {
-		console.log(categoryId);
 		const { assignee, label, milestone } = categoryId;
-		// title : issueTitle
-		// comment : commentValue.content
-		// 	{
-		// 		"title" : "[BE] Issue 등록",
-		// 		"comment" : "코멘트",
-		// 		"assigneeIds" : ["e33d0533-db20-4e46-b0d0-61cb2217c09e"],
-		// 		"labelIds" : ["6f5a0331-2d8c-40b8-a869-bd777858d631"],
-		// 		"milestoneId" : "dd3a87c5-b290-4794-9914-29df1f58533d"
-		// }
 		const requestBody = {
 			title: issueTitle,
 			comment: commentValue.content,
@@ -52,13 +34,8 @@ const NewIssueForm = () => {
 			labelIds: label,
 			milestoneId: milestone,
 		};
-		const res = await fetchData(API.issues(), "POST", requestBody);
-		console.log(res);
-		resetAssigneeCategoryState();
-		resetLabelCategoryState();
-		resetMilestoneCategoryState();
-		//상태 리셋하기
-		// 이슈 상세페이지로 가기
+		await fetchData(API.issues(), "POST", requestBody);
+		resetCategory();
 	};
 
 	return (
@@ -101,8 +78,6 @@ const NewIssueForm = () => {
 		</>
 	);
 };
-
-export default NewIssueForm;
 
 const Wrapper = styled.div`
 	display: grid;
@@ -149,9 +124,8 @@ const Input = styled.input`
 `;
 
 const CancelBtn = styled.div`
-	/* display: flex;
-	align-items: center;
-	justify-content: space-between; */
 	align-self: center;
 	margin-right: 1rem;
 `;
+
+export default NewIssueForm;

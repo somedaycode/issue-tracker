@@ -13,6 +13,7 @@ import { useRecoilState, useResetRecoilState } from "recoil";
 import fetchData from "util/fetchData";
 import API from "util/API";
 const IssueCategoryModal = ({ category, data }) => {
+	//이 아래 3 상태 다른 페이지 넘어갈때 리셋되게 해야함(메인,편집,새 이슈)
 	const [assigneeCategory, setAssigneeCategory] = useRecoilState(
 		assigneeCategoryState
 	);
@@ -66,19 +67,6 @@ const IssueCategoryModal = ({ category, data }) => {
 			]);
 		}
 	};
-	// [	{
-	// 	id: targetData.id,
-	// 	name: targetData.name,
-	// 	textColor: targetData.colors.textColor,
-	// 	backgroundColor: targetData.colors.backgroundColor,
-	// },	{
-	// 	id: targetData.id,
-	// 	name: targetData.name,
-	// 	textColor: targetData.colors.textColor,
-	// 	backgroundColor: targetData.colors.backgroundColor,
-	// },].map(x => x.id)
-
-	// [id,id]
 
 	const handleCheckMilestone = e => {
 		const targetId = e.target.value;
