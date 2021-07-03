@@ -1,16 +1,14 @@
 import { useState } from "react";
 import { filterBarInputState, clickedFilterState } from "RecoilStore/Atoms";
 import { useRecoilValue, useRecoilState } from "recoil";
+import { filterData, CATEGORY_KOR } from "data";
+import getEngKey from "util/getEngKey";
 import styled from "styled-components";
-
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
-import { filterData } from "data";
-
-import getEngKey from "util/getEngKey";
 
 const FilterModal = () => {
 	const [clickedFilter, setClickedFilterState] = useState("");
@@ -18,8 +16,6 @@ const FilterModal = () => {
 	const [filterBarInput, setFilterBarInputState] = useRecoilState(
 		filterBarInputState
 	);
-
-	const key = getEngKey(filterType);
 
 	const handleChange = event => {
 		setClickedFilterState(event.target.value);
@@ -33,35 +29,35 @@ const FilterModal = () => {
 				: clickedValue;
 
 		switch (filterType) {
-			case "담당자": {
+			case CATEGORY_KOR.ASSIGNEE: {
 				setFilterBarInputState({
 					...filterBarInput,
 					assignee: updatedValue,
 				});
 				break;
 			}
-			case "레이블": {
+			case CATEGORY_KOR.LABEL: {
 				setFilterBarInputState({
 					...filterBarInput,
 					label: updatedValue,
 				});
 				break;
 			}
-			case "마일스톤": {
+			case CATEGORY_KOR.MILESTONE: {
 				setFilterBarInputState({
 					...filterBarInput,
 					milestone: updatedValue,
 				});
 				break;
 			}
-			case "작성자": {
+			case CATEGORY_KOR.AUTHOR: {
 				setFilterBarInputState({
 					...filterBarInput,
 					author: updatedValue,
 				});
 				break;
 			}
-			case "필터": {
+			case CATEGORY_KOR.FILTER: {
 				setFilterBarInputState({
 					...filterBarInput,
 					issue: updatedValue,
@@ -77,12 +73,15 @@ const FilterModal = () => {
 	const filterDataByType = filterData[getEngKey(filterType)];
 
 	return (
-		<FilterModalLayout className="filter-modal">
+		<FilterModalLayout
+			className="filter-modal"
+			isLeftFilter={filterType === CATEGORY_KOR.FILTER ? true : false}
+		>
 			<FormControl component="fieldset">
 				<FilterTitle component="legend">
-					{filterType === "필터" ? "" : filterType} 필터
+					{filterType === CATEGORY_KOR.FILTER ? "" : filterType} 필터
 				</FilterTitle>
-				<FilterRadioContainer
+				<RadioGroup
 					aria-label="issue"
 					name="issue"
 					value={clickedFilter}
@@ -99,7 +98,7 @@ const FilterModal = () => {
 								checked={filterBarInput[`${getEngKey(filterType)}`] === text}
 							/>
 						))}
-				</FilterRadioContainer>
+				</RadioGroup>
 			</FormControl>
 		</FilterModalLayout>
 	);
@@ -107,7 +106,9 @@ const FilterModal = () => {
 
 const FilterModalLayout = styled.div`
 	position: absolute;
-	top: 45px;
+	top: 110%;
+	right: ${props => (props.isLeftFilter ? "" : "0")};
+	width: 242px;
 	background-color: white;
 	text-align: left;
 	border-radius: 16px;
@@ -118,19 +119,15 @@ const FilterControlLabel = styled(FormControlLabel)`
 	display: flex;
 	justify-content: space-between;
 	margin: 0;
-`;
-
-const FilterRadioContainer = styled(RadioGroup)`
-	padding: 8px 16px;
+	padding-left: 16px;
 `;
 
 const FilterTitle = styled(FormLabel)`
+	width: 240px;
 	background-color: ${({ theme }) => theme.grayScale.background};
-	width: 100%;
 	border-bottom: 1px solid ${({ theme }) => theme.grayScale.line};
 	border-radius: 16px 16px 0px 0px;
 	padding: 8px 16px;
-	font-size: 18px;
 	color: ${({ theme }) => theme.grayScale.title_active};
 	line-height: 32px;
 `;

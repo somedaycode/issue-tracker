@@ -2,12 +2,17 @@ import styled from "styled-components";
 import { ReactComponent as SearchIcon } from "images/search.svg";
 import DropDownButton from "components/common/Button/DropDownButton";
 import theme from "styles/theme";
-import FilterModal from "components/common/FilterModal";
-import { useState, useEffect } from "react";
-import { clickedFilterState, filterBarInputState } from "RecoilStore/Atoms";
-import { useSetRecoilState, useRecoilValue } from "recoil";
+import { useEffect } from "react";
+import {
+	clickedFilterState,
+	filterBarInputState,
+	filterClickFlagState,
+} from "RecoilStore/Atoms";
+import { useSetRecoilState, useRecoilValue, useRecoilState } from "recoil";
 const MenuFilterBar = () => {
-	const [isFilterClicked, setIsFilterClicked] = useState(false);
+	const [isFilterClicked, setIsFilterClicked] = useRecoilState(
+		filterClickFlagState
+	);
 	const setClickedFilterState = useSetRecoilState(clickedFilterState);
 	const filterBarInput = useRecoilValue(filterBarInputState);
 
@@ -26,6 +31,7 @@ const MenuFilterBar = () => {
 			? setIsFilterClicked(true)
 			: setIsFilterClicked(false);
 		setClickedFilterState(e.currentTarget.value);
+		console.log(e.currentTarget.value);
 	};
 
 	useEffect(() => {
@@ -40,7 +46,6 @@ const MenuFilterBar = () => {
 		if (isFilterClicked && !target.closest(".filter-modal"))
 			setIsFilterClicked(false);
 	};
-	const handleInputChange = () => {};
 
 	return (
 		<>
@@ -59,7 +64,6 @@ const MenuFilterBar = () => {
 					<FilterInput>{getFilterBarString(filterBarInput)}</FilterInput>
 				</FilterInputContainer>
 			</MenuFilterLayout>
-			{isFilterClicked && <FilterModal />}
 		</>
 	);
 };
