@@ -95,6 +95,25 @@ export const milestoneCategoryState = atom({
 	key: "milestoneCategoryState",
 	default: {},
 });
+//현재 클릭된 카테고리가 담김. set을 통해 리셋 가능
+export const categorySelectorState = selector({
+	key: "categorySelectorState",
+	get: ({ get }) => {
+		const assignee = get(assigneeCategoryState);
+		const label = get(labelCategoryState);
+		const milestone = get(milestoneCategoryState);
+		return {
+			assignee: assignee,
+			label: label,
+			milestone: milestone,
+		};
+	},
+	set: ({ set }) => {
+		set(assigneeCategoryState, []);
+		set(labelCategoryState, []);
+		set(milestoneCategoryState, {});
+	},
+});
 
 export const commentInputState = atom({
 	key: "commentInputState",

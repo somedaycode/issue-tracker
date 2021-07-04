@@ -4,6 +4,7 @@ import { labelCategoryState } from "RecoilStore/Atoms";
 import { useRecoilValue } from "recoil";
 const Label = () => {
 	const labelData = useRecoilValue(labelCategoryState);
+
 	return (
 		<>
 			{labelData &&
@@ -11,8 +12,8 @@ const Label = () => {
 					<ContentsContainer key={`label-${idx}`}>
 						<LabelBadge
 							text={label.name}
-							fontColor={label.textColor}
-							backgroundColor={label.backgroundColor}
+							fontColor={label.colors?.textColor}
+							backgroundColor={label.colors?.backgroundColor}
 						/>
 					</ContentsContainer>
 				))}

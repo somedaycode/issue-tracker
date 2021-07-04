@@ -21,8 +21,6 @@ const IssueCategoryModal = ({ category, data }) => {
 		milestoneCategoryState
 	);
 
-	// 초기 화면 렌더링 시 카테고리 모달 상태 초기화
-
 	//아래 코드는 리팩토링 예정!!!-----중복코드---------------------------
 	const handleCheckAssignee = e => {
 		const targetId = e.target.value;
@@ -35,14 +33,7 @@ const IssueCategoryModal = ({ category, data }) => {
 			setAssigneeCategory(newAssigneeCategory);
 		}
 		if (assigneeCategory.every(x => x.id !== targetId)) {
-			setAssigneeCategory([
-				...assigneeCategory,
-				{
-					id: targetData.id,
-					githubId: targetData.githubId,
-					imageUrl: targetData.imageUrl,
-				},
-			]);
+			setAssigneeCategory([...assigneeCategory, targetData]);
 		}
 	};
 
@@ -55,30 +46,9 @@ const IssueCategoryModal = ({ category, data }) => {
 			setLabelCategory(newLabelCategory);
 		}
 		if (labelCategory.every(x => x.id !== targetId)) {
-			setLabelCategory([
-				...labelCategory,
-				{
-					id: targetData.id,
-					name: targetData.name,
-					textColor: targetData.colors.textColor,
-					backgroundColor: targetData.colors.backgroundColor,
-				},
-			]);
+			setLabelCategory([...labelCategory, targetData]);
 		}
 	};
-	// [	{
-	// 	id: targetData.id,
-	// 	name: targetData.name,
-	// 	textColor: targetData.colors.textColor,
-	// 	backgroundColor: targetData.colors.backgroundColor,
-	// },	{
-	// 	id: targetData.id,
-	// 	name: targetData.name,
-	// 	textColor: targetData.colors.textColor,
-	// 	backgroundColor: targetData.colors.backgroundColor,
-	// },].map(x => x.id)
-
-	// [id,id]
 
 	const handleCheckMilestone = e => {
 		const targetId = e.target.value;
@@ -91,11 +61,7 @@ const IssueCategoryModal = ({ category, data }) => {
 			setMilestoneCategory(newMilestoneCategory);
 		}
 		if (milestoneCategory.id !== targetId) {
-			setMilestoneCategory({
-				id: targetData.id,
-				title: targetData.title,
-				dueDate: targetData.dueDate,
-			});
+			setMilestoneCategory(targetData);
 		}
 	};
 	//------------------------여기까지 중복 코드--------------

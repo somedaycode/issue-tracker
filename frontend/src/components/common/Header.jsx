@@ -2,12 +2,18 @@ import styled from "styled-components";
 import { ReactComponent as Logo } from "images/LogotypeMedium.svg";
 import { Link } from "react-router-dom";
 import getUserInfo from "util/getUserInfo";
-
+import { categorySelectorState } from "RecoilStore/Atoms";
+import { useSetRecoilState } from "recoil";
 const Header = () => {
 	const userInfo = getUserInfo();
+	const resetCategoryValue = useSetRecoilState(categorySelectorState);
+
+	const handleClick = () => {
+		resetCategoryValue();
+	};
 
 	return (
-		<StyleHeader>
+		<StyleHeader onClick={handleClick}>
 			<Link to="/main">
 				<Logo />
 			</Link>
