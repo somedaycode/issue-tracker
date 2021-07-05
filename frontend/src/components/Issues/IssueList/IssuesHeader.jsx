@@ -13,11 +13,12 @@ import {
 } from "RecoilStore/Atoms";
 
 const IssuesHeader = ({
+	issuesCnt,
 	isAnyIssueSelected,
 	setIsAnyIssueSelected,
 	isAllIssueSelected,
 	setIsAllIssueSelected,
-	issuesCnt,
+	selectedCards,
 }) => {
 	const [selectedIssues, setSelectedIssues] = useRecoilState(
 		selectedIssueCntState
@@ -26,9 +27,9 @@ const IssuesHeader = ({
 	const setClickedFilterState = useSetRecoilState(clickedFilterState);
 
 	//----------중복 코드from MeuFilter --------
-	const [isFilterClicked, setIsFilterClicked] = useRecoilState(
-		filterClickFlagState
-	);
+	const [isFilterClicked, setIsFilterClicked] =
+		useRecoilState(filterClickFlagState);
+
 	const handleClick = useCallback(e => {
 		isFilterClicked === false
 			? setIsFilterClicked(true)

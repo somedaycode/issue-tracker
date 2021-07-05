@@ -65,4 +65,5 @@ export const CATEGORY_KOR = {
 	MILESTONE: "마일스톤",
 	AUTHOR: "작성자",
 	FILTER: "필터",
+	OPENCLOSE: "상태 수정",
 };
