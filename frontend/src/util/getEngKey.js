@@ -10,6 +10,8 @@ const getEngKey = str => {
 			return "author";
 		case "필터":
 			return "issue";
+		case "상태 수정":
+			return "openClose";
 		default:
 			return undefined;
 	}

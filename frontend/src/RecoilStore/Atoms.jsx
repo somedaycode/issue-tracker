@@ -19,6 +19,7 @@ export const filterBarInputState = atom({
 		milestone: null,
 		author: null,
 		issue: null,
+		openClose: null,
 	},
 });
 

@@ -24,17 +24,10 @@ const IssueCard = ({
 	const [selectedIssues, setSelectedIssues] = useRecoilState(
 		selectedIssueCntState
 	);
-	const {
-		title,
-		id,
-		labels,
-		milestone,
-		author,
-		createdAt,
-		open,
-		assignees,
-	} = issue;
-	console.log("labels", labels);
+	console.log("selectedCards: ", selectedCards);
+	const { title, id, labels, milestone, author, createdAt, open, assignees } =
+		issue;
+
 	const handleCheck = () => {
 		setIsChecked(!isChecked);
 		if (isChecked) {

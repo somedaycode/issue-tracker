@@ -17,6 +17,8 @@ import API from "util/API";
 const IssueDetailPage = () => {
 	const issueId = useParams().id;
 	const [issueData, setIssueData] = useState();
+	const [isTitleEditMode, setIsTitleEditMode] = useState(false);
+	const [openState, setOpenState] = useState(false);
 	const [update, forceUpdate] = useRecoilState(issueDetailUpdateState);
 	const setAssigneeData = useSetRecoilState(assigneeCategoryState);
 	const setLabelData = useSetRecoilState(labelCategoryState);
@@ -33,13 +35,23 @@ const IssueDetailPage = () => {
 
 	useEffect(() => {
 		getIssueData();
-	}, [update]);
+	}, [update, isTitleEditMode, openState]);
+
+	const handleTitleEdit = () => {
+		setIsTitleEditMode(x => !x);
+	};
 
 	return (
 		<>
 			{issueData && (
 				<IssueWrapper>
-					<IssueDetailHeader issueData={issueData} />
+					<IssueDetailHeader
+						issueData={issueData}
+						handleTitleEdit={handleTitleEdit}
+						isTitleEditMode={isTitleEditMode}
+						issueId={issueId}
+						setOpenState={setOpenState}
+					/>
 					<ContentsWrapper>
 						<IssueDetailComments issueData={issueData} />
 						<IssueCategoryList />

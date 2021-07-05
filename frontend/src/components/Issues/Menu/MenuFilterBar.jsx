@@ -10,9 +10,8 @@ import {
 } from "RecoilStore/Atoms";
 import { useSetRecoilState, useRecoilValue, useRecoilState } from "recoil";
 const MenuFilterBar = () => {
-	const [isFilterClicked, setIsFilterClicked] = useRecoilState(
-		filterClickFlagState
-	);
+	const [isFilterClicked, setIsFilterClicked] =
+		useRecoilState(filterClickFlagState);
 	const setClickedFilterState = useSetRecoilState(clickedFilterState);
 	const filterBarInput = useRecoilValue(filterBarInputState);
 
@@ -20,7 +19,7 @@ const MenuFilterBar = () => {
 		return Object.entries(filterBarInput).reduce((acc, item) => {
 			if (item[1]) {
 				if (item[0] === "placeholder") acc += `${item[1]} `;
-				else acc += `${item[0]}:${item[1]} `;
+				else if (item[0] !== "openClose") acc += `${item[0]}:${item[1]} `;
 			}
 			return acc;
 		}, "");

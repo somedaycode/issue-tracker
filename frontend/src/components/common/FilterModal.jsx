@@ -13,9 +13,8 @@ import FormLabel from "@material-ui/core/FormLabel";
 const FilterModal = () => {
 	const [clickedFilter, setClickedFilterState] = useState("");
 	const filterType = useRecoilValue(clickedFilterState);
-	const [filterBarInput, setFilterBarInputState] = useRecoilState(
-		filterBarInputState
-	);
+	const [filterBarInput, setFilterBarInputState] =
+		useRecoilState(filterBarInputState);
 
 	const handleChange = event => {
 		setClickedFilterState(event.target.value);
@@ -61,6 +60,13 @@ const FilterModal = () => {
 				setFilterBarInputState({
 					...filterBarInput,
 					issue: updatedValue,
+				});
+				break;
+			}
+			case CATEGORY_KOR.OPENCLOSE: {
+				setFilterBarInputState({
+					...filterBarInput,
+					openClose: updatedValue,
 				});
 				break;
 			}
