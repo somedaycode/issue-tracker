@@ -4,7 +4,7 @@ import AddCommentButton from "components/common/Button/BlueButtons";
 import { ImgWrapper } from "styles/StyledLayout";
 import getUserInfo from "util/getUserInfo";
 import MDEditor from "@uiw/react-md-editor";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import API from "util/API";
 import fetchImage from "util/fetchImage";
 import { useParams } from "react-router-dom";

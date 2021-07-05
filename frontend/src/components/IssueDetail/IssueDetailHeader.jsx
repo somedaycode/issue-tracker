@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 import { IssueHeader } from "styles/StyledLayout";
 import theme from "styles/theme";
@@ -5,24 +6,61 @@ import EditButton from "components/common/Button/WhiteButtons";
 import CloseButton from "components/common/Button/WhiteButtons";
 import OpenLabel from "styles/OpenLabel";
 import getTimeStamp from "util/getTimeStamp";
+import API from "util/API";
+import fetchData from "util/fetchData";
 
-const IssueDetailHeader = ({ issueData }) => {
+const IssueDetailHeader = ({
+	issueData,
+	handleTitleEdit,
+	isTitleEditMode,
+	issueId,
+}) => {
+	const [titleInput, setTitleInput] = useState({
+		title: issueData.title,
+		open: issueData.open,
+	});
+
+	const handleOnChange = e => {
+		setTitleInput({
+			...titleInput,
+			title: e.target.value,
+		});
+	};
+
+	const editTitle = async () => {
+		await fetchData(API.issue(issueId), "PUT", titleInput);
+		handleTitleEdit();
+	};
+
 	return (
 		<>
 			<IssueHeader>
 				<Top>
 					<Titles>
-						<div>{issueData.title}</div>
+						{isTitleEditMode ? (
+							<input value={titleInput.title} onChange={handleOnChange} />
+						) : (
+							<div>{issueData.title}</div>
+						)}
 						<div className="issue_num">{issueData.id}</div>
 					</Titles>
 					<Buttons>
 						<ButtonWrapper>
-							<EditButton
-								text="제목 편집"
-								icon="edit"
-								size="m"
-								clickHandler={() => {}}
-							/>
+							{isTitleEditMode ? (
+								<EditButton
+									text="편집 완료"
+									icon="none"
+									size="m"
+									clickHandler={editTitle}
+								/>
+							) : (
+								<EditButton
+									text="제목 편집"
+									icon="edit"
+									size="m"
+									clickHandler={handleTitleEdit}
+								/>
+							)}
 						</ButtonWrapper>
 						<CloseButton
 							text="이슈 닫기"
