@@ -18,7 +18,6 @@ const IssuesHeader = ({
 	setIsAnyIssueSelected,
 	isAllIssueSelected,
 	setIsAllIssueSelected,
-	selectedCards,
 }) => {
 	const [selectedIssues, setSelectedIssues] = useRecoilState(
 		selectedIssueCntState

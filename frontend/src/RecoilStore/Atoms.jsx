@@ -5,6 +5,11 @@ export const selectedIssueCntState = atom({
 	default: 0,
 });
 
+export const selectedCardsState = atom({
+	key: "selectedCardsState",
+	default: new Set(),
+});
+
 export const clickedFilterState = atom({
 	key: "clickedFilterState",
 	default: null,
@@ -35,6 +40,11 @@ export const milestoneButtonFlagState = atom({
 
 export const milestoneAddButtonFlagState = atom({
 	key: "milestoneAddButtonFlagState",
+	default: false,
+});
+
+export const issueListUpdateState = atom({
+	key: "issueListUpdateState",
 	default: false,
 });
 

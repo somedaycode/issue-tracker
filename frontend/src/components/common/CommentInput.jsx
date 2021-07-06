@@ -13,7 +13,12 @@ import { commentInputState, issueDetailUpdateState } from "RecoilStore/Atoms";
 import { useRecoilState } from "recoil";
 import useDebounce from "hooks/useDebounce";
 
-const CommentInput = ({ isNewIssueMode }) => {
+const CommentInput = ({
+	isNewIssueMode,
+	commentEditMode,
+	setCommentEditMode,
+	commentId,
+}) => {
 	const userInfo = getUserInfo();
 	const issueId = useParams().id;
 	const [input, setInput] = useRecoilState(commentInputState);
@@ -38,11 +43,14 @@ const CommentInput = ({ isNewIssueMode }) => {
 	};
 
 	const submitComment = async () => {
-		await fetchData(API.comment(), "POST", input);
+		if (commentEditMode)
+			await fetchData(API.commentId(commentId), "PUT", input);
+		else await fetchData(API.comment(), "POST", input);
 		setInput({
 			issueId,
 			content: "",
 		});
+		setCommentEditMode(false);
 		forceUpdate(!update);
 	};
 
