@@ -25,8 +25,6 @@ const IssueCategoryModal = ({ category, data }) => {
 	const handleCheckAssignee = e => {
 		const targetId = e.target.value;
 		const targetData = data.filter(item => item.id === targetId)[0];
-		const { users } = assigneeCategory;
-		console.log("assigneeCategory", assigneeCategory);
 
 		if (!e.target.checked) {
 			const newAssigneeCategory = assigneeCategory.filter(
@@ -51,6 +49,7 @@ const IssueCategoryModal = ({ category, data }) => {
 			setLabelCategory([...labelCategory, targetData]);
 		}
 	};
+	//------------------------여기까지 중복 코드--------------
 
 	const handleCheckMilestone = e => {
 		const targetId = e.target.value;
@@ -62,11 +61,8 @@ const IssueCategoryModal = ({ category, data }) => {
 			);
 			setMilestoneCategory(newMilestoneCategory);
 		}
-		if (milestoneCategory.id !== targetId) {
-			setMilestoneCategory(targetData);
-		}
+		setMilestoneCategory(targetData);
 	};
-	//------------------------여기까지 중복 코드--------------
 
 	const getSelectedCategoryIdList = () => {
 		switch (category) {
@@ -77,7 +73,7 @@ const IssueCategoryModal = ({ category, data }) => {
 				const labelList = labelCategory.map(x => x.id);
 				return labelList;
 			case CATEGORY_ENG.MILESTONE:
-				const milestoneList = milestoneCategory.map(x => x.id);
+				const milestoneList = milestoneCategory && milestoneCategory.id;
 				return milestoneList;
 			default:
 				return <div>일치하는 category가 없어요!!🤦‍♀️</div>;
@@ -99,7 +95,10 @@ const IssueCategoryModal = ({ category, data }) => {
 							type="checkbox"
 							value={user.id}
 							onChange={handleCheckAssignee}
-							checked={getSelectedCategoryIdList().includes(user.id)}
+							checked={
+								getSelectedCategoryIdList() &&
+								getSelectedCategoryIdList().includes(user.id)
+							}
 						/>
 					</Row>
 				));
@@ -118,7 +117,10 @@ const IssueCategoryModal = ({ category, data }) => {
 							type="checkbox"
 							value={label.id}
 							onChange={handleCheckLabel}
-							checked={getSelectedCategoryIdList().includes(label.id)}
+							checked={
+								getSelectedCategoryIdList() &&
+								getSelectedCategoryIdList().includes(label.id)
+							}
 						/>
 					</Row>
 				));
@@ -131,7 +133,10 @@ const IssueCategoryModal = ({ category, data }) => {
 							type="checkbox"
 							value={milestone.id}
 							onChange={handleCheckMilestone}
-							checked={getSelectedCategoryIdList().includes(milestone.id)}
+							checked={
+								getSelectedCategoryIdList() &&
+								getSelectedCategoryIdList().includes(milestone.id)
+							}
 						/>
 					</Row>
 				));
