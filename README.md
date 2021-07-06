@@ -1,4 +1,6 @@
 # issue tracker
+<img width="1433" alt="스크린샷 2021-07-07 오전 3 39 21" src="https://user-images.githubusercontent.com/56783350/124650663-ec127e00-ded4-11eb-81da-bb8deb0440ab.png">
+
 ## 팀원 구성
 |팀원|소속|자기소개|
 |------|---|---|
@@ -32,9 +34,10 @@
 - 새로운 마일스톤 생성 
 - 마일스톤 수정/삭제
 
-## 🖥 Web Demo Preview
+## 🖥 Web Demo Preview 
+### 이슈 생성
+https://user-images.githubusercontent.com/56783350/124650423-b2417780-ded4-11eb-83c2-0e86287ad300.mp4
 
-https://user-images.githubusercontent.com/56783350/122521862-49db4500-d050-11eb-9703-bde0c0d4cb89.mp4
 
 ## 🛠Tech Stack
 ### 🖥 Front-end
