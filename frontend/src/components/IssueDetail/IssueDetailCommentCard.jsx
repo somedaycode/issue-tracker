@@ -1,40 +1,63 @@
+import { useState } from "react";
 import styled from "styled-components";
 import { ImgWrapper } from "styles/StyledLayout";
 import { ReactComponent as Edit } from "images/edit.svg";
 import theme from "styles/theme";
 import MarkdownRenderer from "components/common/MarkdownRenderer";
 import getTimeStamp from "util/getTimeStamp";
+import getUserInfo from "util/getUserInfo";
+import CommentInput from "components/common/CommentInput";
 
 const IssueDetailCommentCard = ({ issueData, commentData }) => {
+	const [commentEditMode, setCommentEditMode] = useState(false);
+	const { id } = getUserInfo();
+
+	const handleEdit = () => {
+		if (commentData.author.id === id) {
+			setCommentEditMode(true);
+		} else return;
+	};
+
 	return (
-		<Wrapper>
-			<ImgWrapper size="44px">
-				<img src={commentData.author.imageUrl} alt="유저이름" />
-			</ImgWrapper>
-			<CardWrapper>
-				<CardHeader>
-					<div>
-						<span className="author">{commentData.author.githubId}</span>
-						<span className="created_at">
-							{getTimeStamp(commentData.createdAt)}
-						</span>
-					</div>
-					<div>
-						{issueData.author.id === commentData.author.id && (
-							<span className="author_issue">작성자</span>
-						)}
-						<span className="edit">
-							<Edit stroke={theme.grayScale.label} />
-							편집
-						</span>
-						<span className="smile">😀</span>
-					</div>
-				</CardHeader>
-				<CardBody>
-					<MarkdownRenderer content={commentData.content} />
-				</CardBody>
-			</CardWrapper>
-		</Wrapper>
+		<>
+			{commentEditMode ? (
+				<CommentInput
+					isNewIssueMode={false}
+					commentEditMode={commentEditMode}
+					setCommentEditMode={setCommentEditMode}
+					commentId={commentData.id}
+				/>
+			) : (
+				<Wrapper>
+					<ImgWrapper size="44px">
+						<img src={commentData.author.imageUrl} alt="유저이름" />
+					</ImgWrapper>
+					<CardWrapper>
+						<CardHeader>
+							<div>
+								<span className="author">{commentData.author.githubId}</span>
+								<span className="created_at">
+									{getTimeStamp(commentData.createdAt)}
+								</span>
+							</div>
+							<div>
+								{issueData.author.id === commentData.author.id && (
+									<span className="author_issue">작성자</span>
+								)}
+								<span className="edit" onClick={handleEdit}>
+									<Edit stroke={theme.grayScale.label} />
+									편집
+								</span>
+								<span className="smile">😀</span>
+							</div>
+						</CardHeader>
+						<CardBody>
+							<MarkdownRenderer content={commentData.content} />
+						</CardBody>
+					</CardWrapper>
+				</Wrapper>
+			)}
+		</>
 	);
 };
 
@@ -81,6 +104,9 @@ const CardHeader = styled.div`
 	.edit {
 		color: ${({ theme }) => theme.grayScale.label};
 		font-weight: 700;
+		&:hover {
+			cursor: pointer;
+		}
 	}
 `;
 
