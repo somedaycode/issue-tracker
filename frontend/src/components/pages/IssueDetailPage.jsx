@@ -10,12 +10,14 @@ import {
 	assigneeCategoryState,
 	labelCategoryState,
 	milestoneCategoryState,
+	currentIssueId,
 } from "RecoilStore/Atoms";
 import fetchData from "util/fetchData";
 import API from "util/API";
 
 const IssueDetailPage = () => {
 	const issueId = useParams().id;
+	const setCurrentIssueId = useSetRecoilState(currentIssueId);
 	const [issueData, setIssueData] = useState();
 	const [isTitleEditMode, setIsTitleEditMode] = useState(false);
 	const [openState, setOpenState] = useState(false);
@@ -24,6 +26,7 @@ const IssueDetailPage = () => {
 	const setLabelData = useSetRecoilState(labelCategoryState);
 	const setMilestoneData = useSetRecoilState(milestoneCategoryState);
 
+	setCurrentIssueId(issueId);
 	const getIssueData = async () => {
 		const { issue } = await fetchData(API.issue(issueId), "GET");
 		const { assignees, labels, milestone } = issue;
