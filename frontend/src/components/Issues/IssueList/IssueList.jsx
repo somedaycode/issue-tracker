@@ -2,33 +2,25 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import IssuesHeader from "./IssuesHeader";
 import IssueCard from "./IssueCard";
-// import { issues } from "data";
-import { useRecoilState } from "recoil";
-import { selectedIssueCntState } from "RecoilStore/Atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { selectedCardsState, issueListUpdateState } from "RecoilStore/Atoms";
 import API from "util/API";
 import fetchData from "util/fetchData";
 
 const IssueList = () => {
 	const [isAnyIssueSelected, setIsAnyIssueSelected] = useState(false); // 상태 위치 협의 후 수정
 	const [isAllIssueSelected, setIsAllIssueSelected] = useState(false);
-	const [_, setSelectedIssues] = useRecoilState(selectedIssueCntState);
-	const [selectedCards, setSelectedCards] = useState(new Set());
+	const [selectedCards, setSelectedCards] = useRecoilState(selectedCardsState);
 	const [issuesData, setIssues] = useState();
-
+	const update = useRecoilValue(issueListUpdateState);
 	const fetchIssueData = async () => {
 		const { issues } = await fetchData(API.issues(), "GET");
-		console.log(issues);
 		setIssues(issues);
 	};
 
 	useEffect(() => {
 		fetchIssueData();
-	}, []);
-
-	// useEffect(() => {
-	// 	if (!isAllIssueSelected && !isAnyIssueSelected && !selectedCards.size)
-	// 		setSelectedIssues(() => 0);
-	// }, [isAnyIssueSelected]);
+	}, [update]);
 
 	const issueList = issuesData?.map(issue => (
 		<IssueCard
@@ -37,8 +29,6 @@ const IssueList = () => {
 			setIsAnyIssueSelected={setIsAnyIssueSelected}
 			isAllIssueSelected={isAllIssueSelected}
 			setIsAllIssueSelected={setIsAllIssueSelected}
-			selectedCards={selectedCards}
-			setSelectedCards={setSelectedCards}
 		/>
 	));
 

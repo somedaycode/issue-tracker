@@ -1,6 +1,11 @@
 import { useState } from "react";
-import { filterBarInputState, clickedFilterState } from "RecoilStore/Atoms";
-import { useRecoilValue, useRecoilState } from "recoil";
+import {
+	filterBarInputState,
+	clickedFilterState,
+	selectedCardsState,
+	issueListUpdateState,
+} from "RecoilStore/Atoms";
+import { useRecoilValue, useRecoilState, useSetRecoilState } from "recoil";
 import { filterData, CATEGORY_KOR } from "data";
 import getEngKey from "util/getEngKey";
 import styled from "styled-components";
@@ -9,16 +14,45 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
+import API from "util/API";
+import fetchData from "util/fetchData";
 
 const FilterModal = () => {
 	const [clickedFilter, setClickedFilterState] = useState("");
 	const filterType = useRecoilValue(clickedFilterState);
 	const [filterBarInput, setFilterBarInputState] =
 		useRecoilState(filterBarInputState);
+	const [selectedCards, setSelectedCards] = useRecoilState(selectedCardsState);
+	const forceUpdate = useSetRecoilState(issueListUpdateState);
 
 	const handleChange = event => {
 		setClickedFilterState(event.target.value);
 		setFilterStateByType(event.target.value);
+		onFilterValueClicked(event.target.value);
+	};
+
+	const onFilterValueClicked = value => {
+		switch (value) {
+			case "선택된 이슈 열기":
+				openCloseIssues("open");
+				break;
+			case "선택된 이슈 닫기":
+				openCloseIssues("close");
+				break;
+			default:
+				console.error("unhandled filter value");
+		}
+	};
+
+	const openCloseIssues = async openClose => {
+		selectedCards.forEach(async cardId => {
+			const { issue } = await fetchData(API.issue(cardId), "GET");
+			await fetchData(API.issue(issue.id), "PUT", {
+				title: issue.title,
+				open: openClose === "open" ? true : false,
+			});
+			await forceUpdate(x => !x);
+		});
 	};
 
 	const setFilterStateByType = clickedValue => {

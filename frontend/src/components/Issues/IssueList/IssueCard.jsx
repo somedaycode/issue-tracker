@@ -2,29 +2,27 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import theme from "styles/theme";
 import { Link } from "react-router-dom";
-import { ReactComponent as UserImageSmall } from "images/UserImageSmall.svg";
+import { ReactComponent as Archive } from "images/archive.svg";
 import { ReactComponent as Alert } from "images/alert-circle.svg";
 import { ReactComponent as Milestone } from "images/milestone.svg";
 import getTimeStamp from "util/getTimeStamp";
-import { selectedIssueCntState } from "RecoilStore/Atoms";
+import { selectedIssueCntState, selectedCardsState } from "RecoilStore/Atoms";
 import { useRecoilState } from "recoil";
 import { StyledGridCard } from "styles/StyledCards";
 import LabelBadge from "components/common/LabelBadge";
-import { ImgWrapper } from "styles/StyledLayout";
 
 const IssueCard = ({
 	issue,
 	setIsAnyIssueSelected,
 	isAllIssueSelected,
 	setIsAllIssueSelected,
-	selectedCards,
-	setSelectedCards,
 }) => {
 	const [isChecked, setIsChecked] = useState(false);
 	const [selectedIssues, setSelectedIssues] = useRecoilState(
 		selectedIssueCntState
 	);
-	console.log("selectedCards: ", selectedCards);
+	const [selectedCards, setSelectedCards] = useRecoilState(selectedCardsState);
+
 	const { title, id, labels, milestone, author, createdAt, open, assignees } =
 		issue;
 
@@ -65,7 +63,11 @@ const IssueCard = ({
 				<TextTagDivider>
 					<InfoWrapper>
 						<Margin>
-							<Alert stroke={theme.colors.blue} />
+							{open ? (
+								<Alert stroke={theme.colors.blue} />
+							) : (
+								<Archive stroke={theme.colors.purple} />
+							)}
 						</Margin>
 						<Margin>
 							<Link to={`/main/${id}`}>{title}</Link>
@@ -76,6 +78,7 @@ const IssueCard = ({
 								? labels.map((label, idx) => (
 										<Margin>
 											<LabelBadge
+												key={label.id}
 												text={label.name}
 												fontColor={label.colors.textColor}
 												backgroundColor={label.colors.backgroundColor}
