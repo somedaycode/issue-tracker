@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import styled from "styled-components";
 import { ImgWrapper } from "styles/StyledLayout";
 import getCategoryText from "util/getCategoryText.js";
@@ -8,8 +7,9 @@ import {
 	assigneeCategoryState,
 	labelCategoryState,
 	milestoneCategoryState,
+	currentIssueId,
 } from "RecoilStore/Atoms";
-import { useRecoilState, useResetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import fetchData from "util/fetchData";
 import API from "util/API";
 const IssueCategoryModal = ({ category, data }) => {
@@ -20,13 +20,15 @@ const IssueCategoryModal = ({ category, data }) => {
 	const [milestoneCategory, setMilestoneCategory] = useRecoilState(
 		milestoneCategoryState
 	);
+	const issueId = useRecoilValue(currentIssueId);
 
 	//아래 코드는 리팩토링 예정!!!-----중복코드---------------------------
 	const handleCheckAssignee = e => {
 		const targetId = e.target.value;
+		const isChecked = e.target.checked;
 		const targetData = data.filter(item => item.id === targetId)[0];
 
-		if (!e.target.checked) {
+		if (!isChecked) {
 			const newAssigneeCategory = assigneeCategory.filter(
 				x => x.id !== targetId
 			);
@@ -35,35 +37,72 @@ const IssueCategoryModal = ({ category, data }) => {
 		if (assigneeCategory.every(x => x.id !== targetId)) {
 			setAssigneeCategory([...assigneeCategory, targetData]);
 		}
+		updateDataByCategory(targetId, isChecked); //fetch
 	};
 
 	const handleCheckLabel = e => {
 		const targetId = e.target.value;
+		const isChecked = e.target.checked;
 		const targetData = data.filter(item => item.id === targetId)[0];
 
-		if (!e.target.checked) {
+		if (!isChecked) {
 			const newLabelCategory = labelCategory.filter(x => x.id !== targetId);
 			setLabelCategory(newLabelCategory);
 		}
 		if (labelCategory.every(x => x.id !== targetId)) {
 			setLabelCategory([...labelCategory, targetData]);
 		}
+		updateDataByCategory(targetId, isChecked); //fetch
 	};
 	//------------------------여기까지 중복 코드--------------
 
 	const handleCheckMilestone = e => {
 		const targetId = e.target.value;
+		const isChecked = e.target.checked;
 		const targetData = data.filter(item => item.id === targetId)[0];
 
-		if (!e.target.checked) {
+		if (!isChecked) {
 			const newMilestoneCategory = milestoneCategory.filter(
 				x => x.id !== targetId
 			);
 			setMilestoneCategory(newMilestoneCategory);
 		}
 		setMilestoneCategory(targetData);
+		updateDataByCategory(targetId, isChecked); //fetch
 	};
 
+	const updateDataByCategory = async (targetId, isChecked) => {
+		if (isChecked) {
+			switch (category) {
+				case CATEGORY_ENG.ASSIGNEE:
+					await fetchData(API.issueAssigneesPOST(issueId), "POST", {
+						assigneeId: targetId,
+					});
+				case CATEGORY_ENG.LABEL:
+					await fetchData(API.issueLabelsPOST(issueId), "POST", {
+						labelId: targetId,
+					});
+				case CATEGORY_ENG.MILESTONE:
+					await fetchData(API.issueMilestone(issueId), "POST", {
+						milestoneId: targetId,
+					});
+			}
+		} else {
+			switch (category) {
+				case CATEGORY_ENG.ASSIGNEE:
+					await fetchData(
+						API.issueAssigneesDELETE(issueId, targetId),
+						"DELETE"
+					);
+				case CATEGORY_ENG.LABEL:
+					await fetchData(API.issueLabelsDELETE(issueId, targetId), "DELETE");
+				case CATEGORY_ENG.MILESTONE:
+					await fetchData(API.issueMilestone(issueId), "DELETE");
+			}
+		}
+	};
+
+	//현재 선택된 카테고리 값을 배열로 리턴합니다.
 	const getSelectedCategoryIdList = () => {
 		switch (category) {
 			case CATEGORY_ENG.ASSIGNEE:

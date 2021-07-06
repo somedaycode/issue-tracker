@@ -15,6 +15,26 @@ const API = {
 	issue(id) {
 		return `${this.default()}/issues/${id}`;
 	},
+
+	issueLabelsPOST(issueId) {
+		return `${this.default()}/issues/${issueId}/labels`;
+	},
+	issueLabelsDELETE(issueId, labelId) {
+		return `${this.default()}/issues/${issueId}/labels/${labelId}`;
+	},
+
+	issueAssigneesPOST(issueId) {
+		return `${this.default()}/issues/${issueId}/assignees`;
+	},
+
+	issueAssigneesDELETE(issueId, assigneesId) {
+		return `${this.default()}/issues/${issueId}/assignees/${assigneesId}`;
+	},
+
+	issueMilestone(issueId) {
+		return `${this.default()}/issues/${issueId}/milestone`;
+	},
+
 	labels() {
 		return `${this.default()}/labels`;
 	},
