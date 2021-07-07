@@ -26,6 +26,7 @@ const IssueDetailCommentCard = ({ issueData, commentData }) => {
 					commentEditMode={commentEditMode}
 					setCommentEditMode={setCommentEditMode}
 					commentId={commentData.id}
+					commentContent={commentData.content}
 				/>
 			) : (
 				<Wrapper>

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { ReactComponent as Clip } from "images/paperclip.svg";
+import { ReactComponent as Xsquare } from "images/x-square.svg";
 import AddCommentButton from "components/common/Button/BlueButtons";
 import { ImgWrapper } from "styles/StyledLayout";
 import getUserInfo from "util/getUserInfo";
@@ -18,6 +19,7 @@ const CommentInput = ({
 	commentEditMode,
 	setCommentEditMode,
 	commentId,
+	commentContent,
 }) => {
 	const userInfo = getUserInfo();
 	const issueId = useParams().id;
@@ -31,7 +33,7 @@ const CommentInput = ({
 	useEffect(() => {
 		setInput({
 			issueId,
-			content: "",
+			content: commentContent ? commentContent : "",
 		});
 	}, []);
 
@@ -68,6 +70,10 @@ const CommentInput = ({
 		});
 	};
 
+	const handleCancel = () => {
+		setCommentEditMode(false);
+	};
+
 	return (
 		<Container>
 			{!isNewIssueMode && (
@@ -97,6 +103,19 @@ const CommentInput = ({
 				</Wrapper>
 				{isNewIssueMode ? (
 					<></>
+				) : commentEditMode ? (
+					<CommentEditButtonGroup>
+						<CancelBtn onClick={handleCancel}>
+							<Xsquare stroke="#000000" />
+							편집 취소
+						</CancelBtn>{" "}
+						<AddCommentButton
+							text="코멘트 작성"
+							icon="plus"
+							size="m"
+							clickHandler={submitComment}
+						/>
+					</CommentEditButtonGroup>
 				) : (
 					<AddCommentButton
 						text="코멘트 작성"
@@ -149,4 +168,16 @@ const CommentInputMD = styled(MDEditor)`
 const TextCounter = styled.div`
 	text-align: right;
 	color: ${({ theme }) => theme.grayScale.label};
+`;
+
+const CancelBtn = styled.div`
+	align-self: center;
+	margin-right: 1rem;
+	&:hover {
+		cursor: pointer;
+	}
+`;
+
+const CommentEditButtonGroup = styled.div`
+	display: flex;
 `;
