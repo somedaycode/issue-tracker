@@ -1,17 +1,24 @@
 import styled from "styled-components";
 import { milestoneCategoryState } from "RecoilStore/Atoms";
 import { useRecoilValue } from "recoil";
-import getPercent from "util/getPercent";
 const Milestone = () => {
 	const milestoneData = useRecoilValue(milestoneCategoryState);
-	const { closedIssues, openIssues } = milestoneData;
+
 	return (
 		<>
-			<ProgressBar value={closedIssues} max={closedIssues + openIssues} />
-			{milestoneData && <ContentsText>{milestoneData.title}</ContentsText>}
+			{milestoneData && (
+				<>
+					<ProgressBar
+						value={milestoneData.closedIssues}
+						max={milestoneData.closedIssues + milestoneData.openIssues}
+					/>
+					<ContentsText>{milestoneData.title}</ContentsText>
+				</>
+			)}
 		</>
 	);
 };
+
 const ProgressBar = styled.progress`
 	width: 100%;
 `;
