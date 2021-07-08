@@ -52,7 +52,7 @@ const CommentInput = ({
 			issueId,
 			content: "",
 		});
-		setCommentEditMode(false);
+		setCommentEditMode && setCommentEditMode(false);
 		forceUpdate(!update);
 	};
 
