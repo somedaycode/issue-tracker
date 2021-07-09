@@ -195,12 +195,12 @@ const IssueCategoryModal = ({ category, data }) => {
 
 const ModalContainer = styled.div`
 	position: absolute;
-	top: 50%;
-	left: 10%;
+	top: 60px;
+	left: 5%;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	width: 80%;
+	width: 90%;
 	background: #fefefe;
 	border: 1px solid #d9dbe9;
 	border-radius: 16px;
