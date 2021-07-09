@@ -1,17 +1,25 @@
 import styled from "styled-components";
 import { milestoneCategoryState } from "RecoilStore/Atoms";
 import { useRecoilValue } from "recoil";
-import getPercent from "util/getPercent";
 const Milestone = () => {
 	const milestoneData = useRecoilValue(milestoneCategoryState);
-	const { closedIssues, openIssues } = milestoneData;
+
+	//milestoneData.closedIssues로 한 이유 : 새 이슈 작성에서 프로그레스 바 안보이게 하려고
+
 	return (
 		<>
-			<ProgressBar value={closedIssues} max={closedIssues + openIssues} />
+			{milestoneData &&
+				(milestoneData.closedIssues ? (
+					<ProgressBar
+						value={milestoneData.closedIssues}
+						max={milestoneData.closedIssues + milestoneData.openIssues}
+					/>
+				) : null)}
 			{milestoneData && <ContentsText>{milestoneData.title}</ContentsText>}
 		</>
 	);
 };
+
 const ProgressBar = styled.progress`
 	width: 100%;
 `;
