@@ -8,8 +8,11 @@ import MilestonesPage from "./MilestonesPage";
 import Header from "components/common/Header";
 import Navigator from "components/common/Navigator";
 import Issues from "components/Issues/Issues";
+import qsParser from "util/qsParser";
 
-const MainPage = () => {
+const MainPage = ({ location }) => {
+	const parsed = qsParser(location.search);
+	console.log(parsed);
 	const { pathname } = window.location;
 	return localStorage.getItem("accessToken") ? (
 		<MainPageLayout>

@@ -15,7 +15,8 @@ import {
 import fetchData from "util/fetchData";
 import API from "util/API";
 
-const IssueDetailPage = () => {
+const IssueDetailPage = props => {
+	console.log("props:", props);
 	const issueId = useParams().id;
 	const setCurrentIssueId = useSetRecoilState(currentIssueId);
 	const [issueData, setIssueData] = useState();
