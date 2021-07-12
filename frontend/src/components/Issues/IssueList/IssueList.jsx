@@ -7,7 +7,7 @@ import { selectedCardsState, issueListUpdateState } from "RecoilStore/Atoms";
 import API from "util/API";
 import fetchData from "util/fetchData";
 
-const IssueList = () => {
+const IssueList = ({ filter }) => {
 	const [isAnyIssueSelected, setIsAnyIssueSelected] = useState(false); // 상태 위치 협의 후 수정
 	const [isAllIssueSelected, setIsAllIssueSelected] = useState(false);
 	const [selectedCards, setSelectedCards] = useRecoilState(selectedCardsState);
@@ -17,35 +17,39 @@ const IssueList = () => {
 		const { issues } = await fetchData(API.issues(), "GET");
 		setIssues(issues);
 	};
-
+	console.log("issuesData: ", issuesData);
+	console.log("filter: ", filter);
 	useEffect(() => {
 		fetchIssueData();
 	}, [update]);
 
-	const issueList = issuesData?.map(issue => (
-		<IssueCard
-			key={issue.id}
-			issue={issue}
-			setIsAnyIssueSelected={setIsAnyIssueSelected}
-			isAllIssueSelected={isAllIssueSelected}
-			setIsAllIssueSelected={setIsAllIssueSelected}
-		/>
-	));
+	const filteredIssueList = issuesData
+		?.filter(issue => issue.open)
+		.map(issue => (
+			<IssueCard
+				key={issue.id}
+				issue={issue}
+				setIsAnyIssueSelected={setIsAnyIssueSelected}
+				isAllIssueSelected={isAllIssueSelected}
+				setIsAllIssueSelected={setIsAllIssueSelected}
+			/>
+		));
 
 	return (
 		<>
-			{issuesData && (
+			{filteredIssueList && (
 				<StyledIssueList>
 					<IssuesHeader
-						issuesCnt={issuesData.length}
+						filteredIssueList={filteredIssueList}
+						issuesData={issuesData}
 						isAnyIssueSelected={isAnyIssueSelected}
 						setIsAnyIssueSelected={setIsAnyIssueSelected}
 						isAllIssueSelected={isAllIssueSelected}
 						setIsAllIssueSelected={setIsAllIssueSelected}
 						selectedCards={selectedCards}
 					/>
-					{issueList.length ? (
-						issueList
+					{filteredIssueList.length ? (
+						filteredIssueList
 					) : (
 						<ErrorCard>검색과 일치하는 결과가 없습니다</ErrorCard>
 					)}

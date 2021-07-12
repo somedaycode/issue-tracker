@@ -13,7 +13,8 @@ import {
 } from "RecoilStore/Atoms";
 
 const IssuesHeader = ({
-	issuesCnt,
+	issuesData,
+	filteredIssueList,
 	isAnyIssueSelected,
 	setIsAnyIssueSelected,
 	isAllIssueSelected,
@@ -24,6 +25,8 @@ const IssuesHeader = ({
 	);
 	const buttonNames = ["담당자", "레이블", "마일스톤", "작성자"];
 	const setClickedFilterState = useSetRecoilState(clickedFilterState);
+	const openIssueCnt = issuesData.filter(issue => issue.open).length;
+	const closedIssueCnt = issuesData.filter(issue => !issue.open).length;
 
 	//----------중복 코드from MeuFilter --------
 	const [isFilterClicked, setIsFilterClicked] =
@@ -57,7 +60,9 @@ const IssuesHeader = ({
 
 	const checkAllIssue = () => {
 		setIsAllIssueSelected(!isAllIssueSelected);
-		isAllIssueSelected ? setSelectedIssues(0) : setSelectedIssues(issuesCnt);
+		isAllIssueSelected
+			? setSelectedIssues(0)
+			: setSelectedIssues(filteredIssueList.length);
 	};
 
 	useEffect(() => {
@@ -75,10 +80,12 @@ const IssuesHeader = ({
 			) : (
 				<FilterOpenClose>
 					<TextIconDivider>
-						<Alert stroke={theme.grayScale.title_active} /> 열린 이슈(n)
+						<Alert stroke={theme.grayScale.title_active} /> 열린 이슈(
+						{openIssueCnt})
 					</TextIconDivider>
 					<TextIconDivider>
-						<Archive stroke={theme.grayScale.label} /> 닫힌 이슈(n)
+						<Archive stroke={theme.grayScale.label} /> 닫힌 이슈(
+						{closedIssueCnt})
 					</TextIconDivider>
 				</FilterOpenClose>
 			)}

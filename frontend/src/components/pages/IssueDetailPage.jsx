@@ -17,7 +17,8 @@ import API from "util/API";
 
 const IssueDetailPage = props => {
 	console.log("props:", props);
-	const issueId = useParams().id;
+	const params = useParams();
+	const issueId = params.id;
 	const setCurrentIssueId = useSetRecoilState(currentIssueId);
 	const [issueData, setIssueData] = useState();
 	const [isTitleEditMode, setIsTitleEditMode] = useState(false);
