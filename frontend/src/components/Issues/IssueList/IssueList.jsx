@@ -24,7 +24,7 @@ const IssueList = ({ filter }) => {
 	}, [update]);
 
 	const filteredIssueList = issuesData
-		?.filter(issue => issue.open)
+		?.filter(issue => issue.open) // 메인화면 띄워줄 이슈 필터링(0712)
 		.map(issue => (
 			<IssueCard
 				key={issue.id}
