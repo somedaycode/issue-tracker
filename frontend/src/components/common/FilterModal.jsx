@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
 	filterBarInputState,
 	clickedFilterState,
@@ -25,13 +25,13 @@ const FilterModal = () => {
 	const [selectedCards, setSelectedCards] = useRecoilState(selectedCardsState);
 	const forceUpdate = useSetRecoilState(issueListUpdateState);
 
-	const handleChange = (event) => {
+	const handleChange = event => {
 		setClickedFilterState(event.target.value);
 		setFilterStateByType(event.target.value);
 		onFilterValueClicked(event.target.value);
 	};
 
-	const onFilterValueClicked = (value) => {
+	const onFilterValueClicked = value => {
 		switch (value) {
 			case "선택된 이슈 열기":
 				openCloseIssues("open");
@@ -44,18 +44,18 @@ const FilterModal = () => {
 		}
 	};
 
-	const openCloseIssues = async (openClose) => {
-		selectedCards.forEach(async (cardId) => {
+	const openCloseIssues = async openClose => {
+		selectedCards.forEach(async cardId => {
 			const { issue } = await fetchData(API.issue(cardId), "GET");
 			await fetchData(API.issue(issue.id), "PUT", {
 				title: issue.title,
 				open: openClose === "open" ? true : false,
 			});
-			await forceUpdate((x) => !x);
+			await forceUpdate(x => !x);
 		});
 	};
 
-	const setFilterStateByType = (clickedValue) => {
+	const setFilterStateByType = clickedValue => {
 		const updatedValue =
 			clickedValue === filterBarInput[getEngKey(filterType)]
 				? null
@@ -110,13 +110,21 @@ const FilterModal = () => {
 		}
 	};
 
-	const filterDataByType = filterData[getEngKey(filterType)];
-	console.log("bug: ", filterDataByType); // filterDataByType 이 자꾸 promise로 반환되는데, result값을 못갖고오겠슴다..ㅜ
+	const [list, setList] = useState([]);
+
+	const filterDataByType = async () => {
+		const res = await filterData[getEngKey(filterType)];
+		setList(res);
+	};
+
+	useEffect(() => {
+		filterDataByType();
+	}, []);
 
 	return (
 		<FilterModalLayout
 			className="filter-modal"
-			isLeftFilter={filterType === CATEGORY_KOR.FILTER ? true : false}
+			isLeftFilter={filterType === CATEGORY_KOR.FILTER}
 		>
 			<FormControl component="fieldset">
 				<FilterTitle component="legend">
@@ -128,8 +136,8 @@ const FilterModal = () => {
 					value={clickedFilter}
 					onClick={handleChange}
 				>
-					{filterDataByType &&
-						filterDataByType.map((text, idx) => (
+					{list.length &&
+						list.map((text, idx) => (
 							<FilterControlLabel
 								value={text}
 								control={<Radio color="default" />}
@@ -148,7 +156,7 @@ const FilterModal = () => {
 const FilterModalLayout = styled.div`
 	position: absolute;
 	top: 110%;
-	right: ${(props) => (props.isLeftFilter ? "" : "0")};
+	right: ${props => (props.isLeftFilter ? "" : "0")};
 	width: 242px;
 	background-color: white;
 	text-align: left;

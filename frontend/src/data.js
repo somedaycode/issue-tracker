@@ -1,21 +1,23 @@
 import fetchData from "util/fetchData";
 import API from "util/API";
 
-const getUserList = async (API) => {
+const getUserList = async API => {
 	const { users } = await fetchData(API, "GET");
-	const idList = users.map((el) => el.githubId);
-	// console.log(`idList:`, idList);
+	const idList = users.map(el => el.githubId);
 	return idList;
 };
 
-const getMilestoneList = async (API) => {
+const getMilestoneList = async API => {
 	const { milestones } = await fetchData(API, "GET");
-	const milestoneList = milestones.map((el) => el.title);
-	// console.log("milestoneList: ", milestoneList);
+	const milestoneList = milestones.map(el => el.title);
 	return milestoneList;
 };
 
-// console.log("dataList:", getDataList(API.milestones()));
+const getLabelList = async API => {
+	const { labels } = await fetchData(API, "GET");
+	const labelList = labels.map(el => el.name);
+	return labelList;
+};
 
 export const filterData = {
 	issue: [
@@ -26,9 +28,9 @@ export const filterData = {
 		"닫힌 이슈",
 	],
 	assignee: getUserList(API.users()),
-	label: ["bug", "document"],
+	label: getLabelList(API.labels()),
 	milestone: getMilestoneList(API.milestones()),
-	author: ["daisy", "goody"],
+	author: getUserList(API.users()),
 	openClose: ["선택된 이슈 열기", "선택된 이슈 닫기"],
 };
 
