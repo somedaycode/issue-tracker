@@ -25,7 +25,7 @@ const MenuFilterBar = () => {
 		}, "");
 	};
 
-	const handleClick = e => {
+	const handleClick = (e) => {
 		isFilterClicked === false
 			? setIsFilterClicked(true)
 			: setIsFilterClicked(false);
@@ -40,7 +40,7 @@ const MenuFilterBar = () => {
 		};
 	}, [isFilterClicked]);
 
-	const closeFilterModal = e => {
+	const closeFilterModal = (e) => {
 		const target = e.target;
 		if (isFilterClicked && !target.closest(".filter-modal"))
 			setIsFilterClicked(false);

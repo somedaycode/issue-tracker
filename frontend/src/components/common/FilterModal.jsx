@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
 	filterBarInputState,
 	clickedFilterState,
@@ -110,12 +110,21 @@ const FilterModal = () => {
 		}
 	};
 
-	const filterDataByType = filterData[getEngKey(filterType)];
+	const [list, setList] = useState([]);
+
+	const filterDataByType = async () => {
+		const res = await filterData[getEngKey(filterType)];
+		setList(res);
+	};
+
+	useEffect(() => {
+		filterDataByType();
+	}, []);
 
 	return (
 		<FilterModalLayout
 			className="filter-modal"
-			isLeftFilter={filterType === CATEGORY_KOR.FILTER ? true : false}
+			isLeftFilter={filterType === CATEGORY_KOR.FILTER}
 		>
 			<FormControl component="fieldset">
 				<FilterTitle component="legend">
@@ -127,8 +136,8 @@ const FilterModal = () => {
 					value={clickedFilter}
 					onClick={handleChange}
 				>
-					{filterDataByType &&
-						filterDataByType.map((text, idx) => (
+					{list.length &&
+						list.map((text, idx) => (
 							<FilterControlLabel
 								value={text}
 								control={<Radio color="default" />}

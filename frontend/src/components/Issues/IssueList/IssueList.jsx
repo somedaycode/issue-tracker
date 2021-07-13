@@ -24,7 +24,7 @@ const IssueList = ({ filter }) => {
 	}, [update]);
 
 	const filteredIssueList = issuesData
-		?.filter(issue => issue.open) // 메인화면 띄워줄 이슈 필터링(0712)
+		?.filter(issue => issue.open) // 메인화면 띄워줄 이슈 필터링(0712) find/include/indexOf/customHook
 		.map(issue => (
 			<IssueCard
 				key={issue.id}
