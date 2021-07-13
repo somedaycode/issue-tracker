@@ -15,7 +15,7 @@ const ButtonGroup = ({
 	milestoneClickEvent,
 	labelCount,
 	labelClickEvent,
-	isMainPage,
+	ismainpage,
 }) => {
 	const milestoneFlag = useRecoilValue(milestoneButtonFlagState);
 	const labelFlag = useRecoilValue(labelButtonFlagState);
@@ -28,7 +28,7 @@ const ButtonGroup = ({
 					_width={({ theme }) => theme.buttonWidths.base}
 					_radius={"left"}
 					bgColor={labelFlag}
-					isMainPage={isMainPage}
+					ismainpage={ismainpage}
 				>
 					<LabelIcon stroke={theme.grayScale.label} />
 					<ButtonText>레이블 ({labelCount})</ButtonText>
@@ -40,7 +40,7 @@ const ButtonGroup = ({
 					_width={({ theme }) => theme.buttonWidths.base}
 					_radius={"right"}
 					bgColor={milestoneFlag}
-					isMainPage={isMainPage}
+					ismainpage={ismainpage}
 				>
 					<MileStoneIcon fill={theme.grayScale.label} />
 					<ButtonText>마일스톤 ({milestoneCount})</ButtonText>

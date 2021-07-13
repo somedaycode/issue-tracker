@@ -10,27 +10,27 @@ import {
 } from "RecoilStore/Atoms";
 import { useSetRecoilState, useRecoilValue, useRecoilState } from "recoil";
 const MenuFilterBar = () => {
-	const [isFilterClicked, setIsFilterClicked] =
-		useRecoilState(filterClickFlagState);
+	const [isFilterClicked, setIsFilterClicked] = useRecoilState(
+		filterClickFlagState
+	);
 	const setClickedFilterState = useSetRecoilState(clickedFilterState);
 	const filterBarInput = useRecoilValue(filterBarInputState);
-
+	console.log(filterBarInput);
 	const getFilterBarString = () => {
-		return Object.entries(filterBarInput).reduce((acc, item) => {
-			if (item[1]) {
-				if (item[0] === "placeholder") acc += `${item[1]} `;
-				else if (item[0] !== "openClose") acc += `${item[0]}:${item[1]} `;
+		return Object.entries(filterBarInput).reduce((acc, [key, value]) => {
+			if (value) {
+				if (key === "placeholder") acc += `${value} `;
+				else if (key !== "openClose") acc += `${key}:${value} `;
 			}
 			return acc;
 		}, "");
 	};
 
-	const handleClick = (e) => {
+	const handleClick = e => {
 		isFilterClicked === false
 			? setIsFilterClicked(true)
 			: setIsFilterClicked(false);
 		setClickedFilterState(e.currentTarget.value);
-		console.log(e.currentTarget.value);
 	};
 
 	useEffect(() => {
@@ -40,7 +40,7 @@ const MenuFilterBar = () => {
 		};
 	}, [isFilterClicked]);
 
-	const closeFilterModal = (e) => {
+	const closeFilterModal = e => {
 		const target = e.target;
 		if (isFilterClicked && !target.closest(".filter-modal"))
 			setIsFilterClicked(false);

@@ -17,8 +17,7 @@ const IssueList = ({ filter }) => {
 		const { issues } = await fetchData(API.issues(), "GET");
 		setIssues(issues);
 	};
-	console.log("issuesData: ", issuesData);
-	console.log("filter: ", filter);
+
 	useEffect(() => {
 		fetchIssueData();
 	}, [update]);
