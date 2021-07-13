@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import IssueList from "./IssueList/IssueList";
 import Menu from "./Menu/Menu";
-const Issues = () => {
+const Issues = ({ filter }) => {
 	return (
 		<StyledIssues>
 			<Menu />
-			<IssueList />
+			<IssueList filter={filter} />
 		</StyledIssues>
 	);
 };

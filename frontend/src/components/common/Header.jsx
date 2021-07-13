@@ -14,7 +14,7 @@ const Header = () => {
 
 	return (
 		<StyleHeader onClick={handleClick}>
-			<Link to="/main">
+			<Link to="/main?open=true">
 				<Logo />
 			</Link>
 			<ImgWrapper>

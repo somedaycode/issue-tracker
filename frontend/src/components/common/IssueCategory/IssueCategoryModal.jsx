@@ -78,14 +78,19 @@ const IssueCategoryModal = ({ category, data }) => {
 					await fetchData(API.issueAssigneesPOST(issueId), "POST", {
 						assigneeId: targetId,
 					});
+					break;
 				case CATEGORY_ENG.LABEL:
 					await fetchData(API.issueLabelsPOST(issueId), "POST", {
 						labelId: targetId,
 					});
+					break;
 				case CATEGORY_ENG.MILESTONE:
 					await fetchData(API.issueMilestone(issueId), "POST", {
 						milestoneId: targetId,
 					});
+					break;
+				default:
+					throw new Error("unhandled category");
 			}
 		} else {
 			switch (category) {
@@ -94,10 +99,15 @@ const IssueCategoryModal = ({ category, data }) => {
 						API.issueAssigneesDELETE(issueId, targetId),
 						"DELETE"
 					);
+					break;
 				case CATEGORY_ENG.LABEL:
 					await fetchData(API.issueLabelsDELETE(issueId, targetId), "DELETE");
+					break;
 				case CATEGORY_ENG.MILESTONE:
 					await fetchData(API.issueMilestone(issueId), "DELETE");
+					break;
+				default:
+					throw new Error("unhandled category");
 			}
 		}
 	};

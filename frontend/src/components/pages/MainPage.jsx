@@ -8,8 +8,11 @@ import MilestonesPage from "./MilestonesPage";
 import Header from "components/common/Header";
 import Navigator from "components/common/Navigator";
 import Issues from "components/Issues/Issues";
+import qsParser from "util/qsParser";
 
-const MainPage = () => {
+const MainPage = ({ location }) => {
+	const filter = qsParser(location.search);
+	console.log(filter);
 	const { pathname } = window.location;
 	return localStorage.getItem("accessToken") ? (
 		<MainPageLayout>
@@ -17,7 +20,7 @@ const MainPage = () => {
 			{(pathname === "/main/labels" || pathname === "/main/milestones") && (
 				<Navigator />
 			)}
-			{pathname === "/main" && <Issues />}
+			{pathname === "/main" && <Issues filter={filter} />}
 			<Switch>
 				<Route exact path="/main/milestones" component={MilestonesPage} />
 				<Route exact path="/main/labels" component={LabelsPage} />

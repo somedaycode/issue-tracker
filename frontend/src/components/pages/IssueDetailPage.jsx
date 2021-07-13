@@ -15,8 +15,10 @@ import {
 import fetchData from "util/fetchData";
 import API from "util/API";
 
-const IssueDetailPage = () => {
-	const issueId = useParams().id;
+const IssueDetailPage = props => {
+	console.log("props:", props);
+	const params = useParams();
+	const issueId = params.id;
 	const setCurrentIssueId = useSetRecoilState(currentIssueId);
 	const [issueData, setIssueData] = useState();
 	const [isTitleEditMode, setIsTitleEditMode] = useState(false);
