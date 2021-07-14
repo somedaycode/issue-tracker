@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import {
 	filterBarInputState,
 	clickedFilterState,
 	selectedCardsState,
 	issueListUpdateState,
+	queryStringState,
 } from "RecoilStore/Atoms";
 import { useRecoilValue, useRecoilState, useSetRecoilState } from "recoil";
 import { filterData, CATEGORY_KOR } from "data";
@@ -21,18 +21,15 @@ import getQueryString from "util/getQueryString";
 const FilterModal = () => {
 	const [clickedFilter, setClickedFilterState] = useState("");
 	const filterType = useRecoilValue(clickedFilterState);
-	const [filterBarInput, setFilterBarInputState] = useRecoilState(
-		filterBarInputState
-	);
+	const [filterBarInput, setFilterBarInputState] =
+		useRecoilState(filterBarInputState);
 	const [selectedCards, setSelectedCards] = useRecoilState(selectedCardsState);
 	const forceUpdate = useSetRecoilState(issueListUpdateState);
-	const [queryString, setQueryString] = useState("");
-	//console.log("filterBarInput,", filterBarInput);
+	const [queryString, setQueryString] = useRecoilState(queryStringState);
 	const handleChange = event => {
 		setClickedFilterState(event.target.value);
 		setFilterStateByType(event.target.value);
 		onFilterValueClicked(event.target.value);
-		setQueryString(getQueryString(filterBarInput));
 	};
 
 	const onFilterValueClicked = value => {
@@ -125,6 +122,13 @@ const FilterModal = () => {
 		filterDataByType();
 	}, []);
 
+	useEffect(() => {
+		setQueryString(getQueryString(filterBarInput));
+	}, [filterBarInput]);
+
+	console.log("filterBarInput: ", filterBarInput);
+	console.log("qs: ", queryString);
+
 	return (
 		<FilterModalLayout
 			className="filter-modal"
@@ -143,16 +147,16 @@ const FilterModal = () => {
 					{/* 여기바꾸면 됨 */}
 					{list.length &&
 						list.map((text, idx) => (
-							<Link to={`/main?${queryString}`}>
-								<FilterControlLabel
-									value={text}
-									control={<Radio color="default" />}
-									label={text}
-									labelPlacement="start"
-									key={`filter-control-label-${idx}`}
-									checked={filterBarInput[`${getEngKey(filterType)}`] === text}
-								/>
-							</Link>
+							// <Link to={`/main?${queryString}`}>
+							<FilterControlLabel
+								value={text}
+								control={<Radio color="default" />}
+								label={text}
+								labelPlacement="start"
+								key={`filter-control-label-${idx}`}
+								checked={filterBarInput[`${getEngKey(filterType)}`] === text}
+							/>
+							// </Link>
 						))}
 				</RadioGroup>
 			</FormControl>

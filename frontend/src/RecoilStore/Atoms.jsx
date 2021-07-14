@@ -159,6 +159,11 @@ export const currentIssueId = atom({
 	default: null,
 });
 
+export const queryStringState = atom({
+	key: "queryStringState",
+	default: null,
+});
+
 //아래는 데이지 삽질 망한 결과입니다.---나중에 꼭 뜯어보리라..
 // export const categorySelector = selector({
 // 	key: "categorySelector",
