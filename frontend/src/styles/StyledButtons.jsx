@@ -1,7 +1,10 @@
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
 
-export const TabButton = styled(Button)`
+export const TabButton = styled.button`
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	width: ${props => props._width};
 	height: ${({ theme }) => theme.buttonHeights.base};
 	font-size: ${({ theme }) => theme.fontSizes.xs};

@@ -23,8 +23,16 @@ const IssueCard = ({
 	);
 	const [selectedCards, setSelectedCards] = useRecoilState(selectedCardsState);
 
-	const { title, id, labels, milestone, author, createdAt, open, assignees } =
-		issue;
+	const {
+		title,
+		id,
+		labels,
+		milestone,
+		author,
+		createdAt,
+		open,
+		assignees,
+	} = issue;
 
 	const handleCheck = () => {
 		setIsChecked(!isChecked);
@@ -76,7 +84,7 @@ const IssueCard = ({
 						<LabelContainer>
 							{labels.length > 0
 								? labels.map((label, idx) => (
-										<Margin>
+										<Margin key={idx}>
 											<LabelBadge
 												key={label.id}
 												text={label.name}

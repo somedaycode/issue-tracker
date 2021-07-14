@@ -1,4 +1,3 @@
-import Button from "@material-ui/core/Button";
 import { ReactComponent as EditIcon } from "images/edit.svg";
 import { ReactComponent as PlusIcon } from "images/plus.svg";
 import styled from "styled-components";
@@ -44,7 +43,10 @@ const BlueButtons = ({ text, icon, size, clickHandler }) => {
 	);
 };
 
-const BlueButton = styled(Button)`
+const BlueButton = styled.button`
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	width: ${props => props._width};
 	height: ${({ theme }) => theme.buttonHeights.base};
 	font-size: ${({ theme }) => theme.fontSizes.xs};

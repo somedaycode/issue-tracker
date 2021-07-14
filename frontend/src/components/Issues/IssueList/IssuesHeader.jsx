@@ -29,8 +29,9 @@ const IssuesHeader = ({
 	const closedIssueCnt = issuesData.filter(issue => !issue.open).length;
 
 	//----------중복 코드from MeuFilter --------
-	const [isFilterClicked, setIsFilterClicked] =
-		useRecoilState(filterClickFlagState);
+	const [isFilterClicked, setIsFilterClicked] = useRecoilState(
+		filterClickFlagState
+	);
 
 	const handleClick = useCallback(e => {
 		isFilterClicked === false
@@ -91,19 +92,20 @@ const IssuesHeader = ({
 			)}
 			<FilterMain>
 				{isAnyIssueSelected ? (
-					<ButtonContainer>
+					<ButtonContainer key={"filter-0"}>
 						<DropDownButton
 							text="상태 수정"
 							clickEvent={handleClick}
 							className={"issue-header-button"}
 							width={({ theme }) => theme.buttonWidths.lg}
 							border={"none"}
+							key={"filter-0"}
 						></DropDownButton>
 					</ButtonContainer>
 				) : (
 					<FiltersWrapper>
 						{buttonNames.map((filter, idx) => (
-							<ButtonContainer>
+							<ButtonContainer key={`filter-${idx + 1}`}>
 								<DropDownButton
 									text={filter}
 									clickEvent={handleClick}
@@ -111,7 +113,7 @@ const IssuesHeader = ({
 									className={"issue-header-button"}
 									width={({ theme }) => theme.buttonWidths.small}
 									border={"none"}
-								></DropDownButton>
+								/>
 							</ButtonContainer>
 						))}
 					</FiltersWrapper>

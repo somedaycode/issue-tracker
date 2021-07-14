@@ -12,7 +12,7 @@ import qsParser from "util/qsParser";
 
 const MainPage = ({ location }) => {
 	const filter = qsParser(location.search);
-	console.log(filter);
+	// console.log(filter);
 	const { pathname } = window.location;
 	return localStorage.getItem("accessToken") ? (
 		<MainPageLayout>

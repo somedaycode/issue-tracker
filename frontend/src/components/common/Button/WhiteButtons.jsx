@@ -1,4 +1,3 @@
-import Button from "@material-ui/core/Button";
 import { ReactComponent as XIcon } from "images/x-square.svg";
 import { ReactComponent as EditIcon } from "images/edit.svg";
 import { ReactComponent as PaperIcon } from "images/paperclip.svg";
@@ -52,7 +51,10 @@ const WhiteButtons = ({ text, icon, size, clickHandler }) => {
 	);
 };
 
-const WhiteButton = styled(Button)`
+const WhiteButton = styled.button`
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	width: ${props => props._width};
 	height: ${({ theme }) => theme.buttonHeights.base};
 	font-size: ${({ theme }) => theme.fontSizes.xs};

@@ -62,7 +62,7 @@ const Navigator = () => {
 				milestoneClickEvent={handleMilestoneClick}
 				labelCount={labelCount}
 				labelClickEvent={handleLabelClick}
-				isMainPage={false}
+				ismainpage="false"
 			/>
 
 			{addButtonFlag ? (

@@ -26,7 +26,7 @@ const MenuTab = () => {
 				labelCount={0}
 				milestoneClickEvent={handleMilestoneClick}
 				labelClickEvent={handleLabelClick}
-				isMainPage={true}
+				ismainpage="true"
 			/>
 			<Link to="main/new">
 				<AddButton text={"이슈 작성"} icon={"plus"} size={"m"} />
