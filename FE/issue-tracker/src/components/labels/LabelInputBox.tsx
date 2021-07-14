@@ -14,39 +14,44 @@ import {
   labelColorLeft,
   labelCheckbox,
 } from '@components/labels/newLabelStyle';
+import { labelInfoType } from './table/LabelCell';
 
-interface Props {
+type Props = {
+  labelInfo: labelInfoType;
   children: JSX.Element;
-}
+};
 
-function LabelInputBox({ children }: Props) {
-  const colorCode = '#EFF0F6';
+function LabelInputBox({ labelInfo, children }: Props) {
+  const { title, description, color_code, font_light } = labelInfo;
 
   return (
     <NewLabelContent>
       <LabelTagBox>
-        <Label name={'레이블 이름'} colorCode={colorCode} fontLight={false} />
+        <Label name={title} colorCode={color_code} fontLight={font_light} />
       </LabelTagBox>
 
       <LabelInputsWrap>
-        <Input {...labelNameInput} />
-        <Input {...labelDescInput} />
+        <Input {...labelNameInput} value={title} />
+        <Input {...labelDescInput} value={description} />
 
         <LabelColorInput>
           <InputGroup size="md" width="240px" marginRight="16px">
             <InputLeftAddon {...labelColorLeft} children="배경 색상" />
-            <Input value={colorCode} variant="filled" />
+            <Input value={color_code} variant="filled" />
             <InputRightAddon
               children={<Refresh className="icon_refresh" />}
               border="none"
             />
           </InputGroup>
+
           <InputGroup size="md" width="352px" variant="filled">
             <InputLeftAddon {...labelColorLeft} children="텍스트 색상" />
-            <Checkbox {...labelCheckbox} defaultIsChecked>
+            <Checkbox {...labelCheckbox} defaultIsChecked={!font_light}>
               어두운색
             </Checkbox>
-            <Checkbox {...labelCheckbox}>밝은색</Checkbox>
+            <Checkbox {...labelCheckbox} defaultIsChecked={font_light}>
+              밝은색
+            </Checkbox>
             <InputRightAddon border="none" />
           </InputGroup>
         </LabelColorInput>

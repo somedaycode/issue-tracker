@@ -7,13 +7,27 @@ import DeleteMiniButton from '@components/common/DeleteMiniButton';
 import CloseMiniButton from '@components/common/CloseMiniButton';
 import { useState } from 'react';
 
-interface Props {
-  isLastItemStyle: boolean;
-}
+export type milestoneType = {
+  id: number;
+  title: string;
+  description: string;
+  closed: boolean;
+  due_date: string;
+  opened_issue_count: number;
+  closed_issue_count: number;
+};
 
-function MilestoneCell({ isLastItemStyle }: Props) {
+type Props = {
+  milestone: milestoneType;
+  isLastItemStyle: boolean;
+};
+
+function MilestoneCell({ milestone, isLastItemStyle }: Props) {
   const [isDisabled, setIsDisabled] = useState(true);
-  let progressValue = 80;
+  const { title, description, due_date } = milestone;
+  const opened = milestone.opened_issue_count;
+  const closed = milestone.closed_issue_count;
+  const progressValue = (closed * 100) / (opened + closed);
 
   return (
     <MilestoneWrap isLastItemStyle={isLastItemStyle}>
@@ -22,15 +36,15 @@ function MilestoneCell({ isLastItemStyle }: Props) {
         <TitleBox>
           <MilestoneTitle>
             <MilestoneIcon className="icon milestone_icon" />
-            마일스톤 제목
+            {title}
           </MilestoneTitle>
           <MilestoneDate>
             <CalendarIcon className="icon calendar_icon" />
-            완료일 일정
+            {due_date}
           </MilestoneDate>
         </TitleBox>
 
-        <MilestoneDesc>마일스톤에 대한 설명</MilestoneDesc>
+        <MilestoneDesc>{description}</MilestoneDesc>
       </MilestoneLeft>
 
       {/* 마일스톤 오른쪽 */}
@@ -52,8 +66,8 @@ function MilestoneCell({ isLastItemStyle }: Props) {
         <ProgressInfo>
           <PercentInfo>{progressValue}%</PercentInfo>
           <IssueInfo>
-            <NumOfOpenIssue>열린 이슈 {1}</NumOfOpenIssue>
-            <NumOfCloseIssue>닫힌 이슈 {2}</NumOfCloseIssue>
+            <NumOfOpenIssue>열린 이슈 {opened}</NumOfOpenIssue>
+            <NumOfCloseIssue>닫힌 이슈 {closed}</NumOfCloseIssue>
           </IssueInfo>
         </ProgressInfo>
       </MilestoneRight>

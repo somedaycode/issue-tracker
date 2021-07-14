@@ -4,12 +4,18 @@ import { Avatar } from '@chakra-ui/react';
 import { ReactComponent as LogotypeMedium } from '@assets/LogotypeMedium.svg';
 
 function Header() {
+  const loginInfo = localStorage.getItem('login_info');
+  let avatar_url = '';
+  if (loginInfo != null) {
+    avatar_url = JSON.parse(loginInfo).avatar_url;
+  }
+
   return (
     <HeaderContainer>
       <Link to="/issues">
         <LogotypeMedium className="logo" />
       </Link>
-      <Avatar size="md" src="./janmang.jpeg" />
+      <Avatar size="md" src={avatar_url} />
     </HeaderContainer>
   );
 }

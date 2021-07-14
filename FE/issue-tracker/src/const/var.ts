@@ -3,6 +3,11 @@ export const hostAPI = process.env.REACT_APP_API;
 export const urlErrorMsg = '요청하신 주소에 문제가 있습니다.';
 export const issueListErrorMsg = '이슈 목록을 불러오는 데 실패했습니다.';
 
+export const labelErrorMsg = '라벨 목록을 불러오는 데 실패했습니다.';
+export const noLabelMsg = '등록된 레이블이 없습니다.';
+
+export const milestoneErrorMsg = '마일스톤 목록을 불러오는 데 실패했습니다.';
+
 const clientID = process.env.REACT_APP_CLIENT_ID;
 
 export const baseURL = 'http://15.164.68.136/api';

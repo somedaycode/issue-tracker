@@ -1,15 +1,36 @@
 import styled from 'styled-components';
-import TableHeader from '@components/milestones/table/TableHeader';
-import MilestoneCell from '@components/milestones/table/MilestoneCell';
-import EditMilestone from '@components/milestones/table/EditMilestone';
+import { useRecoilValueLoadable } from 'recoil';
+
+import { LabelOrMilestone } from '@store/selectors/LabelOrMilestone';
+import TableHeader from './TableHeader';
+import MilestoneCell from './MilestoneCell';
+import EditMilestone from './EditMilestone';
+import { milestoneType } from './MilestoneCell';
+import LabelsSkeleton from '@components/labels/table/LabelsSkeleton';
 
 function MilestoneTable() {
+  const { state, contents } = useRecoilValueLoadable(
+    LabelOrMilestone('milestones')
+  );
+  const isLastItem = (idx: number) => idx === contents.length - 1;
+
   return (
     <MilestoneTableWrap>
       <TableHeader />
-      <MilestoneCell isLastItemStyle={false} />
-      <EditMilestone />
-      <MilestoneCell isLastItemStyle={true} />
+      {state === 'loading' && <LabelsSkeleton />}
+      {/* {state === 'hasError' && <ErrorLabel>{contents}</ErrorLabel>} */}
+      {state === 'hasValue' &&
+        contents.map((milestone: milestoneType, i: number) => {
+          return (
+            <MilestoneCell
+              key={milestone.id}
+              milestone={milestone}
+              isLastItemStyle={isLastItem(i)}
+            />
+          );
+        })}
+
+      {false && <EditMilestone />}
     </MilestoneTableWrap>
   );
 }

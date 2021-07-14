@@ -2,38 +2,59 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 import Label from '@components/common/Label';
+import EditLabel from './EditLabel';
 import EditMiniButton from '@components/common/EditMiniButton';
 import DeleteMiniButton from '@components/common/DeleteMiniButton';
 
-interface Props {
-  isLastItemStyle: boolean;
-}
+export type labelInfoType = {
+  id?: number;
+  title: string;
+  description: string;
+  color_code: string;
+  font_light: boolean;
+};
 
-function LabelCell({ isLastItemStyle }: Props) {
-  const [isDisabled, setIsDisabled] = useState(true);
+type Props = {
+  labelInfo: labelInfoType;
+  isLastItemStyle: boolean;
+};
+
+function LabelCell({ labelInfo, isLastItemStyle }: Props) {
+  const [isEditClicked, setIsEditClicked] = useState<boolean>(false);
+  const { title, description, color_code, font_light } = labelInfo;
 
   return (
-    <LabelWrap isLastItemStyle={isLastItemStyle}>
-      <StyledDiv>
-        <LabelBox>
-          <Label name="documentation" colorCode="#004DE3" fontLight={true} />
-        </LabelBox>
-        <LabelDescript>레이블에 대한 설명</LabelDescript>
-      </StyledDiv>
+    <>
+      {isEditClicked ? (
+        <EditLabel labelInfo={labelInfo} />
+      ) : (
+        <LabelWrap isLastItemStyle={isLastItemStyle}>
+          <StyledDiv>
+            <LabelBox>
+              <Label
+                name={title}
+                colorCode={color_code}
+                fontLight={font_light}
+              />
+            </LabelBox>
+            <LabelDescript>{description}</LabelDescript>
+          </StyledDiv>
 
-      <LabelButtons>
-        <EditMiniButton setState={setIsDisabled}>편집</EditMiniButton>
-        <DeleteMiniButton>삭제</DeleteMiniButton>
-      </LabelButtons>
-    </LabelWrap>
+          <LabelButtons>
+            <EditMiniButton setState={setIsEditClicked}>편집</EditMiniButton>
+            <DeleteMiniButton>삭제</DeleteMiniButton>
+          </LabelButtons>
+        </LabelWrap>
+      )}
+    </>
   );
 }
 
 export default LabelCell;
 
-interface LabelWrapType {
+type LabelWrapType = {
   isLastItemStyle: boolean;
-}
+};
 
 const LabelWrap = styled.div<LabelWrapType>`
   ${({ theme }) => theme.cellWrap};
