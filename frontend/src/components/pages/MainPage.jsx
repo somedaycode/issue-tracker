@@ -11,11 +11,17 @@ import Issues from "components/Issues/Issues";
 import qsParser from "util/qsParser";
 import { queryStringState } from "RecoilStore/Atoms";
 import { useRecoilValue } from "recoil";
+import { useEffect, useState } from "react";
 
 const MainPage = ({ location }) => {
 	const filter = qsParser(location.search);
 	const { pathname } = window.location;
 	const queryString = useRecoilValue(queryStringState);
+	const [update, setUpdate] = useState(false);
+
+	useEffect(() => {
+		setUpdate(x => !x);
+	}, [queryString]);
 
 	return localStorage.getItem("accessToken") ? (
 		<MainPageLayout>
