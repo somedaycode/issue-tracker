@@ -164,44 +164,12 @@ export const queryStringState = atom({
 	default: null,
 });
 
-//아래는 데이지 삽질 망한 결과입니다.---나중에 꼭 뜯어보리라..
-// export const categorySelector = selector({
-// 	key: "categorySelector",
-// 	get: ({ get }) => {
-// 		const assignee = get(assigneeCategoryState);
-// 		const label = get(labelCategoryState);
-// 		const milestone = get(milestoneCategoryState);
-// 		return { assignee: assignee, label: label, milestone: milestone };
-// 	},
-// 	set: ({ set }, { category, payload }) => {
-// 		switch (category) {
-// 			case CATEGORY_ENG.ASSIGNEE:
-// 				set(assigneeCategoryState, prevState => [
-// 					...prevState,
-// 					{
-// 						id: payload.id,
-// 						githubId: payload.githubId,
-// 						imageUrl: payload.imageUrl,
-// 					},
-// 				]);
-// 			case CATEGORY_ENG.LABEL:
-// 				set(labelCategoryState, prevState => [
-// 					...prevState,
-// 					{
-// 						id: payload.id,
-// 						name: payload.name,
-// 						textColor: payload.colors.textColor,
-// 						backgroundColor: payload.colors.backgroundColor,
-// 					},
-// 				]);
-// 			case CATEGORY_ENG.MILESTONE:
-// 				set(milestoneCategoryState, prevState => [
-// 					{
-// 						id: payload.id,
-// 						title: payload.title,
-// 						dueDate: payload.dueDate,
-// 					},
-// 				]);
-// 		}
-// 	},
-// });
+export const issuesDataState = atom({
+	key: "issuesDataState",
+	default: null,
+});
+
+export const openIssueFlagState = atom({
+	key: "openIssueFlagState",
+	default: true,
+});
