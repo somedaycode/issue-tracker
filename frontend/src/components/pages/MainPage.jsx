@@ -11,17 +11,11 @@ import Issues from "components/Issues/Issues";
 import qsParser from "util/qsParser";
 import { queryStringState } from "RecoilStore/Atoms";
 import { useRecoilValue } from "recoil";
-import { useEffect, useState } from "react";
 
 const MainPage = ({ location }) => {
 	const filter = qsParser(location.search);
 	const { pathname } = window.location;
 	const queryString = useRecoilValue(queryStringState);
-	const [update, setUpdate] = useState(false);
-
-	useEffect(() => {
-		setUpdate(x => !x);
-	}, [queryString]);
 
 	return localStorage.getItem("accessToken") ? (
 		<MainPageLayout>
@@ -29,13 +23,11 @@ const MainPage = ({ location }) => {
 			{(pathname === "/main/labels" || pathname === "/main/milestones") && (
 				<Navigator />
 			)}
-			{queryString && pathname === `/main` ? (
+			{pathname === `/main` && (
 				<>
 					<Redirect to={`/main?${queryString}`}></Redirect>
 					<Issues filter={filter} />
 				</>
-			) : (
-				pathname === `/main` && <Issues filter={filter} />
 			)}
 			<Switch>
 				<Route exact path="/main/milestones" component={MilestonesPage} />

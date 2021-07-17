@@ -161,7 +161,7 @@ export const currentIssueId = atom({
 
 export const queryStringState = atom({
 	key: "queryStringState",
-	default: null,
+	default: "",
 });
 
 export const issuesDataState = atom({
