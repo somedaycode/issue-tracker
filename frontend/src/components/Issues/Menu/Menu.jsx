@@ -1,24 +1,37 @@
+import { useEffect } from "react";
+import { useResetRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
 import MenuFilterBar from "./MenuFilterBar";
 import MenuTab from "./MenuTab";
-import { queryStringState, filterBarInputState } from "RecoilStore/Atoms";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import {
+	queryStringState,
+	filterBarInputState,
+	labelCountState,
+	milestoneCountState,
+} from "RecoilStore/Atoms";
+import API from "util/API";
+import fetchData from "util/fetchData";
 
 const Menu = () => {
-	const [queryString, setQueryString] = useRecoilState(queryStringState);
-	const setFilterBarInputState = useSetRecoilState(filterBarInputState);
-
+	const queryString = useRecoilValue(queryStringState);
+	const resetFilterBarInputState = useResetRecoilState(filterBarInputState);
+	const setLabelCount = useSetRecoilState(labelCountState);
+	const setMilestoneCount = useSetRecoilState(milestoneCountState);
+	const resetQueryStringState = useResetRecoilState(queryStringState);
 	const handleClick = () => {
-		setFilterBarInputState({
-			placeholder: "is:issue is:open",
-			assignee: null,
-			label: null,
-			milestone: null,
-			author: null,
-			issue: null,
-			openClose: null,
-		});
-		setQueryString(null);
+		resetFilterBarInputState();
+		resetQueryStringState();
+	};
+
+	useEffect(() => {
+		getLabelMilestoneData();
+	}, []);
+
+	const getLabelMilestoneData = async () => {
+		const { labels } = await fetchData(API.labels(), "GET");
+		const { milestones } = await fetchData(API.milestones(), "GET");
+		setLabelCount(labels.length);
+		setMilestoneCount(milestones.length);
 	};
 
 	return (

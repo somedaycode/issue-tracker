@@ -15,7 +15,7 @@ const MenuFilterBar = () => {
 	);
 	const setClickedFilterState = useSetRecoilState(clickedFilterState);
 	const filterBarInput = useRecoilValue(filterBarInputState);
-	console.log(filterBarInput);
+
 	const getFilterBarString = () => {
 		return Object.entries(filterBarInput).reduce((acc, [key, value]) => {
 			if (value) {
