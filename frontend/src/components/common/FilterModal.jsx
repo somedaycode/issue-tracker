@@ -7,7 +7,7 @@ import {
 	queryStringState,
 } from "RecoilStore/Atoms";
 import { useRecoilValue, useRecoilState, useSetRecoilState } from "recoil";
-import { filterData, CATEGORY_KOR } from "data";
+import { CATEGORY_KOR } from "data";
 import getEngKey from "util/getEngKey";
 import styled from "styled-components";
 import Radio from "@material-ui/core/Radio";
@@ -18,6 +18,12 @@ import FormLabel from "@material-ui/core/FormLabel";
 import API from "util/API";
 import fetchData from "util/fetchData";
 import getQueryString from "util/getQueryString";
+import {
+	getUserList,
+	getLabelList,
+	getMilestoneList,
+} from "util/getFilterList";
+
 const FilterModal = () => {
 	const [clickedFilter, setClickedFilterState] = useState("");
 	const filterType = useRecoilValue(clickedFilterState);
@@ -31,6 +37,20 @@ const FilterModal = () => {
 		setFilterStateByType(event.target.value);
 		onFilterValueClicked(event.target.value);
 	};
+	const [filterData, setFilterData] = useState({
+		issue: [
+			"열린 이슈",
+			"내가 작성한 이슈",
+			"나에게 할당된 이슈",
+			"내가 댓글을 남긴 이슈",
+			"닫힌 이슈",
+		],
+		assignee: getUserList(API.users()),
+		label: getLabelList(API.labels()),
+		milestone: getMilestoneList(API.milestones()),
+		author: getUserList(API.users()),
+		openClose: ["선택된 이슈 열기", "선택된 이슈 닫기"],
+	});
 
 	const onFilterValueClicked = value => {
 		switch (value) {
@@ -144,10 +164,8 @@ const FilterModal = () => {
 					value={clickedFilter}
 					onClick={handleChange}
 				>
-					{/* 여기바꾸면 됨 */}
 					{list.length &&
 						list.map((text, idx) => (
-							// <Link to={`/main?${queryString}`}>
 							<FilterControlLabel
 								value={text}
 								control={<Radio color="default" />}
@@ -156,7 +174,6 @@ const FilterModal = () => {
 								key={`filter-control-label-${idx}`}
 								checked={filterBarInput[`${getEngKey(filterType)}`] === text}
 							/>
-							// </Link>
 						))}
 				</RadioGroup>
 			</FormControl>
