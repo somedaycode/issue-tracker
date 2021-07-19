@@ -1,4 +1,6 @@
+import { ChangeEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
 import { Avatar } from '@chakra-ui/avatar';
@@ -16,12 +18,16 @@ import {
   getTotalMinutesBetweenGap,
 } from '@utils/renderTimeText';
 import pipe from '@utils/pipe';
+import { allCheckbox, checkBoxSet } from '@store/atoms/issueList';
 
 type Props = {
   info: IssueInfo;
 };
 
 function Issue({ info }: Props) {
+  const [isChecked, setIsChecked] = useState(false);
+  const setCheckBox = useSetRecoilState(checkBoxSet);
+  const isAllCheckBoxClicked = useRecoilValue(allCheckbox);
   const {
     id,
     title,
@@ -45,14 +51,24 @@ function Issue({ info }: Props) {
     getRenderingText
   )(created_time);
 
+  const handleOnChnageCheckBox = (e: ChangeEvent) => {
+    setIsChecked((state) => !state);
+  };
+
   const linkPath = {
     pathname: `/issues/detail/${id}`,
   };
+
   return (
     <IssueWrap data-id={id}>
       <IssueContainer>
         <StyledDiv>
-          <CheckBox type="checkbox" name="issueCheckBox" />
+          <CheckBox
+            type="checkbox"
+            name="issueCheckBox"
+            checked={isAllCheckBoxClicked ? true : isChecked}
+            onChange={handleOnChnageCheckBox}
+          />
           <IssueTitle>
             <Link to={linkPath}>
               <h2>{title}</h2>
