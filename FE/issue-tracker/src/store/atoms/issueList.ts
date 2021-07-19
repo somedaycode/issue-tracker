@@ -27,6 +27,16 @@ const querySet = atom<QuerySet>({
   },
 });
 
+const allCheckbox = atom({
+  key: 'allCheckbox',
+  default: false,
+});
+
+const checkBoxSet = atom({
+  key: 'checkBoxSet',
+  default: {},
+});
+
 const queryString = selector({
   key: 'queryString',
   get: ({ get }) => {
@@ -99,6 +109,8 @@ export {
   queryString,
   filterTextContent,
   formerDataKey,
+  allCheckbox,
+  checkBoxSet,
 };
 
 export type QuerySet = {
