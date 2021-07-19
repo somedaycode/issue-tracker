@@ -1,11 +1,16 @@
 import { useCallback } from 'react';
-import { useRecoilState, useRecoilValueLoadable } from 'recoil';
+import {
+  useRecoilState,
+  useRecoilValueLoadable,
+  useSetRecoilState,
+} from 'recoil';
 import styled from 'styled-components';
 
-import { issueCounts, querySet } from '@store/atoms/issueList';
+import { allCheckbox, issueCounts, querySet } from '@store/atoms/issueList';
 
 function TableHeadLeft() {
   const [query, setQuery] = useRecoilState(querySet);
+  const setChangeAllCheckboxState = useSetRecoilState(allCheckbox);
   const { state, contents } = useRecoilValueLoadable(issueCounts);
   const { closed } = query;
 
@@ -19,9 +24,13 @@ function TableHeadLeft() {
     [query, setQuery]
   );
 
+  const handleOnChangeCheckbox = (): void => {
+    setChangeAllCheckboxState((state) => !state);
+  };
+
   return (
     <HeaderLeft>
-      <input type="checkbox" name="" id="" />
+      <input type="checkbox" onChange={handleOnChangeCheckbox} />
       <IssueTab>
         <IssueOpenTab
           closed={closed}

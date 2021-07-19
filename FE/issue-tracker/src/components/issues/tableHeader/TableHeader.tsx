@@ -1,3 +1,4 @@
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
 import AssigneeFilter from './AssigneeFilter';
@@ -5,17 +6,26 @@ import LabelFilter from './LabelFilter';
 import MilestoneFilter from './MilestoneFilter';
 import AuthorFilter from './AuthorFilter';
 import TableHeadLeft from './TableHeadLeft';
+import { checkBoxSet } from '@store/atoms/issueList';
+import IssueStateFilter from './IssueStateFilter';
 
 function TableHeader() {
+  const clickedCheckBox = useRecoilValue(checkBoxSet);
   return (
     <TableHeaderWrap>
       <TableHeadLeft />
       <HeaderRight>
         <FilterLists>
-          <AuthorFilter />
-          <LabelFilter />
-          <MilestoneFilter />
-          <AssigneeFilter />
+          {clickedCheckBox ? (
+            <>
+              <AuthorFilter />
+              <LabelFilter />
+              <MilestoneFilter />
+              <AssigneeFilter />
+            </>
+          ) : (
+            <IssueStateFilter />
+          )}
         </FilterLists>
       </HeaderRight>
     </TableHeaderWrap>
