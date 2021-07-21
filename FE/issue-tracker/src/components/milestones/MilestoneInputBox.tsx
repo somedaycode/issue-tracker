@@ -2,6 +2,11 @@ import styled from 'styled-components';
 import { Input, InputGroup, InputLeftAddon } from '@chakra-ui/react';
 
 interface Props {
+  milestone: {
+    title: string;
+    description: string;
+    due_date: string;
+  };
   children: JSX.Element;
 }
 
@@ -12,22 +17,27 @@ const labelColorLeft = {
   marginBottom: '16px',
 };
 
-function MilestoneInputBox({ children }: Props) {
+function MilestoneInputBox({ milestone, children }: Props) {
+  const { title, description, due_date } = milestone;
   return (
     <NewMilestoneContent>
       <TitleAndDate>
         <InputGroup size="md" marginRight="16px">
           <InputLeftAddon {...labelColorLeft} children="제목" />
-          <Input placeholder="마일스톤 이름" variant="filled" />
+          <Input placeholder="마일스톤 이름" variant="filled" value={title} />
         </InputGroup>
         <InputGroup size="md">
           <InputLeftAddon {...labelColorLeft} children="완료일(선택)" />
-          <Input vplaceholder="완료일(선택) ex. YYYY-MM-DD" variant="filled" />
+          <Input
+            placeholder="완료일(선택) ex. YYYY-MM-DD"
+            variant="filled"
+            value={due_date}
+          />
         </InputGroup>
       </TitleAndDate>
       <InputGroup size="md" marginRight="16px">
         <InputLeftAddon {...labelColorLeft} children="설명(선택)" />
-        <Input placeholder="설명(선택)" variant="filled" />
+        <Input placeholder="설명(선택)" variant="filled" value={description} />
       </InputGroup>
       {children}
     </NewMilestoneContent>
