@@ -20,13 +20,13 @@ type Props = {
 };
 
 function LabelCell({ labelInfo, isLastItemStyle }: Props) {
-  const [isEditClicked, setIsEditClicked] = useState<boolean>(false);
+  const [isEditClicked, setIsEditClicked] = useState(false);
   const { title, description, color_code, font_light } = labelInfo;
 
   return (
     <>
       {isEditClicked ? (
-        <EditLabel labelInfo={labelInfo} />
+        <EditLabel labelInfo={labelInfo} setIsEditClicked={setIsEditClicked} />
       ) : (
         <LabelWrap isLastItemStyle={isLastItemStyle}>
           <StyledDiv>
