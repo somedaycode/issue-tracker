@@ -5,6 +5,7 @@ import { ReactComponent as CalendarIcon } from '@assets/calendar.svg';
 import EditMiniButton from '@components/common/EditMiniButton';
 import DeleteMiniButton from '@components/common/DeleteMiniButton';
 import CloseMiniButton from '@components/common/CloseMiniButton';
+import EditMilestone from './EditMilestone';
 import { useState } from 'react';
 
 export type milestoneType = {
@@ -23,55 +24,64 @@ type Props = {
 };
 
 function MilestoneCell({ milestone, isLastItemStyle }: Props) {
-  const [isDisabled, setIsDisabled] = useState(true);
+  const [isEditClicked, setIsEditClicked] = useState(false);
   const { title, description, due_date } = milestone;
   const opened = milestone.opened_issue_count;
   const closed = milestone.closed_issue_count;
   const progressValue = (closed * 100) / (opened + closed);
 
   return (
-    <MilestoneWrap isLastItemStyle={isLastItemStyle}>
-      {/* 마일스톤 왼쪽 */}
-      <MilestoneLeft>
-        <TitleBox>
-          <MilestoneTitle>
-            <MilestoneIcon className="icon milestone_icon" />
-            {title}
-          </MilestoneTitle>
-          <MilestoneDate>
-            <CalendarIcon className="icon calendar_icon" />
-            {due_date}
-          </MilestoneDate>
-        </TitleBox>
-
-        <MilestoneDesc>{description}</MilestoneDesc>
-      </MilestoneLeft>
-
-      {/* 마일스톤 오른쪽 */}
-      <MilestoneRight>
-        <ButtonBox>
-          <CloseMiniButton margin="0 25px 0 0">닫기</CloseMiniButton>
-          <EditMiniButton margin="0 25px 0 0" setState={setIsDisabled}>
-            편집
-          </EditMiniButton>
-          <DeleteMiniButton>삭제</DeleteMiniButton>
-        </ButtonBox>
-        <Progress
-          value={progressValue}
-          size="sm"
-          hasStripe
-          colorScheme="green"
-          borderRadius="10px"
+    <>
+      {isEditClicked ? (
+        <EditMilestone
+          milestone={milestone}
+          setIsEditClicked={setIsEditClicked}
         />
-        <ProgressInfo>
-          <PercentInfo>{progressValue}%</PercentInfo>
-          <IssueInfo>
-            <NumOfOpenIssue>열린 이슈 {opened}</NumOfOpenIssue>
-            <NumOfCloseIssue>닫힌 이슈 {closed}</NumOfCloseIssue>
-          </IssueInfo>
-        </ProgressInfo>
-      </MilestoneRight>
-    </MilestoneWrap>
+      ) : (
+        <MilestoneWrap isLastItemStyle={isLastItemStyle}>
+          {/* 마일스톤 왼쪽 */}
+          <MilestoneLeft>
+            <TitleBox>
+              <MilestoneTitle>
+                <MilestoneIcon className="icon milestone_icon" />
+                {title}
+              </MilestoneTitle>
+              <MilestoneDate>
+                <CalendarIcon className="icon calendar_icon" />
+                {due_date}
+              </MilestoneDate>
+            </TitleBox>
+
+            <MilestoneDesc>{description}</MilestoneDesc>
+          </MilestoneLeft>
+
+          {/* 마일스톤 오른쪽 */}
+          <MilestoneRight>
+            <ButtonBox>
+              <CloseMiniButton margin="0 25px 0 0">닫기</CloseMiniButton>
+              <EditMiniButton margin="0 25px 0 0" setState={setIsEditClicked}>
+                편집
+              </EditMiniButton>
+              <DeleteMiniButton>삭제</DeleteMiniButton>
+            </ButtonBox>
+            <Progress
+              value={progressValue}
+              size="sm"
+              hasStripe
+              colorScheme="green"
+              borderRadius="10px"
+            />
+            <ProgressInfo>
+              <PercentInfo>{progressValue}%</PercentInfo>
+              <IssueInfo>
+                <NumOfOpenIssue>열린 이슈 {opened}</NumOfOpenIssue>
+                <NumOfCloseIssue>닫힌 이슈 {closed}</NumOfCloseIssue>
+              </IssueInfo>
+            </ProgressInfo>
+          </MilestoneRight>
+        </MilestoneWrap>
+      )}
+    </>
   );
 }
 
