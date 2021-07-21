@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import queryString from 'query-string';
-import { useRecoilState, useSetRecoilState } from 'recoil';
 
 import { Button } from '@chakra-ui/button';
 import { Stack } from '@chakra-ui/layout';
