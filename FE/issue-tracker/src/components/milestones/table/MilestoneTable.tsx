@@ -4,7 +4,6 @@ import { useRecoilValueLoadable } from 'recoil';
 import { LabelOrMilestone } from '@store/selectors/LabelOrMilestone';
 import TableHeader from './TableHeader';
 import MilestoneCell from './MilestoneCell';
-import EditMilestone from './EditMilestone';
 import { milestoneType } from './MilestoneCell';
 import LabelsSkeleton from '@components/labels/table/LabelsSkeleton';
 
@@ -29,8 +28,6 @@ function MilestoneTable() {
             />
           );
         })}
-
-      {false && <EditMilestone />}
     </MilestoneTableWrap>
   );
 }

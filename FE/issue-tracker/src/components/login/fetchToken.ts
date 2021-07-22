@@ -32,7 +32,7 @@ const fetchToken = async ({ code, history }: Arg) => {
     localStorage.setItem('login_info', JSON.stringify(decodedOauthToken));
     history.push('/issues');
   } catch (error) {
-    console.error('getAccessToken Error');
+    console.error('fetchToken Error');
   }
 };
 

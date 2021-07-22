@@ -6,14 +6,15 @@ import { labelInfoType } from './LabelCell';
 
 type Props = {
   labelInfo: labelInfoType;
+  setIsEditClicked: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-function EditLabel({ labelInfo }: Props) {
+function EditLabel({ labelInfo, setIsEditClicked }: Props) {
   return (
     <EditLabelWrap>
       <h2>레이블 편집</h2>
       <LabelInputBox labelInfo={labelInfo}>
-        <EditCompleteBtn />
+        <EditCompleteBtn setIsEditClicked={setIsEditClicked} />
       </LabelInputBox>
     </EditLabelWrap>
   );

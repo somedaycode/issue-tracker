@@ -3,14 +3,20 @@ import { Button } from '@chakra-ui/react';
 import { ReactComponent as EditIcon } from '@assets/edit.svg';
 import { ReactComponent as CancelIcon } from '@assets/cancel.svg';
 
-function CompleteBtn() {
+type Props = {
+  setIsEditClicked: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+function CompleteBtn({ setIsEditClicked }: Props) {
+  const closeEditLabel = () => setIsEditClicked(false);
+
   return (
     <ButtonBox>
       <Button {...completeButton}>
         <EditIcon className="edit_icon" />
         완료
       </Button>
-      <Button {...whiteButton} marginRight="8px">
+      <Button {...whiteButton} marginRight="8px" onClick={closeEditLabel}>
         <CancelIcon className="cancel_icon" />
         취소
       </Button>
