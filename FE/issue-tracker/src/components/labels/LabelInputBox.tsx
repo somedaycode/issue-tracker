@@ -1,3 +1,4 @@
+import { ChangeEvent, useReducer } from 'react';
 import styled from 'styled-components';
 import {
   Input,
@@ -15,6 +16,7 @@ import {
   labelCheckbox,
 } from '@components/labels/newLabelStyle';
 import { labelInfoType } from './table/LabelCell';
+import { inputInitialType, inputReducer } from './inputReducer';
 
 type Props = {
   labelInfo: labelInfoType;
@@ -23,6 +25,18 @@ type Props = {
 
 function LabelInputBox({ labelInfo, children }: Props) {
   const { title, description, color_code, font_light } = labelInfo;
+  const inputInitialstate: inputInitialType = {
+    title,
+    description,
+    color_code,
+  };
+  const [state, dispatch] = useReducer(inputReducer, inputInitialstate);
+  const changeTitle = (e: ChangeEvent<HTMLInputElement>) =>
+    dispatch({ type: 'TITLE', newState: e.currentTarget.value });
+  const changeDescription = (e: ChangeEvent<HTMLInputElement>) =>
+    dispatch({ type: 'DESCRIPTION', newState: e.currentTarget.value });
+  const changeColor = (e: ChangeEvent<HTMLInputElement>) =>
+    dispatch({ type: 'COLOR', newState: e.currentTarget.value });
 
   return (
     <NewLabelContent>
@@ -31,13 +45,21 @@ function LabelInputBox({ labelInfo, children }: Props) {
       </LabelTagBox>
 
       <LabelInputsWrap>
-        <Input {...labelNameInput} value={title} />
-        <Input {...labelDescInput} value={description} />
+        <Input {...labelNameInput} value={state.title} onChange={changeTitle} />
+        <Input
+          {...labelDescInput}
+          value={state.description}
+          onChange={changeDescription}
+        />
 
         <LabelColorInput>
           <InputGroup size="md" width="240px" marginRight="16px">
             <InputLeftAddon {...labelColorLeft} children="배경 색상" />
-            <Input value={color_code} variant="filled" />
+            <Input
+              variant="filled"
+              value={state.color_code}
+              onChange={changeColor}
+            />
             <InputRightAddon
               children={<Refresh className="icon_refresh" />}
               border="none"
