@@ -16,7 +16,7 @@ import {
   labelCheckbox,
 } from '@components/labels/newLabelStyle';
 import { labelInfoType } from './table/LabelCell';
-import { inputInitialType, inputReducer } from './inputReducer';
+import { inputReducer } from './inputReducer';
 
 type Props = {
   labelInfo: labelInfoType;
@@ -25,11 +25,7 @@ type Props = {
 
 function LabelInputBox({ labelInfo, children }: Props) {
   const { title, description, color_code, font_light } = labelInfo;
-  const inputInitialstate: inputInitialType = {
-    title,
-    description,
-    color_code,
-  };
+  const inputInitialstate = { title, description, color_code };
   const [state, dispatch] = useReducer(inputReducer, inputInitialstate);
   const changeTitle = (e: ChangeEvent<HTMLInputElement>) =>
     dispatch({ type: 'TITLE', newState: e.currentTarget.value });
