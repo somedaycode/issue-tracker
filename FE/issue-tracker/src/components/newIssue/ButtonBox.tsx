@@ -18,20 +18,19 @@ import { getNewIssueBody } from '@store/selectors/newIssue';
 function ButtonBox() {
   const isInputtedTitle = useRecoilValue(isInputtedTitleAtom);
   const newIssueTitle = useRecoilValue(newIssueTitleAtom);
-  const newIssueHeaderBody = useRecoilValue(getNewIssueBody);
+  const newIssueBody = useRecoilValue(getNewIssueBody);
   const [isClickedCompleteBtn, setIsClickedCompleteBtn] = useRecoilState(
     isClickedCompleteBtnAtom
   );
   const history = useHistory();
-
+  const errorMsg = '🤯이슈 생성 에러';
   const handleClickComplete = () => setIsClickedCompleteBtn(true);
 
   useEffect(() => {
     if (!isClickedCompleteBtn) return;
-    const header = newIssueHeaderBody;
     const postIssue = async () => {
       try {
-        await fetchWithAuth(`${baseURL}/issues`, '🤯이슈 생성 에러', header);
+        await fetchWithAuth(`${baseURL}/issues`, errorMsg, newIssueBody);
         setIsClickedCompleteBtn(false);
         history.push('/issues');
       } catch (error) {
