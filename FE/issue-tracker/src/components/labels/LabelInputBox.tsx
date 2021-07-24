@@ -1,22 +1,13 @@
-import { ChangeEvent, useReducer } from 'react';
+import { ChangeEvent, useEffect } from 'react';
 import styled from 'styled-components';
-import {
-  Input,
-  InputGroup,
-  InputLeftAddon,
-  InputRightAddon,
-  Checkbox,
-} from '@chakra-ui/react';
-import { ReactComponent as Refresh } from '@assets/refresh.svg';
+import { useRecoilState } from 'recoil';
+import { Input } from '@chakra-ui/react';
+
 import Label from '@components/common/Label';
-import {
-  labelNameInput,
-  labelDescInput,
-  labelColorLeft,
-  labelCheckbox,
-} from '@components/labels/newLabelStyle';
+import { labelNameInput, labelDescInput } from './newLabelStyle';
 import { labelInfoType } from './table/LabelCell';
-import { inputReducer } from './inputReducer';
+import { titleValueAtom, descriptionValueAtom } from '@store/atoms/labelInputs';
+import LabelColorInput from './LabelColorInput';
 
 type Props = {
   labelInfo: labelInfoType;
@@ -25,14 +16,19 @@ type Props = {
 
 function LabelInputBox({ labelInfo, children }: Props) {
   const { title, description, color_code, font_light } = labelInfo;
-  const inputInitialstate = { title, description, color_code };
-  const [state, dispatch] = useReducer(inputReducer, inputInitialstate);
+  const [titleVal, setTitleVal] = useRecoilState(titleValueAtom);
+  const [descriptionVal, setDescriptionVal] =
+    useRecoilState(descriptionValueAtom);
+
   const changeTitle = (e: ChangeEvent<HTMLInputElement>) =>
-    dispatch({ type: 'TITLE', newState: e.currentTarget.value });
+    setTitleVal(e.currentTarget.value);
   const changeDescription = (e: ChangeEvent<HTMLInputElement>) =>
-    dispatch({ type: 'DESCRIPTION', newState: e.currentTarget.value });
-  const changeColor = (e: ChangeEvent<HTMLInputElement>) =>
-    dispatch({ type: 'COLOR', newState: e.currentTarget.value });
+    setDescriptionVal(e.currentTarget.value);
+
+  useEffect(() => {
+    setTitleVal(title);
+    setDescriptionVal(description);
+  }, []);
 
   return (
     <NewLabelContent>
@@ -41,38 +37,13 @@ function LabelInputBox({ labelInfo, children }: Props) {
       </LabelTagBox>
 
       <LabelInputsWrap>
-        <Input {...labelNameInput} value={state.title} onChange={changeTitle} />
+        <Input {...labelNameInput} value={titleVal} onChange={changeTitle} />
         <Input
           {...labelDescInput}
-          value={state.description}
+          value={descriptionVal}
           onChange={changeDescription}
         />
-
-        <LabelColorInput>
-          <InputGroup size="md" width="240px" marginRight="16px">
-            <InputLeftAddon {...labelColorLeft} children="배경 색상" />
-            <Input
-              variant="filled"
-              value={state.color_code}
-              onChange={changeColor}
-            />
-            <InputRightAddon
-              children={<Refresh className="icon_refresh" />}
-              border="none"
-            />
-          </InputGroup>
-
-          <InputGroup size="md" width="352px" variant="filled">
-            <InputLeftAddon {...labelColorLeft} children="텍스트 색상" />
-            <Checkbox {...labelCheckbox} defaultIsChecked={!font_light}>
-              어두운색
-            </Checkbox>
-            <Checkbox {...labelCheckbox} defaultIsChecked={font_light}>
-              밝은색
-            </Checkbox>
-            <InputRightAddon border="none" />
-          </InputGroup>
-        </LabelColorInput>
+        <LabelColorInput color={color_code} font={font_light} />
         {children}
       </LabelInputsWrap>
     </NewLabelContent>
@@ -90,12 +61,4 @@ const LabelTagBox = styled.div`
 `;
 const LabelInputsWrap = styled.div`
   width: 100%;
-`;
-const LabelColorInput = styled.div`
-  display: flex;
-  .icon_refresh {
-    path {
-      stroke: ${({ theme }) => theme.colors.gr_label};
-    }
-  }
 `;
