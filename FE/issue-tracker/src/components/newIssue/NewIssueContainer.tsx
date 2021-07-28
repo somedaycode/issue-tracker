@@ -7,10 +7,14 @@ import SelectBox from './SelectBox';
 import ButtonBox from './ButtonBox';
 
 function NewIssueContainer() {
+  const loginInfo = localStorage.getItem('login_info');
+  let avatarURL = '';
+  if (loginInfo != null) avatarURL = JSON.parse(loginInfo).avatar_url;
+
   return (
     <Wrap>
       <ContentsBox>
-        <Avatar className="avatar" size="md" src="./janmang.jpeg" />
+        <Avatar className="avatar" size="md" src={avatarURL} />
         <TextBox />
         <SelectBox />
       </ContentsBox>
