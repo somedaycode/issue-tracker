@@ -38,6 +38,8 @@
 ### 이슈 생성
 https://user-images.githubusercontent.com/56783350/124650423-b2417780-ded4-11eb-83c2-0e86287ad300.mp4
 
+## 이슈 필터
+![이슈필터링](https://user-images.githubusercontent.com/71166372/126979256-b2158f8c-2041-4cc1-9886-b6666c649e56.gif)
 
 ## 🛠Tech Stack
 ### 🖥 Front-end
