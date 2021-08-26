@@ -2,14 +2,45 @@
 
 GitHub의 이슈를 관리하는 서비스와 같이 로그인 이후에 이슈, 마일스톤과 프로젝트를 관리할 수 있는 웹 서비스 입니다.
 
-클라이언트
+## 주요 기능
+
+### 로그인
+
+- GitHub 로그인
+
+### ⛄️이슈 관리
+
+- 새로운 이슈 생성(담당자, 레이블, 마일스톤 지정)
+- 이슈 수정(담당자, 레이블, 마일스톤 수정)
+- 이슈 닫기/열기
+
+### 코멘트 작성
+
+- 새로운 코멘트 생성
+- 코멘트 작성자만 코멘트 편집 가능
+
+### 라벨 관리
+
+- 새로운 라벨 생성
+- 라벨 수정/삭제
+
+### 마일스톤 관리
+
+- 새로운 마일스톤 생성
+- 마일스톤 수정/삭제
+
+---
+
+## 기술 스택
+
+### 클라이언트
 
 - TypeScript
 - React
 - Recoil
 - Styled-component
 
-백엔드
+### 백엔드
 
 - SpringBoot
 - MySQL
@@ -20,11 +51,11 @@ https://user-images.githubusercontent.com/71962505/125658848-78304d34-c115-4ea3-
 
 https://user-images.githubusercontent.com/71962505/125659469-394fbb73-c1eb-4473-a995-30d73c28a56e.mp4
 
-## 로딩 시 스켈레톤 UI
+### 로딩 시 스켈레톤 UI
 
 ![label_skeleton](https://user-images.githubusercontent.com/62237639/123954540-7c3b5980-d9e3-11eb-90e3-319130e93659.gif)
 
-## 에러 처리
+### 에러 처리
 
 ![label_error_component](https://user-images.githubusercontent.com/62237639/123954867-dcca9680-d9e3-11eb-8b78-f90261320944.png)
 
